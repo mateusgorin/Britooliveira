@@ -16,21 +16,31 @@ const Differentials: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {DIFFERENTIALS.map((diff, index) => (
-              <div key={index} className="group flex flex-col gap-6">
-                <div className="text-navy/40 w-10 h-10 group-hover:text-gold transition-colors">
-                  <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                    {icons[index % icons.length]}
-                  </div>
+              <div 
+                key={index} 
+                className="group relative bg-white p-10 md:p-12 border border-gray-100 hover:border-gold/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 rounded-sm"
+              >
+                {/* Detalhe Superior Dourado */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+                
+                {/* Ícone */}
+                <div className="mb-10 relative">
+                   <div className="w-16 h-16 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-gold transition-all duration-500 shadow-sm group-hover:shadow-md">
+                     <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                        {icons[index % icons.length]}
+                     </div>
+                   </div>
                 </div>
+
                 <div>
-                  {/* Fonte aumentada de text-xl para text-2xl */}
-                  <h3 className="text-2xl font-serif text-navy mb-3 italic">{diff.title}</h3>
-                  <div className="h-px w-8 bg-gray-200 mb-4 group-hover:bg-gold transition-colors"></div>
-                  {/* Fonte aumentada de text-sm para text-base */}
+                  <h3 className="text-2xl font-serif text-navy mb-5 group-hover:text-gold transition-colors duration-300">
+                    {diff.title}
+                  </h3>
+                  <div className="h-px w-10 bg-gray-200 mb-6 group-hover:bg-gold transition-colors duration-500 group-hover:w-20"></div>
                   <p className="text-gray-500 leading-relaxed font-light text-base">
                     {diff.description}
                   </p>

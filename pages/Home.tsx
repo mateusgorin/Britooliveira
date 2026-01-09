@@ -143,12 +143,12 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Quem Somos (Refinada: Menos grito visual, mais elegância) */}
+      {/* Seção Quem Somos */}
       <section id="quem-somos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
-            {/* Imagem: Design mais contido */}
+            {/* Imagem */}
             <div className="relative order-2 lg:order-1">
               <div className="relative z-10 aspect-[4/5] overflow-hidden bg-gray-100">
                  <img 
@@ -157,7 +157,6 @@ const Home: React.FC = () => {
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                  />
               </div>
-              {/* Moldura simples ao invés de sombra pesada */}
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
               
               <div className="absolute bottom-0 left-0 bg-white p-6 border-t border-r border-gray-100 max-w-xs z-20">
@@ -166,7 +165,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Texto: Tipografia ajustada */}
+            {/* Texto */}
             <div className="order-1 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-gold"></span>
@@ -201,7 +200,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Pilares (Refinada: Cards limpos, bordas sutis) */}
+      {/* Seção Pilares */}
       <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -229,7 +228,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS (Refinada: Card menor, tipografia controlada) */}
+      {/* SEÇÃO SERVIÇOS */}
       <section id="servicos" className="py-24 bg-white scroll-mt-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
@@ -246,7 +245,7 @@ const Home: React.FC = () => {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="overflow-hidden -mx-4 pb-10"> {/* pb para sombra não cortar */}
+            <div className="overflow-hidden -mx-4 pb-10">
               <div 
                 className="flex transition-transform duration-700 ease-out" 
                 style={{ transform: `translateX(-${currentService * (100 / itemsPerPage)}%)` }}
@@ -260,22 +259,18 @@ const Home: React.FC = () => {
                     <div className="bg-white border border-gray-100 p-8 h-full transition-all duration-300 hover:shadow-lg hover:border-navy/10 flex flex-col justify-between group/card min-h-[320px]">
                       <div>
                         <div className="text-navy/80 mb-6 group-hover/card:text-gold transition-colors">
-                          {/* Force icon size consistency */}
                           <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
                             {service.icon}
                           </div>
                         </div>
-                        {/* AUMENTO DA FONTE DO TÍTULO (text-lg -> text-xl md:text-2xl) */}
                         <h3 className="text-xl md:text-2xl font-serif text-navy mb-4 leading-snug font-medium">
                           {service.title}
                         </h3>
-                        {/* AUMENTO DA FONTE DA DESCRIÇÃO (text-sm -> text-base) */}
                         <p className="text-gray-500 leading-relaxed font-light text-base">
                           {service.description}
                         </p>
                       </div>
                       <div className="pt-6 mt-4 border-t border-gray-50">
-                        {/* AUMENTO DA FONTE DO LINK (text-[10px] -> text-xs) */}
                         <Link to="/contato" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors">
                           Saiba Mais <ArrowUpRight className="w-3 h-3" />
                         </Link>
@@ -286,7 +281,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Controles de Navegação Minimalistas */}
+            {/* Controles de Navegação */}
             <div className="flex justify-center gap-3">
               <button 
                 onClick={prevService}
@@ -321,10 +316,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DIFERENCIAIS (Refinada: Grid limpo) */}
-      <section id="diferenciais" className="py-24 bg-white scroll-mt-24">
+      {/* SEÇÃO DIFERENCIAIS (ATUALIZADA) */}
+      <section id="diferenciais" className="py-24 bg-gray-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-col md:flex-row gap-12 mb-16 border-b border-gray-100 pb-12">
+          <div className="flex flex-col md:flex-row gap-12 mb-16 border-b border-gray-200 pb-12">
              <div className="md:w-1/3">
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Por que nós?</span>
                 <h2 className="text-3xl md:text-4xl font-serif text-navy leading-tight">
@@ -338,18 +333,28 @@ const Home: React.FC = () => {
              </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {DIFFERENTIALS.map((diff, index) => (
-              <div key={index} className="group">
-                <div className="text-navy/30 mb-4 group-hover:text-gold transition-colors">
-                  <div className="[&>svg]:w-6 [&>svg]:h-6 [&>svg]:stroke-[1.5]">
-                    {diffIcons[index % diffIcons.length]}
-                  </div>
+              <div 
+                key={index} 
+                className="group relative bg-white p-8 md:p-10 border border-gray-100 hover:border-gold/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 rounded-sm overflow-hidden"
+              >
+                {/* Detalhe Dourado Superior Animado */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+
+                {/* Ícone com destaque */}
+                <div className="mb-8 relative">
+                   <div className="w-14 h-14 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-gold transition-all duration-500">
+                     <div className="[&>svg]:w-7 [&>svg]:h-7 [&>svg]:stroke-[1.5]">
+                        {diffIcons[index % diffIcons.length]}
+                      </div>
+                   </div>
                 </div>
+
                 <div>
-                  {/* Fonte aumentada de text-lg para text-xl */}
-                  <h3 className="text-xl font-serif text-navy mb-3 group-hover:text-navy/80 transition-colors">{diff.title}</h3>
-                  {/* Fonte aumentada de text-sm para text-base */}
+                  <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-gold transition-colors duration-300">
+                    {diff.title}
+                  </h3>
                   <p className="text-gray-500 text-base leading-relaxed font-light">
                     {diff.description}
                   </p>
@@ -360,7 +365,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA - Texto Atualizado e Promessa Removida */}
+      {/* Final CTA */}
       <section className="py-32 bg-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
           <h2 className="text-navy text-3xl md:text-5xl font-serif mb-10 font-light leading-tight">
