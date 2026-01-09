@@ -45,13 +45,13 @@ const Navbar: React.FC = () => {
             <img 
               src={LOGO_URL} 
               alt="Brito Oliveira Logo" 
-              // Ajuste de tamanho: 
-              // Topo: Aumentado para h-[80px] mobile e h-[120px] desktop (ocupa bem mais espaço)
-              // Scroll: Aumentado para h-[55px] mobile e h-[75px] desktop (não fica minúscula)
+              // Ajuste de tamanho para melhorar definição:
+              // Reduzi de h-[120px] para h-[90px] no desktop (md) para evitar pixelização
+              // Reduzi de h-[80px] para h-[60px] no mobile para ficar mais proporcional
               className={`object-contain transition-all duration-500 ease-in-out ${
                 scrolled 
-                  ? 'h-[55px] md:h-[75px]' 
-                  : 'h-[80px] md:h-[120px]'
+                  ? 'h-[40px] md:h-[55px]' 
+                  : 'h-[60px] md:h-[90px]'
               }`} 
             />
           </div>

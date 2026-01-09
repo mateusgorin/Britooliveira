@@ -1,11 +1,11 @@
-// Import React to resolve React namespace in TypeScript interface
-import React from 'react';
+
+import type { ReactNode } from 'react';
 
 export interface Service {
   id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 export interface Differential {

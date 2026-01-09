@@ -13,7 +13,12 @@ const WhatsAppButton: React.FC = () => {
       aria-label="Falar pelo WhatsApp"
     >
       <MessageCircle className="w-6 h-6" />
-      <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-ultra">
+      {/* 
+         Alteração: Adicionado prefixo 'lg:' nas classes group-hover.
+         Isso garante que o texto só apareça em telas grandes (Desktop),
+         evitando que fique travado aberto em celulares e tablets (touch).
+      */}
+      <span className="max-w-0 overflow-hidden lg:group-hover:max-w-xs lg:group-hover:ml-2 transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-ultra">
         Atendimento Executivo
       </span>
     </a>

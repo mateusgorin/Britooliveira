@@ -1,74 +1,139 @@
 
 import React from 'react';
-import { Target, Shield, Award } from 'lucide-react';
+import { Target, Shield, Award, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
     <div className="bg-white">
-      {/* Header Padronizado - Classes idênticas às da página de Serviços para garantir mesma altura */}
+      {/* HEADER PADRONIZADO - Sem gradientes extras, estrutura idêntica às outras páginas */}
       <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-navy text-white text-center">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Nossa Instituição</span>
            <h1 className="text-4xl md:text-7xl font-serif italic mb-6 md:mb-8">
              Sólida, técnica e <span className="text-gradient-gold not-italic">estratégica.</span>
            </h1>
-           <p className="text-gray-400 font-light text-base md:text-lg">
-             Estruturando o presente para garantir o futuro do seu negócio.
+           <p className="text-gray-400 font-light text-base md:text-lg max-w-2xl mx-auto">
+             Estruturando o presente para garantir o legado futuro do seu negócio.
            </p>
         </div>
       </section>
 
-      {/* Content */}
+      {/* Seção Principal: História e Abordagem */}
       <section className="py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16">
-          <div className="lg:col-span-4">
-             <div className="lg:sticky lg:top-40">
-                <h2 className="text-navy text-3xl font-serif mb-6 md:mb-8 italic">Sobre a Empresa</h2>
-                <div className="w-10 md:w-12 h-px bg-gold mb-6 md:mb-8"></div>
-                <p className="text-gray-400 text-xs md:text-sm leading-relaxed uppercase tracking-wider">
-                  "Onde a prevenção encontra o planejamento estratégico."
-                </p>
-             </div>
-          </div>
-          <div className="lg:col-span-8 space-y-8 md:space-y-12">
-            <p className="text-navy text-xl md:text-2xl font-light leading-relaxed">
-              A BRITO OLIVEIRA ASSESSORIA EMPRESARIAL nasceu com o propósito de oferecer uma assessoria empresarial séria, técnica e estratégica, voltada para empresas que buscam estabilidade, crescimento e segurança jurídica.
-            </p>
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light">
-              Nosso trabalho é baseado na prevenção, no planejamento e na análise criteriosa de cada cenário empresarial, sempre com foco em soluções práticas, eficientes e seguras. Acreditamos que o sucesso duradouro de uma empresa depende de uma base sólida.
-            </p>
-            <div className="aspect-video bg-gray-100 overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Reunião Estratégica Executiva" 
-                  className="w-full h-full object-cover grayscale opacity-80"
-                />
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            
+            {/* Imagem */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative z-10 aspect-[4/5] md:aspect-square overflow-hidden shadow-2xl bg-navy">
+                 <img 
+                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2064&auto=format&fit=crop" 
+                    alt="Reunião Estratégica" 
+                    className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+                 />
+              </div>
+              <div className="absolute -top-4 -left-4 w-full h-full border border-gold/30 -z-0 hidden md:block"></div>
+              <div className="absolute -bottom-6 -right-6 bg-white p-8 shadow-xl border border-gray-100 hidden md:block z-20">
+                  <p className="text-navy font-serif italic text-2xl">Excelência</p>
+                  <p className="text-gold text-[9px] font-bold uppercase tracking-ultra">Desde a fundação</p>
+              </div>
             </div>
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light">
-              Atuamos de forma personalizada, analisando cada realidade empresarial com responsabilidade técnica e visão estratégica. Não somos apenas consultores; somos parceiros do seu board na construção de uma trajetória segura.
-            </p>
+
+            {/* Texto */}
+            <div className="order-1 lg:order-2">
+              <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Quem Somos</span>
+              <h2 className="text-navy text-3xl md:text-5xl font-serif mb-8 leading-tight italic">
+                Mais que consultoria, <br /> <span className="not-italic">Inteligência Empresarial.</span>
+              </h2>
+              
+              <div className="space-y-6 text-gray-600 font-light text-base md:text-lg leading-relaxed">
+                <p>
+                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> estabeleceu-se no mercado como uma referência em segurança jurídica e eficiência operacional. Nascemos da necessidade de oferecer ao empresário brasileiro uma visão integrada, onde o jurídico não é um entrave, mas uma alavanca de crescimento.
+                </p>
+                <p>
+                  Nosso corpo técnico é formado por especialistas que entendem a linguagem dos negócios. Não entregamos apenas pareceres; entregamos soluções que protegem o patrimônio, otimizam a carga tributária e organizam a governança corporativa.
+                </p>
+              </div>
+
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Foco Preventivo</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Sigilo Absoluto</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Técnica Jurídica</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Visão de Dono</span>
+                 </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* Missão, Visão, Valores */}
-      <section className="py-20 md:py-32 bg-corporate-gray">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          <div className="p-8 md:p-12 bg-white shadow-sm border-t-2 border-transparent hover:border-gold transition-all">
-            <Target className="w-8 h-8 text-gold mb-6 md:mb-8" />
-            <h3 className="text-2xl font-serif text-navy mb-4 md:mb-6 italic">Missão</h3>
-            <p className="text-gray-500 font-light text-sm leading-relaxed">Proporcionar clareza e segurança nas decisões empresariais através de assessoria estratégica de alto nível.</p>
-          </div>
-          <div className="p-8 md:p-12 bg-white shadow-sm border-t-2 border-transparent hover:border-gold transition-all">
-            <Shield className="w-8 h-8 text-gold mb-6 md:mb-8" />
-            <h3 className="text-2xl font-serif text-navy mb-4 md:mb-6 italic">Visão</h3>
-            <p className="text-gray-500 font-light text-sm leading-relaxed">Sermos reconhecidos como o escritório referência em assessoria preventiva e planejamento estratégico no Brasil.</p>
-          </div>
-          <div className="p-8 md:p-12 bg-white shadow-sm border-t-2 border-transparent hover:border-gold transition-all">
-            <Award className="text-gold w-8 h-8 mb-6 md:mb-8" />
-            <h3 className="text-2xl font-serif text-navy mb-4 md:mb-6 italic">Valores</h3>
-            <p className="text-gray-500 font-light text-sm leading-relaxed">Credibilidade, ética inegociável, transparência técnica e foco absoluto na segurança do patrimônio do cliente.</p>
-          </div>
+      <section className="py-20 md:py-32 bg-corporate-gray relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+           <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif text-navy italic">Nossos Pilares</h2>
+              <div className="h-px w-16 bg-gold mx-auto mt-6"></div>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Target className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossa Missão</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Proporcionar clareza, segurança e sustentabilidade nas decisões empresariais através de uma assessoria técnica de alto nível e estritamente personalizada.
+                 </p>
+              </div>
+
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Shield className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossa Visão</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Ser a referência nacional em assessoria preventiva para médias e grandes empresas, reconhecida pela integridade e pela capacidade de resolver complexidades.
+                 </p>
+              </div>
+
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Award className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossos Valores</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Ética inegociável, excelência técnica, transparência nas relações, confidencialidade absoluta e compromisso real com o resultado do cliente.
+                 </p>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-24 bg-navy text-center">
+        <div className="max-w-4xl mx-auto px-6">
+           <h2 className="text-3xl md:text-4xl font-serif text-white italic mb-8">
+             "A segurança jurídica é a base da liberdade empresarial."
+           </h2>
+           <Link 
+             to="/contato"
+             className="inline-block border border-gold text-gold hover:bg-gold hover:text-navy px-10 py-4 text-[10px] font-bold uppercase tracking-ultra transition-all duration-300"
+           >
+             Converse com a Diretoria
+           </Link>
         </div>
       </section>
     </div>

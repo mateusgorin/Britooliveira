@@ -11,6 +11,7 @@ const Contact: React.FC = () => {
 
   return (
     <div className="bg-white">
+      {/* Header Padronizado */}
       <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-navy text-white text-center">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Inicie um diálogo</span>
@@ -19,7 +20,7 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-32">
+      <section className="py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
           {/* Info Side */}
           <div className="lg:col-span-5 order-2 lg:order-1">

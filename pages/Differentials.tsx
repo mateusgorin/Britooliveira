@@ -8,6 +8,7 @@ const Differentials: React.FC = () => {
 
   return (
     <div className="bg-white">
+      {/* Header Padronizado */}
       <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-navy text-white text-center">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Por que escolher a Brito Oliveira?</span>
@@ -16,8 +17,8 @@ const Differentials: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-8">
+      <section className="py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
             {DIFFERENTIALS.map((diff, index) => (
               <div key={index} className="group flex flex-col gap-8 p-12 bg-corporate-gray hover:bg-white transition-all duration-500 hover:shadow-2xl border-b-2 border-transparent hover:border-gold">
@@ -37,8 +38,8 @@ const Differentials: React.FC = () => {
       </section>
 
       {/* Banner de Autoridade */}
-      <section className="py-32 bg-navy text-white relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-8 text-center">
+      <section className="py-20 md:py-32 bg-navy text-white relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 md:px-8 text-center">
            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-8 block">Nossa Promessa</span>
            <h2 className="text-4xl md:text-5xl font-serif italic mb-10 leading-tight">
             "Não apenas resolvemos problemas; <br /> trabalhamos para evitar que eles aconteçam."
