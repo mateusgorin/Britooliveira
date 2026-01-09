@@ -143,13 +143,13 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Quem Somos */}
+      {/* Seção Quem Somos (Refinada: Menos grito visual, mais elegância) */}
       <section id="quem-somos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
-            {/* Imagem */}
-            <div className="relative order-2 lg:order-1">
+            {/* Imagem: Design mais contido e reduzido */}
+            <div className="relative order-2 lg:order-1 max-w-md mx-auto">
               <div className="relative z-10 aspect-[4/5] overflow-hidden bg-gray-100">
                  <img 
                     src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
@@ -157,6 +157,7 @@ const Home: React.FC = () => {
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                  />
               </div>
+              {/* Moldura simples ao invés de sombra pesada */}
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
               
               <div className="absolute bottom-0 left-0 bg-white p-6 border-t border-r border-gray-100 max-w-xs z-20">
@@ -165,7 +166,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Texto */}
+            {/* Texto: Tipografia ajustada */}
             <div className="order-1 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-gold"></span>
@@ -200,7 +201,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Pilares */}
+      {/* Seção Pilares (Refinada: Cards limpos, bordas sutis) */}
       <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -228,7 +229,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS */}
+      {/* SEÇÃO SERVIÇOS (Refinada: Card menor, tipografia controlada) */}
       <section id="servicos" className="py-24 bg-white scroll-mt-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
@@ -245,7 +246,7 @@ const Home: React.FC = () => {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="overflow-hidden -mx-4 pb-10">
+            <div className="overflow-hidden -mx-4 pb-10"> {/* pb para sombra não cortar */}
               <div 
                 className="flex transition-transform duration-700 ease-out" 
                 style={{ transform: `translateX(-${currentService * (100 / itemsPerPage)}%)` }}
@@ -259,18 +260,22 @@ const Home: React.FC = () => {
                     <div className="bg-white border border-gray-100 p-8 h-full transition-all duration-300 hover:shadow-lg hover:border-navy/10 flex flex-col justify-between group/card min-h-[320px]">
                       <div>
                         <div className="text-navy/80 mb-6 group-hover/card:text-gold transition-colors">
+                          {/* Force icon size consistency */}
                           <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
                             {service.icon}
                           </div>
                         </div>
+                        {/* AUMENTO DA FONTE DO TÍTULO (text-lg -> text-xl md:text-2xl) */}
                         <h3 className="text-xl md:text-2xl font-serif text-navy mb-4 leading-snug font-medium">
                           {service.title}
                         </h3>
+                        {/* AUMENTO DA FONTE DA DESCRIÇÃO (text-sm -> text-base) */}
                         <p className="text-gray-500 leading-relaxed font-light text-base">
                           {service.description}
                         </p>
                       </div>
                       <div className="pt-6 mt-4 border-t border-gray-50">
+                        {/* AUMENTO DA FONTE DO LINK (text-[10px] -> text-xs) */}
                         <Link to="/contato" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors">
                           Saiba Mais <ArrowUpRight className="w-3 h-3" />
                         </Link>
@@ -281,7 +286,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Controles de Navegação */}
+            {/* Controles de Navegação Minimalistas */}
             <div className="flex justify-center gap-3">
               <button 
                 onClick={prevService}
@@ -365,7 +370,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* Final CTA - Texto Atualizado e Promessa Removida */}
       <section className="py-32 bg-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
           <h2 className="text-navy text-3xl md:text-5xl font-serif mb-10 font-light leading-tight">
