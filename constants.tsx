@@ -1,0 +1,99 @@
+
+import React from 'react';
+import { 
+  ShieldCheck, 
+  TrendingUp, 
+  Scale, 
+  Settings, 
+  FileCheck, 
+  Briefcase, 
+  Handshake,
+  LineChart,
+  UserCheck,
+  Zap,
+  BookOpen
+} from 'lucide-react';
+import { Service, Differential, NavItem } from './types';
+
+export const LOGO_URL = 'https://i.postimg.cc/s21ZkLLm/IMG-1927.png';
+export const WHATSAPP_NUMBER = '5561981476031'; 
+
+export const NAV_ITEMS: NavItem[] = [
+  { label: 'Home', path: '/' },
+  { label: 'Sobre a Empresa', path: '/sobre' },
+  { label: 'Serviços', path: '/servicos' },
+  { label: 'Diferenciais', path: '/diferenciais' },
+  { label: 'Contato', path: '/contato' },
+];
+
+export const SERVICES: Service[] = [
+  {
+    id: '1',
+    title: 'Assessoria Empresarial Estratégica',
+    description: 'Soluções inteligentes focadas em planejamento e crescimento sustentável, garantindo que sua empresa esteja sempre à frente.',
+    icon: <Briefcase className="w-8 h-8" />
+  },
+  {
+    id: '2',
+    title: 'Assessoria Jurídica Preventiva e Consultiva',
+    description: 'Foco na mitigação de riscos e segurança jurídica através de consultoria especializada antes da ocorrência de conflitos.',
+    icon: <Scale className="w-8 h-8" />
+  },
+  {
+    id: '3',
+    title: 'Planejamento e Organização Empresarial',
+    description: 'Estruturação de processos e fluxos internos para maximizar a eficiência e a clareza operacional do negócio.',
+    icon: <TrendingUp className="w-8 h-8" />
+  },
+  {
+    id: '4',
+    title: 'Consultoria em Gestão e Compliance',
+    description: 'Adequação normativa e ética corporativa para garantir a conformidade absoluta da empresa perante o mercado.',
+    icon: <ShieldCheck className="w-8 h-8" />
+  },
+  {
+    id: '5',
+    title: 'Suporte Estratégico para Decisões',
+    description: 'Análise técnica e estratégica para apoiar sócios e diretores em tomadas de decisões críticas e de alto impacto.',
+    icon: <LineChart className="w-8 h-8" />
+  },
+  {
+    id: '6',
+    title: 'Regularização e Orientação Empresarial',
+    description: 'Acompanhamento integral nos processos societários e operacionais, mantendo a empresa em dia com todas as obrigações.',
+    icon: <FileCheck className="w-8 h-8" />
+  },
+  {
+    id: '7',
+    title: 'Assessoria Contábil',
+    description: 'Gestão contábil com visão estratégica, focada na eficiência fiscal e no suporte à saúde financeira do negócio.',
+    icon: <Settings className="w-8 h-8" />
+  }
+];
+
+export const DIFFERENTIALS: Differential[] = [
+  {
+    title: 'Atendimento Personalizado',
+    description: 'Entendemos que cada empresa é única e exige uma abordagem exclusiva e detalhada para seus desafios específicos.'
+  },
+  {
+    title: 'Atuação Estratégica e Preventiva',
+    description: 'Nossa filosofia é antecipar cenários e evitar problemas, permitindo uma gestão focada apenas no crescimento.'
+  },
+  {
+    title: 'Linguagem Clara e Técnica',
+    description: 'Transmitimos conhecimentos complexos de forma acessível e direta, facilitando a compreensão e a gestão dos sócios.'
+  },
+  {
+    title: 'Foco em Segurança Empresarial',
+    description: 'Priorizamos a proteção do seu patrimônio e a continuidade do seu negócio em todas as nossas frentes de atuação.'
+  },
+  {
+    title: 'Compromisso com Credibilidade e Ética',
+    description: 'Atuamos com transparência absoluta e os mais elevados padrões de integridade em todas as relações.'
+  },
+  {
+    title: 'Visão Empresarial Integrada ao Jurídico',
+    description: 'Unimos o conhecimento jurídico à visão prática de negócios para oferecer soluções completas e realistas.'
+  }
+];
