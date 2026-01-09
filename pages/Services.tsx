@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { SERVICES } from '../constants';
-import { Check, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Services: React.FC = () => {

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { DIFFERENTIALS } from '../constants';
-import { Crown, Zap, Globe, ShieldCheck, Award, Handshake, CheckCircle2 } from 'lucide-react';
+import { Crown, Zap, Globe, ShieldCheck, Award, Handshake } from 'lucide-react';
 
 const Differentials: React.FC = () => {
   const icons = [<Handshake />, <Zap />, <Globe />, <ShieldCheck />, <Award />, <Crown />];
