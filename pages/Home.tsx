@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -11,67 +11,13 @@ import {
   Zap, 
   Globe, 
   ShieldCheck, 
-  Handshake,
-  ChevronLeft,
-  ChevronRight
+  Handshake
 } from 'lucide-react';
 import { SERVICES, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
   const location = useLocation();
   const diffIcons = [<Handshake />, <Zap />, <Globe />, <ShieldCheck />, <Award />, <Crown />];
-
-  // Estado para o Slider de Serviços
-  const [currentService, setCurrentService] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
-  const [isPaused, setIsPaused] = useState(false);
-
-  // Determina quantos itens mostrar baseado na largura da tela
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsPerPage(3);
-      } else if (window.innerWidth >= 768) {
-        setItemsPerPage(2);
-      } else {
-        setItemsPerPage(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Garante que o índice atual seja válido ao redimensionar
-  useEffect(() => {
-    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
-    if (currentService > maxIndex) {
-      setCurrentService(maxIndex);
-    }
-  }, [itemsPerPage, currentService]);
-
-  // Rotação Automática do Carrossel
-  useEffect(() => {
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
-      setCurrentService((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [itemsPerPage, isPaused]);
-
-  const nextService = () => {
-    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
-    setCurrentService((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
-
-  const prevService = () => {
-    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
-    setCurrentService((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  };
 
   useEffect(() => {
     if (location.hash) {
@@ -143,12 +89,12 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Quem Somos (Refinada: Menos grito visual, mais elegância) */}
+      {/* Seção Quem Somos */}
       <section id="quem-somos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
-            {/* Imagem: Design mais contido e reduzido */}
+            {/* Imagem */}
             <div className="relative order-2 lg:order-1 max-w-md mx-auto">
               <div className="relative z-10 aspect-[4/5] overflow-hidden bg-gray-100">
                  <img 
@@ -157,7 +103,6 @@ const Home: React.FC = () => {
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                  />
               </div>
-              {/* Moldura simples ao invés de sombra pesada */}
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
               
               <div className="absolute bottom-0 left-0 bg-white p-6 border-t border-r border-gray-100 max-w-xs z-20">
@@ -166,7 +111,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Texto: Tipografia ajustada */}
+            {/* Texto */}
             <div className="order-1 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-gold"></span>
@@ -201,7 +146,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Seção Pilares (Refinada: Cards limpos, bordas sutis) */}
+      {/* Seção Pilares */}
       <section className="py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -229,8 +174,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS (Refinada: Card menor, tipografia controlada) */}
-      <section id="servicos" className="py-24 bg-white scroll-mt-24 overflow-hidden">
+      {/* SEÇÃO SERVIÇOS - Layout 3 - 3 - 2 (Total 8 itens) */}
+      <section id="servicos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
             <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Nossa Expertise</span>
@@ -240,69 +185,47 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          {/* Slider Container */}
-          <div 
-            className="relative group"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div className="overflow-hidden -mx-4 pb-10"> {/* pb para sombra não cortar */}
-              <div 
-                className="flex transition-transform duration-700 ease-out" 
-                style={{ transform: `translateX(-${currentService * (100 / itemsPerPage)}%)` }}
-              >
-                {SERVICES.map((service) => (
-                  <div 
-                    key={service.id} 
-                    className="flex-shrink-0 px-4"
-                    style={{ width: `${100 / itemsPerPage}%` }}
-                  >
-                    <div className="bg-white border border-gray-100 p-8 h-full transition-all duration-300 hover:shadow-lg hover:border-navy/10 flex flex-col justify-between group/card min-h-[320px]">
-                      <div>
-                        <div className="text-navy/80 mb-6 group-hover/card:text-gold transition-colors">
-                          {/* Force icon size consistency */}
-                          <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                            {service.icon}
-                          </div>
-                        </div>
-                        {/* AUMENTO DA FONTE DO TÍTULO (text-lg -> text-xl md:text-2xl) */}
-                        <h3 className="text-xl md:text-2xl font-serif text-navy mb-4 leading-snug font-medium">
-                          {service.title}
-                        </h3>
-                        {/* AUMENTO DA FONTE DA DESCRIÇÃO (text-sm -> text-base) */}
-                        <p className="text-gray-500 leading-relaxed font-light text-base">
-                          {service.description}
-                        </p>
-                      </div>
-                      <div className="pt-6 mt-4 border-t border-gray-50">
-                        {/* AUMENTO DA FONTE DO LINK (text-[10px] -> text-xs) */}
-                        <Link to="/contato" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors">
-                          Saiba Mais <ArrowUpRight className="w-3 h-3" />
-                        </Link>
+          {/* Flex Layout com lógica para padrão 3 - 3 - 2 */}
+          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+            {SERVICES.map((service, index) => {
+              // Lógica para 8 itens em Desktop (lg):
+              // Linha 1 (Indices 0, 1, 2) -> 33% width
+              // Linha 2 (Indices 3, 4, 5) -> 33% width
+              // Linha 3 (Indices 6, 7)    -> 50% width (Base centralizada)
+              
+              const isLastRow = index >= 6; // Últimos 2 itens
+              const widthClass = isLastRow 
+                ? "lg:w-[calc(50%-1rem)]" // 2 items logic
+                : "lg:w-[calc(33.333%-1.34rem)]"; // 3 items logic
+
+              return (
+                <div 
+                  key={service.id} 
+                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gold/30 group/card min-h-[300px]`}
+                >
+                  <div>
+                    {/* Alteração aqui: text-gold como padrão */}
+                    <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
+                      {/* Ícones consistentes */}
+                      <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                        {service.icon}
                       </div>
                     </div>
+                    <h3 className="text-xl font-serif text-navy mb-4 leading-snug font-medium">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-500 leading-relaxed font-light text-sm">
+                      {service.description}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Controles de Navegação Minimalistas */}
-            <div className="flex justify-center gap-3">
-              <button 
-                onClick={prevService}
-                className="w-10 h-10 rounded-full border border-gray-200 text-gray-400 hover:border-navy hover:text-navy hover:bg-white flex items-center justify-center transition-all"
-                aria-label="Anterior"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={nextService}
-                className="w-10 h-10 rounded-full border border-gray-200 text-gray-400 hover:border-navy hover:text-navy hover:bg-white flex items-center justify-center transition-all"
-                aria-label="Próximo"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+                  <div className="pt-6 mt-6 border-t border-gray-50">
+                    <Link to="/contato" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors">
+                      Saiba Mais <ArrowUpRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
         </div>
@@ -321,7 +244,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DIFERENCIAIS (ATUALIZADA) */}
+      {/* SEÇÃO DIFERENCIAIS */}
       <section id="diferenciais" className="py-24 bg-gray-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:flex-row gap-12 mb-16 border-b border-gray-200 pb-12">
@@ -370,7 +293,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA - Texto Atualizado e Promessa Removida */}
+      {/* Final CTA */}
       <section className="py-32 bg-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
           <h2 className="text-navy text-3xl md:text-5xl font-serif mb-10 font-light leading-tight">
@@ -378,7 +301,7 @@ const Home: React.FC = () => {
           </h2>
           <Link 
             to="/contato" 
-            className="inline-block border border-navy text-navy hover:bg-navy hover:text-white px-10 py-4 font-semibold uppercase text-[10px] tracking-ultra transition-all duration-300"
+            className="inline-block bg-gold text-navy hover:bg-navy hover:text-white px-10 py-4 font-semibold uppercase text-[10px] tracking-ultra transition-all duration-300"
           >
             Agendar Reunião com Especialista
           </Link>

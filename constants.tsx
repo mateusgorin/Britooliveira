@@ -5,7 +5,8 @@ import {
   Settings, 
   FileCheck, 
   Briefcase, 
-  LineChart
+  LineChart,
+  Brain
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
@@ -61,6 +62,12 @@ export const SERVICES: Service[] = [
     title: 'Assessoria Contábil',
     description: 'Gestão contábil com visão estratégica, focada na eficiência fiscal e no suporte à saúde financeira do negócio.',
     icon: <Settings className="w-8 h-8" />
+  },
+  {
+    id: '8',
+    title: 'Compliance em Saúde Mental (Burnout)',
+    description: 'Implementação de suporte psicológico e prevenção ao burnout, garantindo conformidade com as novas exigências de saúde ocupacional.',
+    icon: <Brain className="w-8 h-8" />
   }
 ];
 

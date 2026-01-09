@@ -15,32 +15,47 @@ const Services: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Grid Clean */}
+      {/* Services Grid Clean (Layout 3-3-2) */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {SERVICES.map((service) => (
-              <div key={service.id} className="bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between h-full min-h-[300px]">
-                <div>
-                  <div className="text-navy/70 mb-6 group-hover:text-gold transition-colors">
-                    <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                        {service.icon}
+          {/* Flexbox wrapper para centralização */}
+          <div className="flex flex-wrap justify-center gap-8">
+            {SERVICES.map((service, index) => {
+               // Lógica Colmeia para Desktop (lg) com 8 itens:
+              // Linha 1 (0-2) e Linha 2 (3-5): Width ~33%
+              // Linha 3 (6-7): Width ~50%
+              const isLastRow = index >= 6;
+              const widthClass = isLastRow 
+                ? "lg:w-[calc(50%-1rem)]" // 2 items logic
+                : "lg:w-[calc(33.333%-1.34rem)]"; // 3 items logic
+
+              return (
+                <div 
+                  key={service.id} 
+                  className={`w-full md:w-[calc(50%-1rem)] ${widthClass} bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-300 group flex flex-col justify-between h-auto min-h-[300px]`}
+                >
+                  <div>
+                    {/* Alteração aqui: text-gold como padrão */}
+                    <div className="text-gold mb-6 group-hover:text-navy transition-colors">
+                      <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                          {service.icon}
+                      </div>
                     </div>
+                    <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors">{service.title}</h3>
+                    <p className="text-gray-500 leading-relaxed mb-8 font-light text-sm">
+                      {service.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors">{service.title}</h3>
-                  <p className="text-gray-500 leading-relaxed mb-8 font-light text-sm">
-                    {service.description}
-                  </p>
+                  
+                  <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
+                      <Link to="/contato" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors">
+                      Solicitar Diagnóstico
+                      </Link>
+                      <ArrowUpRight className="w-3 h-3 text-gray-300 group-hover:text-gold transition-colors" />
+                  </div>
                 </div>
-                
-                <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
-                    <Link to="/contato" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors">
-                    Solicitar Diagnóstico
-                    </Link>
-                    <ArrowUpRight className="w-3 h-3 text-gray-300 group-hover:text-gold transition-colors" />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
