@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Aumentei o threshold para 50 para evitar flickers muito rápidos no topo
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
@@ -28,6 +27,47 @@ const Navbar: React.FC = () => {
 
   const closeMenu = () => setIsOpen(false);
 
+  // Função para lidar com cliques em links, especialmente âncoras e Home
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    // Se for o link Home ('/') e já estivermos na home, rola para o topo
+    if (path === '/') {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      closeMenu();
+      return;
+    }
+
+    // Se for um link de âncora (tem #)
+    if (path.includes('#')) {
+      const [route, hash] = path.split('#');
+      
+      // Se já estamos na home (rota '/') e o link é para a home
+      if (location.pathname === '/' && route === '/') {
+        e.preventDefault(); // Evita recarregamento
+        const element = document.getElementById(hash);
+        
+        if (element) {
+          const offset = 100; // Compensação para a altura do Navbar
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+      // Se não estamos na home, o Link padrão do react-router vai navegar para '/'
+      // e o useEffect na Home.tsx vai lidar com o hash.
+    }
+    
+    closeMenu();
+  };
+
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-700 ease-in-out border-b ${
@@ -39,15 +79,16 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 lg:gap-8">
-        {/* Logo Container - Sempre visível, ajustando tamanho */}
-        <Link to="/" className="flex items-center group flex-shrink-0" onClick={closeMenu}>
+        {/* Logo Container */}
+        <Link 
+          to="/" 
+          className="flex items-center group flex-shrink-0" 
+          onClick={(e) => handleNavClick(e, '/')}
+        >
           <div className="flex items-center transition-all duration-500">
             <img 
               src={LOGO_URL} 
               alt="Brito Oliveira Logo" 
-              // Ajuste de tamanho para melhorar definição:
-              // Reduzi de h-[120px] para h-[90px] no desktop (md) para evitar pixelização
-              // Reduzi de h-[80px] para h-[60px] no mobile para ficar mais proporcional
               className={`object-contain transition-all duration-500 ease-in-out ${
                 scrolled 
                   ? 'h-[40px] md:h-[55px]' 
@@ -63,8 +104,12 @@ const Navbar: React.FC = () => {
             <Link
               key={item.path}
               to={item.path}
+              onClick={(e) => handleNavClick(e, item.path)}
               className={`text-[10px] xl:text-[11px] font-medium tracking-ultra uppercase transition-all duration-300 hover:text-gold relative group whitespace-nowrap ${
-                location.pathname === item.path ? 'text-gold' : 'text-white'
+                // Verifica se está ativo: corresponde ao path ou é a âncora 'quem-somos' na home
+                (location.pathname === item.path) || (item.path.includes('#') && location.pathname === '/' && location.hash === item.path.split('/')[1]) 
+                  ? 'text-gold' 
+                  : 'text-white'
               }`}
             >
               {item.label}
@@ -79,7 +124,7 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Mobile Button - Exibido apenas em telas menores que LG */}
+        {/* Mobile Button */}
         <button 
           className="lg:hidden text-white p-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -102,7 +147,7 @@ const Navbar: React.FC = () => {
             className={`text-2xl md:text-3xl font-serif italic transition-colors ${
               location.pathname === item.path ? 'text-gold underline underline-offset-8' : 'text-white'
             }`}
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, item.path)}
           >
             {item.label}
           </Link>

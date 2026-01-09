@@ -5,9 +5,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Differentials from './pages/Differentials';
 import Contact from './pages/Contact';
 
 const App: React.FC = () => {
@@ -23,9 +20,6 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sobre" element={<About />} />
-          <Route path="/servicos" element={<Services />} />
-          <Route path="/diferenciais" element={<Differentials />} />
           <Route path="/contato" element={<Contact />} />
         </Routes>
       </main>

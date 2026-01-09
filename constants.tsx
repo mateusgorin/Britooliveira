@@ -15,10 +15,9 @@ export const WHATSAPP_NUMBER = '5561981476031';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
-  { label: 'Sobre a Empresa', path: '/sobre' },
-  { label: 'Serviços', path: '/servicos' },
-  { label: 'Diferenciais', path: '/diferenciais' },
-  { label: 'Contato', path: '/contato' },
+  { label: 'Sobre a Empresa', path: '/#quem-somos' },
+  { label: 'Serviços', path: '/#servicos' },
+  { label: 'Diferenciais', path: '/#diferenciais' },
 ];
 
 export const SERVICES: Service[] = [

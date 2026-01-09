@@ -1,10 +1,88 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { 
+  ArrowRight, 
+  CheckCircle2, 
+  Target, 
+  Shield, 
+  Award,
+  ArrowUpRight,
+  Crown, 
+  Zap, 
+  Globe, 
+  ShieldCheck, 
+  Handshake,
+  ChevronLeft,
+  ChevronRight
+} from 'lucide-react';
 import { SERVICES, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
+  const location = useLocation();
+  const diffIcons = [<Handshake />, <Zap />, <Globe />, <ShieldCheck />, <Award />, <Crown />];
+
+  // Estado para o Slider de Serviços
+  const [currentService, setCurrentService] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
+
+  // Determina quantos itens mostrar baseado na largura da tela
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Garante que o índice atual seja válido ao redimensionar
+  useEffect(() => {
+    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
+    if (currentService > maxIndex) {
+      setCurrentService(maxIndex);
+    }
+  }, [itemsPerPage, currentService]);
+
+  const nextService = () => {
+    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
+    setCurrentService((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const prevService = () => {
+    const maxIndex = Math.max(0, SERVICES.length - itemsPerPage);
+    setCurrentService((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  useEffect(() => {
+    // Lógica para detectar se a URL tem um hash (ex: /#quem-somos) e rolar até a seção
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          const offset = 100; // Compensação para a Navbar fixa
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100); // Pequeno delay para garantir renderização
+      }
+    }
+  }, [location]);
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -16,15 +94,10 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-navy/95 via-navy/80 to-navy/95"></div>
         </div>
 
-        {/* 
-           Correção Logo: Removido 'justify-center'.
-           Adicionado 'pt-40 md:pt-56' para garantir que o texto comece bem abaixo da Navbar/Logo.
-        */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col pt-40 md:pt-56">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="h-px w-8 md:w-12 bg-gold/50"></div>
-              {/* Este texto agora tem espaço garantido pelo padding-top do container pai */}
               <span className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
             </div>
             <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-serif leading-tight md:leading-[1.1] mb-8 md:mb-10 italic">
@@ -42,7 +115,7 @@ const Home: React.FC = () => {
                 <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
-                to="/servicos" 
+                to="/#servicos" 
                 className="border border-white/20 hover:border-gold hover:text-gold text-white px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all backdrop-blur-sm"
               >
                 Nossos Serviços
@@ -50,11 +123,6 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* 
-             Correção Descubra:
-             Mudado de posição fixa esquerda para CENTRALIZADO (left-1/2 -translate-x-1/2).
-             Isso evita que ele fique embaixo dos botões "Nossos Serviços".
-          */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:gap-4 animate-bounce opacity-60 z-20">
              <span className="text-white text-[9px] uppercase tracking-ultra font-medium inline-block">
                Descubra
@@ -64,94 +132,228 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Quem Somos - Resumo */}
-      <section className="py-20 md:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-center">
-          <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/5] bg-navy relative overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
-                  alt="Executivo" 
-                  className="w-full h-full object-cover grayscale opacity-90 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
-                />
+      {/* Seção Quem Somos (ID "quem-somos") */}
+      <section id="quem-somos" className="py-20 md:py-32 bg-white scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+            
+            {/* Imagem com Badge */}
+            <div className="relative order-2 lg:order-1">
+              <div className="relative z-10 aspect-[4/5] md:aspect-square overflow-hidden shadow-2xl bg-navy">
+                 <img 
+                    src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
+                    alt="Executivo em Terno" 
+                    className="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+                 />
+              </div>
+              <div className="absolute -top-4 -left-4 w-full h-full border border-gold/30 -z-0 hidden md:block"></div>
+              <div className="absolute -bottom-6 -right-6 bg-white p-8 shadow-xl border border-gray-100 hidden md:block z-20">
+                  <p className="text-navy font-serif italic text-2xl">Excelência</p>
+                  <p className="text-gold text-[9px] font-bold uppercase tracking-ultra">Desde a fundação</p>
+              </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 p-6 md:p-10 bg-white shadow-2xl border border-gray-100 hidden sm:block">
-                <div className="text-gold text-2xl md:text-4xl font-serif italic mb-1 md:mb-2">Compromisso</div>
-                <div className="text-navy text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Ética & Profissionalismo</div>
+
+            {/* Texto Completo */}
+            <div className="order-1 lg:order-2">
+              <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Quem Somos</span>
+              <h2 className="text-navy text-3xl md:text-5xl font-serif mb-8 leading-tight italic">
+                Mais que consultoria, <br /> <span className="not-italic">Inteligência Empresarial.</span>
+              </h2>
+              
+              <div className="space-y-6 text-gray-600 font-light text-base md:text-lg leading-relaxed">
+                <p>
+                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> estabeleceu-se no mercado como uma referência em segurança jurídica e eficiência operacional. Nascemos da necessidade de oferecer ao empresário brasileiro uma visão integrada, onde o jurídico não é um entrave, mas uma alavanca de crescimento.
+                </p>
+                <p>
+                  Nosso corpo técnico é formado por especialistas que entendem a linguagem dos negócios. Não entregamos apenas pareceres; entregamos soluções que protegem o patrimônio, otimizam a carga tributária e organizam a governança corporativa.
+                </p>
+              </div>
+
+              <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Foco Preventivo</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Sigilo Absoluto</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Técnica Jurídica</span>
+                 </div>
+                 <div className="flex items-center gap-3">
+                    <CheckCircle2 className="text-gold w-5 h-5" />
+                    <span className="text-navy text-sm font-medium uppercase tracking-wider">Visão de Dono</span>
+                 </div>
+              </div>
             </div>
-          </div>
-          <div className="order-1 lg:order-2">
-            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Quem Somos</span>
-            <h2 className="text-navy text-4xl md:text-6xl font-serif mb-6 md:mb-10 leading-tight italic">
-              Soluções inteligentes <br className="hidden md:block" /> <span className="not-italic">para sua empresa.</span>
-            </h2>
-            <div className="space-y-4 md:space-y-6 text-gray-600 text-base md:text-lg leading-relaxed font-light mb-8 md:mb-12">
-              <p>
-                A BRITO OLIVEIRA ASSESSORIA EMPRESARIAL é especializada em assessoria empresarial, jurídica e estratégica, oferecendo soluções inteligentes para empresas que valorizam planejamento, segurança e profissionalismo.
-              </p>
-              <p>
-                Atuamos de forma personalizada, analisando cada realidade empresarial com responsabilidade técnica e visão estratégica.
-              </p>
-            </div>
-            <Link to="/sobre" className="inline-flex items-center gap-4 text-navy font-bold uppercase text-[10px] tracking-ultra group">
-              Conheça nossa trajetória
-              <div className="w-8 h-px bg-gold transition-all group-hover:w-12"></div>
-            </Link>
+
           </div>
         </div>
       </section>
 
-      {/* Serviços (Destaque Visual) */}
-      <section className="py-20 md:py-32 bg-navy text-white relative">
+      {/* Seção Pilares */}
+      <section className="py-20 md:py-32 bg-corporate-gray relative">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-16 md:mb-24">
+           <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif text-navy italic">Nossos Pilares</h2>
+              <div className="h-px w-16 bg-gold mx-auto mt-6"></div>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Target className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossa Missão</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Proporcionar clareza, segurança e sustentabilidade nas decisões empresariais através de uma assessoria técnica de alto nível e estritamente personalizada.
+                 </p>
+              </div>
+
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Shield className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossa Visão</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Ser a referência nacional em assessoria preventiva para médias e grandes empresas, reconhecida pela integridade e pela capacidade de resolver complexidades.
+                 </p>
+              </div>
+
+              <div className="bg-white p-10 shadow-sm hover:shadow-2xl transition-all duration-500 group border-t-4 border-transparent hover:border-gold">
+                 <div className="w-14 h-14 bg-navy/5 rounded-full flex items-center justify-center mb-8 group-hover:bg-navy transition-colors">
+                    <Award className="w-6 h-6 text-navy group-hover:text-gold transition-colors" />
+                 </div>
+                 <h3 className="text-xl font-serif text-navy mb-4 italic">Nossos Valores</h3>
+                 <p className="text-gray-500 text-sm leading-relaxed font-light">
+                   Ética inegociável, excelência técnica, transparência nas relações, confidencialidade absoluta e compromisso real com o resultado do cliente.
+                 </p>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO SERVIÇOS - CARROSSEL (ID "servicos") */}
+      <section id="servicos" className="py-20 md:py-32 bg-white scroll-mt-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="text-center mb-16 md:mb-20">
             <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Nossa Expertise</span>
-            <h2 className="text-4xl md:text-5xl font-serif italic mb-6">Frentes de Atuação</h2>
-            <div className="h-px w-20 md:w-24 bg-gold/30 mx-auto"></div>
+            <h2 className="text-4xl md:text-5xl font-serif text-navy italic mb-6">Frentes de Atuação</h2>
+            <div className="h-px w-20 md:w-24 bg-gold mx-auto"></div>
+            <p className="text-gray-500 mt-6 max-w-2xl mx-auto font-light">
+              Especialidades desenhadas para a segurança do seu legado empresarial, com foco estratégico e preventivo.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
-            {SERVICES.slice(0, 6).map((service) => (
-              <div key={service.id} className="bg-navy p-8 md:p-12 group hover:bg-navy-light transition-all duration-500">
-                <div className="text-gold mb-6 md:mb-10 group-hover:scale-110 transition-transform duration-500">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl md:text-2xl font-serif mb-4 md:mb-6 group-hover:text-gold transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400 text-base leading-relaxed font-light mb-6 md:mb-10">
-                  {service.description}
+          {/* Slider Container */}
+          <div className="relative group">
+            <div className="overflow-hidden -mx-4">
+              <div 
+                className="flex transition-transform duration-700 ease-in-out" 
+                style={{ transform: `translateX(-${currentService * (100 / itemsPerPage)}%)` }}
+              >
+                {SERVICES.map((service) => (
+                  <div 
+                    key={service.id} 
+                    className="flex-shrink-0 px-4"
+                    style={{ width: `${100 / itemsPerPage}%` }}
+                  >
+                    <div className="bg-corporate-gray/50 hover:bg-corporate-gray border border-gray-100 hover:border-gold/30 p-10 h-full transition-all duration-500 flex flex-col justify-between group/card">
+                      <div>
+                        <div className="text-gold mb-8 transition-transform duration-500 group-hover/card:translate-x-2">
+                          {service.icon}
+                        </div>
+                        <h3 className="text-2xl font-serif text-navy mb-4 group-hover/card:text-gold transition-colors leading-tight">
+                          {service.title}
+                        </h3>
+                        <p className="text-gray-500 leading-relaxed mb-8 font-light text-sm md:text-base">
+                          {service.description}
+                        </p>
+                      </div>
+                      <Link to="/contato" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors mt-auto">
+                        Saiba Mais <ArrowUpRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Controles de Navegação */}
+            <div className="flex justify-center mt-12 gap-4">
+              <button 
+                onClick={prevService}
+                className="w-12 h-12 rounded-full border border-navy/10 text-navy hover:bg-navy hover:text-gold flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={nextService}
+                className="w-12 h-12 rounded-full border border-navy/10 text-navy hover:bg-navy hover:text-gold flex items-center justify-center transition-all duration-300 shadow-sm"
+                aria-label="Próximo"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Banner de Foco (Serviços) */}
+      <section className="py-20 md:py-32 bg-corporate-gray">
+        <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
+           <h2 className="text-3xl font-serif text-navy italic mb-8">
+            "O foco da nossa comunicação é prevenção, estratégia e segurança. Construímos estruturas sólidas para que sua empresa não dependa apenas da sorte."
+           </h2>
+           <p className="text-gold text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria</p>
+        </div>
+      </section>
+
+      {/* SEÇÃO DIFERENCIAIS COMPLETA (ID "diferenciais") */}
+      <section id="diferenciais" className="py-20 md:py-32 bg-white scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-start mb-20">
+             <div className="lg:w-1/3">
+                <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Por que nós?</span>
+                <h2 className="text-4xl md:text-5xl font-serif text-navy italic mb-6 md:mb-8">Diferenciais <br className="hidden md:block" /> Estratégicos.</h2>
+             </div>
+             <div className="lg:w-2/3">
+                <p className="text-gray-500 font-light leading-relaxed text-lg">
+                  O que nos posiciona como a escolha de elite para empresas que buscam segurança jurídica e organização é a nossa metodologia proprietária, que integra prevenção de riscos, eficiência operacional e visão estratégica.
                 </p>
-                <Link to="/servicos" className="text-[10px] font-bold uppercase tracking-ultra text-gold flex items-center gap-2 lg:opacity-0 group-hover:opacity-100 transition-all">
-                  Saiba Mais <ArrowRight className="w-3 h-3" />
-                </Link>
+             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+            {DIFFERENTIALS.map((diff, index) => (
+              <div key={index} className="group flex flex-col gap-8 p-10 bg-corporate-gray hover:bg-navy transition-all duration-500 hover:shadow-2xl border-t-2 border-transparent hover:border-gold">
+                <div className="text-gold w-10 h-10 group-hover:scale-110 transition-transform">
+                  {diffIcons[index % diffIcons.length]}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-serif text-navy group-hover:text-white mb-6 italic transition-colors">{diff.title}</h3>
+                  <p className="text-gray-500 group-hover:text-gray-300 leading-relaxed font-light text-base transition-colors">
+                    {diff.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Diferenciais (Resumo) */}
-      <section className="py-20 md:py-32 bg-corporate-gray">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-start">
-             <div className="lg:w-1/3">
-                <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Por que nós?</span>
-                <h2 className="text-4xl md:text-5xl font-serif italic mb-6 md:mb-8">Nossos <br className="hidden md:block" /> Diferenciais.</h2>
-                <p className="text-gray-500 font-light leading-relaxed">
-                  Mais do que assessoria, entregamos um alicerce sólido para o futuro do seu negócio. O que nos posiciona como a escolha de elite para empresas que buscam segurança jurídica e organização é a nossa metodologia proprietária, que integra prevenção de riscos, eficiência operacional e visão estratégica, transformando desafios complexos em alavancas de crescimento sustentável.
-                </p>
-             </div>
-             <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 w-full">
-                {DIFFERENTIALS.slice(0, 4).map((item, i) => (
-                  <div key={i} className="bg-white p-8 md:p-10 shadow-sm flex flex-col gap-4 border-l-2 border-transparent hover:border-gold transition-all group">
-                     <CheckCircle2 className="text-gold w-5 h-5 md:w-6 md:h-6" />
-                     <h4 className="text-navy font-bold uppercase tracking-wider text-sm md:text-base">{item.title}</h4>
-                     <p className="text-gray-500 text-base font-light leading-relaxed">{item.description}</p>
-                  </div>
-                ))}
-             </div>
-          </div>
+      {/* Banner de Autoridade (Diferenciais) */}
+      <section className="py-20 md:py-32 bg-navy text-white relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 md:px-8 text-center">
+           <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-8 block">Nossa Promessa</span>
+           <h2 className="text-4xl md:text-5xl font-serif italic mb-10 leading-tight">
+            "Não apenas resolvemos problemas; <br /> trabalhamos para evitar que eles aconteçam."
+           </h2>
+           <div className="h-px w-24 bg-gold/30 mx-auto"></div>
         </div>
       </section>
 
