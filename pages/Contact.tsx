@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Mail, Phone, MapPin, MessageCircle, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle, ArrowRight, Clock } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../constants';
 
 const Contact: React.FC = () => {
@@ -10,160 +9,163 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="bg-white">
-      {/* Header Padronizado */}
-      <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-navy text-white text-center">
-        <div className="max-w-4xl mx-auto px-6 md:px-8">
-          <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Inicie um diálogo</span>
-          <h1 className="text-4xl md:text-7xl font-serif italic mb-6 md:mb-8">Canais de <span className="text-gradient-gold not-italic">Atendimento</span></h1>
-          <p className="text-gray-400 font-light text-base md:text-lg">Discrição e eficiência em cada ponto de contato.</p>
+    <div className="bg-white flex flex-col min-h-screen">
+      {/* Header Compacto (Estilo corporativo) */}
+      <section className="pt-40 md:pt-52 pb-20 bg-navy text-white text-center relative overflow-hidden">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-30"></div>
+        
+        <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
+          <span className="text-gold text-xs font-bold uppercase tracking-ultra mb-6 block">Assessoria Especializada</span>
+          <h1 className="text-3xl md:text-5xl font-serif italic mb-6">Inicie sua Consultoria</h1>
+          <p className="text-gray-300 font-light text-lg max-w-lg mx-auto leading-relaxed">
+            Estamos prontos para entender o seu cenário e desenhar a melhor estratégia jurídica e empresarial.
+          </p>
         </div>
       </section>
 
-      <section className="py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
+      <section className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          
           {/* Info Side */}
-          <div className="lg:col-span-5 order-2 lg:order-1">
-             <h2 className="text-3xl md:text-4xl font-serif text-navy mb-8 md:mb-10 italic">Presença & Conectividade</h2>
-             <p className="text-gray-500 font-light text-base md:text-lg mb-12 md:mb-16 leading-relaxed">
-               Agende uma visita em nossa sede ou solicite uma conferência privada com nossos especialistas.
-             </p>
-             
-             <div className="space-y-8 md:space-y-12">
-                <div className="flex items-start gap-5 md:gap-6 group">
-                   <div className="p-3 md:p-4 bg-corporate-gray text-gold transition-colors group-hover:bg-navy group-hover:text-gold">
-                      <MapPin className="w-5 h-5 md:w-6 md:h-6" />
-                   </div>
-                   <div>
-                      <h4 className="text-navy font-bold uppercase tracking-ultra text-[9px] md:text-[10px] mb-1 md:mb-2">Escritório Central</h4>
-                      <p className="text-gray-500 font-light text-sm md:text-base">Brasília/DF</p>
-                   </div>
-                </div>
-                <div className="flex items-start gap-5 md:gap-6 group">
-                   <div className="p-3 md:p-4 bg-corporate-gray text-gold transition-colors group-hover:bg-navy group-hover:text-gold">
-                      <Phone className="w-5 h-5 md:w-6 md:h-6" />
-                   </div>
-                   <div>
-                      <h4 className="text-navy font-bold uppercase tracking-ultra text-[9px] md:text-[10px] mb-1 md:mb-2">Linha Executiva</h4>
-                      <p className="text-gray-500 font-light text-sm md:text-base">+55 (61) 98147-6031</p>
-                   </div>
-                </div>
-                <div className="flex items-start gap-5 md:gap-6 group">
-                   <div className="p-3 md:p-4 bg-corporate-gray text-gold transition-colors group-hover:bg-navy group-hover:text-gold">
-                      <Mail className="w-5 h-5 md:w-6 md:h-6" />
-                   </div>
-                   <div>
-                      <h4 className="text-navy font-bold uppercase tracking-ultra text-[9px] md:text-[10px] mb-1 md:mb-2">Email Corporativo</h4>
-                      <p className="text-gray-500 font-light text-sm md:text-base">contato@britooliveiraassessoria.com.br</p>
-                   </div>
-                </div>
+          <div className="lg:col-span-4 order-2 lg:order-1 lg:border-r lg:border-gray-100 lg:pr-12 flex flex-col justify-between h-full">
+             <div>
+               <h2 className="text-3xl font-serif text-navy mb-8 italic">Dados de Contato</h2>
+               <p className="text-gray-600 font-normal text-base mb-12 leading-relaxed">
+                 Nossa equipe atua com sigilo absoluto. Escolha o canal de sua preferência para iniciar o diálogo.
+               </p>
+               
+               <div className="space-y-10">
+                  <div className="group">
+                     <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
+                        <MapPin className="w-5 h-5 text-gold" /> Sede
+                     </div>
+                     <p className="text-gray-800 font-medium text-lg pl-8">Brasília/DF - Brasil</p>
+                  </div>
+
+                  <div className="group">
+                     <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
+                        <Phone className="w-5 h-5 text-gold" /> Telefone
+                     </div>
+                     <p className="text-gray-800 font-medium text-lg pl-8">+55 (61) 98147-6031</p>
+                  </div>
+
+                  <div className="group">
+                     <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
+                        <Mail className="w-5 h-5 text-gold" /> E-mail
+                     </div>
+                     <p className="text-gray-800 font-medium text-lg pl-8 break-all">contato@britooliveiraassessoria.com.br</p>
+                  </div>
+
+                  <div className="group">
+                     <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
+                        <Clock className="w-5 h-5 text-gold" /> Atendimento
+                     </div>
+                     <p className="text-gray-800 font-medium text-lg pl-8">Segunda a Sexta, 09h às 18h</p>
+                  </div>
+               </div>
              </div>
 
-             <div className="mt-12 md:mt-20 pt-8 md:pt-12 border-t border-gray-100">
-                <p className="text-[10px] font-bold text-navy uppercase tracking-ultra mb-4 md:mb-6">Resposta Instantânea</p>
+             <div className="mt-16 pt-10 border-t border-gray-100">
                 <a 
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                  className="inline-flex items-center gap-4 bg-gold hover:bg-navy text-navy hover:text-white px-8 md:px-10 py-4 md:py-5 transition-all shadow-xl group w-full sm:w-auto justify-center"
+                  className="flex items-center gap-4 text-navy hover:text-gold transition-colors group"
                 >
-                  <MessageCircle className="w-5 h-5" />
-                  <span className="font-bold uppercase text-[10px] tracking-ultra">WhatsApp Executive</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors border border-green-100 shadow-sm">
+                     <MessageCircle className="w-6 h-6 text-green-700" />
+                  </div>
+                  <div>
+                    <span className="font-bold uppercase text-xs tracking-ultra block mb-1 text-navy">WhatsApp Oficial</span>
+                    <span className="text-sm text-gray-600 group-hover:text-gold transition-colors flex items-center gap-1 font-medium">
+                      Falar com Secretária <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
                 </a>
              </div>
           </div>
 
           {/* Form Side */}
-          <div className="lg:col-span-7 order-1 lg:order-2">
-             <div className="p-8 md:p-16 bg-corporate-gray shadow-2xl relative">
-                <div className="absolute top-0 right-0 w-24 md:w-32 h-24 md:h-32 bg-gold/5 -z-10"></div>
-                <h3 className="text-2xl md:text-3xl font-serif text-navy mb-10 md:mb-12 italic">Formulário de Qualificação</h3>
-                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                      <div className="space-y-1 md:space-y-2">
-                         <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">Seu Nome</label>
+          <div className="lg:col-span-8 order-1 lg:order-2">
+             <div className="bg-white p-8 md:p-12 border border-gray-200 shadow-sm relative rounded-sm">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy opacity-30"></div>
+                <h3 className="text-2xl font-serif text-navy mb-2">Solicitação de Análise</h3>
+                <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-10">Preencha para agendar um diagnóstico preliminar</p>
+
+                <form onSubmit={handleSubmit} className="space-y-8">
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                      <div className="space-y-3 group">
+                         <label className="text-xs font-bold text-navy uppercase tracking-wider block">Seu Nome</label>
                          <input 
                            type="text" 
                            required 
-                           className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all placeholder:text-gray-300 font-light"
-                           placeholder="Ex: Dr. Roberto Mendes"
+                           className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
+                           placeholder="Nome Completo"
                          />
                       </div>
-                      <div className="space-y-1 md:space-y-2">
-                         <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">Empresa</label>
+                      <div className="space-y-3 group">
+                         <label className="text-xs font-bold text-navy uppercase tracking-wider block">Empresa</label>
                          <input 
                            type="text" 
-                           className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all placeholder:text-gray-300 font-light"
+                           className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="Razão Social"
                          />
                       </div>
                    </div>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                      <div className="space-y-1 md:space-y-2">
-                         <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">E-mail Profissional</label>
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                      <div className="space-y-3 group">
+                         <label className="text-xs font-bold text-navy uppercase tracking-wider block">E-mail Corporativo</label>
                          <input 
                            type="email" 
                            required 
-                           className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all placeholder:text-gray-300 font-light"
-                           placeholder="roberto@empresa.com.br"
+                           className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
+                           placeholder="email@empresa.com"
                          />
                       </div>
-                      <div className="space-y-1 md:space-y-2">
-                         <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">Telefone Direto</label>
+                      <div className="space-y-3 group">
+                         <label className="text-xs font-bold text-navy uppercase tracking-wider block">Telefone Direto</label>
                          <input 
                            type="tel" 
                            required 
-                           className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all placeholder:text-gray-300 font-light"
+                           className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="(00) 00000-0000"
                          />
                       </div>
                    </div>
-                   <div className="space-y-1 md:space-y-2">
-                      <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">Área de Interesse</label>
-                      <select className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all font-light appearance-none cursor-pointer">
-                        <option>Assessoria Estratégica Completa</option>
-                        <option>Blindagem Jurídica Preventiva</option>
-                        <option>Compliance & Auditoria</option>
-                        <option>Gestão de Ativos & Sucessão</option>
-                      </select>
+                   <div className="space-y-3 group">
+                      <label className="text-xs font-bold text-navy uppercase tracking-wider block">Tema Principal</label>
+                      <div className="relative">
+                        <select className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy appearance-none cursor-pointer hover:bg-gray-100">
+                            <option>Assessoria Estratégica Completa</option>
+                            <option>Blindagem Jurídica Preventiva</option>
+                            <option>Compliance & Auditoria</option>
+                            <option>Gestão de Ativos & Sucessão</option>
+                            <option>Outros Assuntos</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-500">
+                           <ArrowRight className="w-4 h-4 rotate-90" />
+                        </div>
+                      </div>
                    </div>
-                   <div className="space-y-1 md:space-y-2">
-                      <label className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-ultra">Breve Contexto</label>
+                   <div className="space-y-3 group">
+                      <label className="text-xs font-bold text-navy uppercase tracking-wider block">Mensagem (Opcional)</label>
                       <textarea 
-                        rows={3} 
-                        required 
-                        className="w-full bg-white border-b-2 border-transparent focus:border-gold py-3 md:py-4 px-3 outline-none transition-all placeholder:text-gray-300 font-light resize-none"
-                        placeholder="Como podemos agregar valor ao seu board hoje?"
+                        rows={4} 
+                        className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy resize-none placeholder:text-gray-400 hover:bg-gray-100"
+                        placeholder="Descreva brevemente sua necessidade..."
                       ></textarea>
                    </div>
-                   <button 
-                     type="submit" 
-                     className="w-full bg-navy hover:bg-gold-dark text-white font-bold py-5 md:py-6 uppercase text-[10px] tracking-ultra transition-all shadow-2xl flex items-center justify-center gap-4 group"
-                   >
-                     Enviar para Análise
-                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                   </button>
+                   <div className="pt-6 flex justify-end">
+                       <button 
+                         type="submit" 
+                         className="bg-navy text-white px-10 py-5 font-bold uppercase text-xs tracking-ultra hover:bg-gold hover:text-navy transition-all duration-300 shadow-lg hover:shadow-xl w-full md:w-auto"
+                       >
+                         Solicitar Contato
+                       </button>
+                   </div>
                 </form>
              </div>
           </div>
         </div>
-      </section>
-
-      {/* Modern Map Visualization */}
-      <section className="relative h-[400px] md:h-[600px] w-full bg-navy grayscale overflow-hidden group">
-         <div 
-           className="absolute inset-0 bg-cover bg-center transition-transform duration-[10s] group-hover:scale-110 opacity-40"
-           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop')` }}
-         ></div>
-         <div className="absolute inset-0 bg-navy/60"></div>
-         <div className="absolute inset-0 flex items-center justify-center">
-             <div className="text-center px-6">
-                 <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-gold rounded-full flex items-center justify-center mb-4 md:mb-6 animate-pulse mx-auto">
-                    <MapPin className="text-gold w-6 h-6 md:w-8 md:h-8" />
-                 </div>
-                 <h2 className="text-white text-2xl md:text-3xl font-serif italic mb-2">Unidade Matriz</h2>
-                 <p className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brasília DF / Brasil</p>
-             </div>
-         </div>
       </section>
     </div>
   );
