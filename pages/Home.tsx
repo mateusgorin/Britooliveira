@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ArrowRight, Shield, Award, Users, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { SERVICES, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
@@ -16,10 +16,9 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-navy/95 via-navy/80 to-navy/95"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col justify-center">
-          {/* Ajustado pt-0 pois agora usamos flex-col justify-center no pai para centralizar verticalmente, 
-              mas mantemos um padding top para compensar a navbar fixa visualmente se necessário */}
-          <div className="max-w-4xl pt-20">
+        {/* Adicionado pb-32 para dar espaço ao 'Descubra' em telas menores */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col justify-center pb-32 md:pb-0">
+          <div className="max-w-4xl pt-0">
             <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="h-px w-8 md:w-12 bg-gold/50"></div>
               <span className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
@@ -47,7 +46,7 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Descubra - Mobile: Centralizado | Web/Tablet: Alinhado com o botão de serviços (aprox 280px da esquerda + padding) */}
+          {/* Descubra */}
           <div className="absolute bottom-8 inset-x-0 md:inset-x-auto md:left-[320px] flex flex-col items-center gap-2 md:gap-4 animate-bounce opacity-40 z-20">
              <span className="text-white text-[9px] uppercase tracking-ultra font-medium pl-[0.2em] inline-block">
                Descubra

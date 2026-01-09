@@ -1,15 +1,15 @@
 
 import React from 'react';
-import { Target, Eye, Heart, Shield, Award, Users } from 'lucide-react';
+import { Target, Shield, Award } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
     <div className="bg-white">
-      {/* Header Padronizado - Exatamente igual a Services, Differentials e Contact */}
+      {/* Header Padronizado - Classes idênticas às da página de Serviços para garantir mesma altura */}
       <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-navy text-white text-center">
         <div className="max-w-4xl mx-auto px-6 md:px-8">
            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 md:mb-6 block">Nossa Instituição</span>
-           <h1 className="text-4xl md:text-7xl font-serif italic mb-6 md:mb-8 leading-tight md:leading-tight">
+           <h1 className="text-4xl md:text-7xl font-serif italic mb-6 md:mb-8">
              Sólida, técnica e <span className="text-gradient-gold not-italic">estratégica.</span>
            </h1>
            <p className="text-gray-400 font-light text-base md:text-lg">
