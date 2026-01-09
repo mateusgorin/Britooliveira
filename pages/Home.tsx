@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center bg-navy-dark overflow-hidden">
+      <section className="relative h-screen min-h-[650px] flex items-start bg-navy-dark overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
@@ -16,11 +16,15 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-navy/95 via-navy/80 to-navy/95"></div>
         </div>
 
-        {/* Adicionado pb-32 para dar espaço ao 'Descubra' em telas menores */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col justify-center pb-32 md:pb-0">
-          <div className="max-w-4xl pt-0">
+        {/* 
+           Correção Logo: Removido 'justify-center'.
+           Adicionado 'pt-40 md:pt-56' para garantir que o texto comece bem abaixo da Navbar/Logo.
+        */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col pt-40 md:pt-56">
+          <div className="max-w-4xl">
             <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="h-px w-8 md:w-12 bg-gold/50"></div>
+              {/* Este texto agora tem espaço garantido pelo padding-top do container pai */}
               <span className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
             </div>
             <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-serif leading-tight md:leading-[1.1] mb-8 md:mb-10 italic">
@@ -46,12 +50,16 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Descubra */}
-          <div className="absolute bottom-8 inset-x-0 md:inset-x-auto md:left-[320px] flex flex-col items-center gap-2 md:gap-4 animate-bounce opacity-40 z-20">
-             <span className="text-white text-[9px] uppercase tracking-ultra font-medium pl-[0.2em] inline-block">
+          {/* 
+             Correção Descubra:
+             Mudado de posição fixa esquerda para CENTRALIZADO (left-1/2 -translate-x-1/2).
+             Isso evita que ele fique embaixo dos botões "Nossos Serviços".
+          */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:gap-4 animate-bounce opacity-60 z-20">
+             <span className="text-white text-[9px] uppercase tracking-ultra font-medium inline-block">
                Descubra
              </span>
-             <div className="w-px h-8 md:h-12 bg-white/30"></div>
+             <div className="w-px h-8 md:h-12 bg-white/50"></div>
           </div>
         </div>
       </section>
@@ -111,7 +119,6 @@ const Home: React.FC = () => {
                 <h3 className="text-xl md:text-2xl font-serif mb-4 md:mb-6 group-hover:text-gold transition-colors">
                   {service.title}
                 </h3>
-                {/* Aumentado de text-sm para text-base para melhorar a leitura */}
                 <p className="text-gray-400 text-base leading-relaxed font-light mb-6 md:mb-10">
                   {service.description}
                 </p>
