@@ -7,11 +7,7 @@ import {
   Settings, 
   FileCheck, 
   Briefcase, 
-  Handshake,
-  LineChart,
-  UserCheck,
-  Zap,
-  BookOpen
+  LineChart
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
