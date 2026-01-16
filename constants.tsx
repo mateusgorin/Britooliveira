@@ -1,3 +1,4 @@
+
 import { 
   ShieldCheck, 
   TrendingUp, 
@@ -22,18 +23,18 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SERVICES: Service[] = [
   {
+    id: '2',
+    title: 'Assessoria Jurídica Preventiva e Consultiva',
+    description: 'Foco na mitigação de riscos e segurança jurídica através de consultoria especializada antes da ocorrência de conflitos.',
+    complementaryText: 'Elaboração de contratos complexos, proteção de propriedade intelectual e gestão de passivos através de métodos preventivos que evitam litígios custosos.',
+    icon: <Scale className="w-8 h-8" />
+  },
+  {
     id: '1',
     title: 'Assessoria Empresarial Estratégica',
     description: 'Soluções inteligentes focadas em planejamento e crescimento sustentável, garantindo que sua empresa esteja sempre à frente.',
     complementaryText: 'Acompanhamento direto na definição de metas, análise detalhada de mercado e estruturação de parcerias estratégicas para o fortalecimento institucional do seu negócio.',
     icon: <Briefcase className="w-8 h-8" />
-  },
-  {
-    id: '2',
-    title: 'Assessoria Jurídica Preventiva e Consultiva',
-    description: 'Foco na mitigação de risks e segurança jurídica através de consultoria especializada antes da ocorrência de conflitos.',
-    complementaryText: 'Elaboração de contratos complexos, proteção de propriedade intelectual e gestão de passivos através de métodos preventivos que evitam litígios custosos.',
-    icon: <Scale className="w-8 h-8" />
   },
   {
     id: '3',
