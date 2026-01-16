@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         }, 100);
       }
     }
-  }, [location]);
+  }, [location.hash]);
 
   const toggleExpand = (id: string) => {
     setExpandedIds(prev => {
@@ -53,8 +53,8 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-32 md:py-40">
+      {/* Hero Section - Ajustada para maior flexibilidade */}
+      <section className="relative min-h-screen flex items-start bg-navy-dark overflow-hidden pt-40 md:pt-56 pb-32">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
@@ -93,14 +93,17 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Descubra (Indicador de Rolagem) - Posicionado mais abaixo */}
-        <Link 
-          to="/#quem-somos" 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-gold transition-all group z-20"
+        {/* Descubra (Indicador de Rolagem) - Posicionado no rodapé da seção */}
+        <button 
+          onClick={() => {
+            const el = document.getElementById('quem-somos');
+            if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+          }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 hover:text-gold transition-all group z-20"
         >
           <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Descubra</span>
           <ChevronDown className="w-5 h-5 animate-bounce text-gold/60 group-hover:text-gold" />
-        </Link>
+        </button>
       </section>
 
       {/* Seção Quem Somos */}
@@ -243,7 +246,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO PSICOLOGIA - NR-1 (NOVO BLOCO DESTAQUE) */}
+      {/* SEÇÃO PSICOLOGIA - NR-1 */}
       <section id="psicologia" className="py-24 bg-gray-50 scroll-mt-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
