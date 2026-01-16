@@ -54,7 +54,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-32 md:py-40">
+      <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
@@ -64,40 +64,40 @@ const Home: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full flex flex-col">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-3 mb-4 md:mb-6">
               <div className="h-px w-8 md:w-12 bg-gold/50"></div>
-              <span className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
+              <span className="text-gold text-[8px] md:text-[9px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
             </div>
-            <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-serif leading-tight md:leading-[1.1] mb-8 md:mb-10 italic">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-serif leading-tight md:leading-[1.1] mb-6 md:mb-8 italic">
               Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
-            <p className="text-gray-300 text-base md:text-xl leading-relaxed mb-10 md:mb-12 max-w-2xl font-light">
+            <p className="text-gray-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-2xl font-light">
               Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organização interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 md:gap-6">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 md:gap-5">
               <Link 
                 to="/contato" 
-                className="w-full sm:w-auto bg-gold hover:bg-white text-navy px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all shadow-2xl flex items-center justify-center group"
+                className="w-full sm:w-auto bg-gold hover:bg-white text-navy px-6 md:px-8 py-3.5 md:py-4 text-center font-semibold uppercase text-[9px] md:text-[11px] tracking-ultra transition-all shadow-2xl flex items-center justify-center group"
               >
                 Fale com um Especialista
-                <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
               
-              <div className="flex items-center gap-4 md:gap-6 w-full sm:w-auto">
+              <div className="flex items-center gap-3 md:gap-5 w-full sm:w-auto">
                 <Link 
                   to="/#servicos" 
-                  className="flex-1 sm:flex-none border border-white/20 hover:border-gold hover:text-gold text-white px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all backdrop-blur-sm"
+                  className="flex-1 sm:flex-none border border-white/20 hover:border-gold hover:text-gold text-white px-6 md:px-8 py-3.5 md:py-4 text-center font-semibold uppercase text-[9px] md:text-[11px] tracking-ultra transition-all backdrop-blur-sm"
                 >
                   Nossos Serviços
                 </Link>
                 
                 <Link 
                   to="/#quem-somos" 
-                  className="flex items-center gap-2 text-white/60 hover:text-gold transition-all group py-4"
+                  className="flex items-center gap-2 text-white/60 hover:text-gold transition-all group py-3"
                 >
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-ultra">Descubra</span>
+                  <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-ultra">Descubra</span>
                   <div className="flex flex-col items-center">
-                    <ChevronDown className="w-4 h-4 animate-bounce" />
+                    <ChevronDown className="w-3.5 h-3.5 animate-bounce" />
                   </div>
                 </Link>
               </div>
@@ -246,7 +246,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO PSICOLOGIA - NR-1 (NOVO BLOCO DESTAQUE) */}
+      {/* SEÇÃO PSICOLOGIA - NR-1 */}
       <section id="psicologia" className="py-24 bg-gray-50 scroll-mt-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
