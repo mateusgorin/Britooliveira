@@ -94,7 +94,7 @@ const Services: React.FC = () => {
                 </h2>
                 <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed">
                    <p>
-                    A partir de <strong className="text-navy font-semibold italic">maio de 2025</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu PGR.
+                    A partir de <strong className="text-navy font-semibold italic">maio de 2026</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu PGR.
                    </p>
                    <p>
                     Fatores relacionados à saúde mental, clima organizacional, sobrecarga, assédio e pressão devem ser identificados, avaliados e gerenciados de forma <strong className="text-navy font-medium">obrigatória</strong>.
