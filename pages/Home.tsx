@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
@@ -14,7 +15,8 @@ import {
   Handshake,
   Brain
 } from 'lucide-react';
-import { SERVICES, DIFFERENTIALS } from '../constants';
+// Added missing import for DIFFERENTIALS
+import { SERVICES, LOGO_URL, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
   const location = useLocation();
@@ -72,7 +74,7 @@ const Home: React.FC = () => {
               Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
             <p className="text-gray-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-2xl font-light">
-              Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organization interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
+              Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organização interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
             </p>
             
             <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 md:gap-5">
@@ -134,7 +136,7 @@ const Home: React.FC = () => {
                   A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> consolidou-se no mercado como referência em segurança jurídica, eficiência operacional e gestão estratégica de riscos. Atuamos a partir de uma visão integrada, na qual o jurídico deixa de ser um entrave e passa a ser uma ferramenta real de crescimento, proteção patrimonial e sustentabilidade empresarial.
                 </p>
                 <p>
-                  Nosso corpo técnico é formado por especialistas que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
+                  Nosso corpo técnico é formado por specialists que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
                 </p>
               </div>
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
@@ -188,50 +190,52 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center items-stretch gap-6 lg:gap-8">
             {SERVICES.map((service, index) => {
               const isExpanded = expandedIds.has(service.id);
-              const isLastRow = index >= 6;
-              const widthClass = isLastRow 
-                ? "lg:w-[calc(50%-1rem)]" 
-                : "lg:w-[calc(33.333%-1.34rem)]";
+              const isLastTwo = index >= 6;
+              const widthClass = isLastTwo 
+                ? "lg:w-[calc(50%-1.5rem)]" 
+                : "lg:w-[calc(33.333%-1.5rem)]";
 
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[280px] md:min-h-[300px] h-fit rounded-sm`}
+                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex`}
                 >
-                  <div>
-                    <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
-                      <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                        {service.icon}
+                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[300px] md:min-h-[320px] rounded-sm">
+                    <div>
+                      <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
+                        <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                          {service.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-500 leading-relaxed font-light text-sm">
+                        {service.description}
+                      </p>
+
+                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
+                        <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
+                          {service.complementaryText}
+                        </p>
+                        <Link to="/contato" className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-navy text-white px-6 py-3 hover:bg-gold hover:text-navy transition-all">
+                          Solicitar Consultoria <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
                     </div>
-                    <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-500 leading-relaxed font-light text-sm">
-                      {service.description}
-                    </p>
 
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
-                        {service.complementaryText}
-                      </p>
-                      <Link to="/contato" className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-navy text-white px-6 py-3 hover:bg-gold hover:text-navy transition-all">
-                        Solicitar Consultoria <ArrowRight className="w-3 h-3" />
-                      </Link>
+                    <div className="pt-6 mt-6 border-t border-gray-50">
+                      <button 
+                        onClick={() => toggleExpand(service.id)}
+                        className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
+                      >
+                        {isExpanded ? 'Ver Menos' : 'Saiba Mais'} 
+                        <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
                     </div>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-gray-50">
-                    <button 
-                      onClick={() => toggleExpand(service.id)}
-                      className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
-                    >
-                      {isExpanded ? 'Ver Menos' : 'Saiba Mais'} 
-                      <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
-                    </button>
                   </div>
                 </div>
               );
@@ -315,7 +319,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Outras Seções */}
+      {/* Frase de Efeito */}
       <section className="py-20 md:py-24 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50"></div>
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10">

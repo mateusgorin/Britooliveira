@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { SERVICES } from '../constants';
 import { ArrowUpRight, ChevronDown, ArrowRight, Brain, CheckCircle2 } from 'lucide-react';
@@ -29,51 +30,53 @@ const Services: React.FC = () => {
       {/* Services Grid Clean (Layout 3-3-2) */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center items-stretch gap-6 lg:gap-8">
             {SERVICES.map((service, index) => {
               const isExpanded = expandedIds.has(service.id);
-              const isLastRow = index >= 6;
-              const widthClass = isLastRow 
-                ? "lg:w-[calc(50%-1rem)]" 
-                : "lg:w-[calc(33.333%-1.34rem)]";
+              const isLastTwo = index >= 6;
+              const widthClass = isLastTwo 
+                ? "lg:w-[calc(50%-1.5rem)]" 
+                : "lg:w-[calc(33.333%-1.5rem)]";
 
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-1rem)] ${widthClass} bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between h-fit min-h-[300px]`}
+                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex`}
                 >
-                  <div>
-                    <div className="text-gold mb-6 group-hover:text-navy transition-colors">
-                      <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                          {service.icon}
+                  <div className="w-full bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[300px] md:min-h-[320px]">
+                    <div>
+                      <div className="text-gold mb-6 group-hover:text-navy transition-colors">
+                        <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                            {service.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors">{service.title}</h3>
+                      <p className="text-gray-500 leading-relaxed mb-4 font-light text-sm">
+                        {service.description}
+                      </p>
+
+                      {/* Conteúdo Complementar */}
+                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
+                        <div className="h-px w-full bg-gray-100 mb-6"></div>
+                        <p className="text-navy/70 leading-relaxed font-normal text-sm italic mb-6">
+                          {service.complementaryText}
+                        </p>
+                        <Link to="/contato" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-gold text-navy px-6 py-3 hover:bg-navy hover:text-white transition-all">
+                          Agendar Diagnóstico <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
                     </div>
-                    <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors">{service.title}</h3>
-                    <p className="text-gray-500 leading-relaxed mb-4 font-light text-sm">
-                      {service.description}
-                    </p>
-
-                    {/* Conteúdo Complementar */}
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
-                      <div className="h-px w-full bg-gray-100 mb-6"></div>
-                      <p className="text-navy/70 leading-relaxed font-normal text-sm italic mb-6">
-                        {service.complementaryText}
-                      </p>
-                      <Link to="/contato" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-gold text-navy px-6 py-3 hover:bg-navy hover:text-white transition-all">
-                        Agendar Diagnóstico <ArrowRight className="w-3 h-3" />
-                      </Link>
+                    
+                    <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
+                        <button 
+                          onClick={() => toggleExpand(service.id)}
+                          className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors"
+                        >
+                          {isExpanded ? 'Ver Menos' : 'Saiba Mais'}
+                          <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
+                        </button>
+                        <ArrowUpRight className="w-3 h-3 text-gray-300 group-hover:text-gold transition-colors" />
                     </div>
-                  </div>
-                  
-                  <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
-                      <button 
-                        onClick={() => toggleExpand(service.id)}
-                        className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors"
-                      >
-                        {isExpanded ? 'Ver Menos' : 'Saiba Mais'}
-                        <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
-                      </button>
-                      <ArrowUpRight className="w-3 h-3 text-gray-300 group-hover:text-gold transition-colors" />
                   </div>
                 </div>
               );
