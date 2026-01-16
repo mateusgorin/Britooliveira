@@ -166,7 +166,7 @@ const Home: React.FC = () => {
                   { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
                   { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm">
+                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm min-h-[350px]">
                    <item.icon className="w-7 h-7 md:w-8 md:h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
                    <h3 className="text-xl font-serif text-navy mb-4 italic">{item.title}</h3>
                    <p className="text-gray-500 text-sm leading-relaxed font-light">
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
                   key={service.id} 
                   className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[320px] rounded-sm">
+                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[350px] rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
                         <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
@@ -259,7 +259,7 @@ const Home: React.FC = () => {
                 <ul className="space-y-5 relative z-10">
                   {[
                     'Identificação e mapeamento de riscos psicossociais no ambiente de trabalho',
-                    'Apoio técnico na inclusão desses riscos no PGR',
+                    'Apoio técnico na inclusão desse riscos no PGR',
                     'Estruturação de medidas preventivas e corretivas',
                     'Assessoria jurídica e organizacional para redução de passivos trabalhistas',
                     'Psicologia Organizacional como ferramenta de prevenção e desempenho'

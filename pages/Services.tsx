@@ -43,7 +43,7 @@ const Services: React.FC = () => {
                   key={service.id} 
                   className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white p-7 md:p-10 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[320px]">
+                  <div className="w-full bg-white p-7 md:p-10 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[350px]">
                     <div>
                       <div className="text-gold mb-6 group-hover:text-navy transition-colors">
                         <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
