@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -6,17 +6,19 @@ import {
   Target, 
   Shield, 
   Award,
-  ArrowUpRight,
+  ChevronDown,
   Crown, 
   Zap, 
   Globe, 
   ShieldCheck, 
-  Handshake
+  Handshake,
+  Brain
 } from 'lucide-react';
 import { SERVICES, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
   const location = useLocation();
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const diffIcons = [<Handshake />, <Zap />, <Globe />, <ShieldCheck />, <Award />, <Crown />];
 
   useEffect(() => {
@@ -40,10 +42,19 @@ const Home: React.FC = () => {
     }
   }, [location]);
 
+  const toggleExpand = (id: string) => {
+    setExpandedIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
   return (
     <div className="flex flex-col">
-      {/* Hero Section - MANTIDA EXACTAMENTE COMO ESTAVA (Building Background) */}
-      <section className="relative h-screen min-h-[650px] flex items-start bg-navy-dark overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-32 md:py-40">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
@@ -51,40 +62,46 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-navy/95 via-navy/80 to-navy/95"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full h-full flex flex-col pt-40 md:pt-56">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full flex flex-col">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
               <div className="h-px w-8 md:w-12 bg-gold/50"></div>
               <span className="text-gold text-[9px] md:text-[10px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
             </div>
             <h1 className="text-white text-4xl sm:text-5xl md:text-7xl font-serif leading-tight md:leading-[1.1] mb-8 md:mb-10 italic">
-              Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança e Credibilidade.</span>
+              Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
             <p className="text-gray-300 text-base md:text-xl leading-relaxed mb-10 md:mb-12 max-w-2xl font-light">
-              Suporte empresarial e jurídico para empresas que buscam crescimento sustentável, organização e segurança absoluta nas decisões.
+              Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organização interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 md:gap-6">
               <Link 
                 to="/contato" 
-                className="bg-gold hover:bg-white text-navy px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all shadow-2xl flex items-center justify-center group"
+                className="w-full sm:w-auto bg-gold hover:bg-white text-navy px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all shadow-2xl flex items-center justify-center group"
               >
                 Fale com um Especialista
                 <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link 
-                to="/#servicos" 
-                className="border border-white/20 hover:border-gold hover:text-gold text-white px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all backdrop-blur-sm"
-              >
-                Nossos Serviços
-              </Link>
+              
+              <div className="flex items-center gap-4 md:gap-6 w-full sm:w-auto">
+                <Link 
+                  to="/#servicos" 
+                  className="flex-1 sm:flex-none border border-white/20 hover:border-gold hover:text-gold text-white px-8 md:px-10 py-4 md:py-5 text-center font-semibold uppercase text-[10px] md:text-xs tracking-ultra transition-all backdrop-blur-sm"
+                >
+                  Nossos Serviços
+                </Link>
+                
+                <Link 
+                  to="/#quem-somos" 
+                  className="flex items-center gap-2 text-white/60 hover:text-gold transition-all group py-4"
+                >
+                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-ultra">Descubra</span>
+                  <div className="flex flex-col items-center">
+                    <ChevronDown className="w-4 h-4 animate-bounce" />
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
-
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:gap-4 animate-bounce opacity-60 z-20">
-             <span className="text-white text-[9px] uppercase tracking-ultra font-medium inline-block">
-               Descubra
-             </span>
-             <div className="w-px h-8 md:h-12 bg-white/50"></div>
           </div>
         </div>
       </section>
@@ -93,8 +110,6 @@ const Home: React.FC = () => {
       <section id="quem-somos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            
-            {/* Imagem */}
             <div className="relative order-2 lg:order-1 max-w-md mx-auto">
               <div className="relative z-10 aspect-[4/5] overflow-hidden bg-gray-100">
                  <img 
@@ -104,36 +119,31 @@ const Home: React.FC = () => {
                  />
               </div>
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
-              
               <div className="absolute bottom-0 left-0 bg-white p-6 border-t border-r border-gray-100 max-w-xs z-20">
                   <p className="text-navy font-serif italic text-xl mb-1">Excelência</p>
                   <p className="text-gray-400 text-[9px] font-bold uppercase tracking-ultra">Desde a fundação</p>
               </div>
             </div>
 
-            {/* Texto */}
             <div className="order-1 lg:order-2">
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-6 h-px bg-gold"></span>
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra">Quem Somos</span>
               </div>
-              
               <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
-                Mais que consultoria, <br /> 
-                <span className="italic font-light text-navy/80">Inteligência Empresarial.</span>
+                Mais que consultoria. <br /> 
+                <span className="italic font-light text-navy/80">Inteligência Empresarial aplicada à realidade do seu negócio.</span>
               </h2>
-              
               <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed text-justify lg:text-left">
                 <p>
-                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> estabeleceu-se no mercado como uma referência em segurança jurídica e eficiência operacional. Nascemos da necessidade de oferecer ao empresário brasileiro uma visão integrada, onde o jurídico não é um entrave, mas uma alavanca de crescimento.
+                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> consolidou-se no mercado como referência em segurança jurídica, eficiência operacional e gestão estratégica de riscos. Atuamos a partir de uma visão integrada, na qual o jurídico deixa de ser um entrave e passa a ser uma ferramenta real de crescimento, proteção patrimonial e sustentabilidade empresarial.
                 </p>
                 <p>
-                  Nosso corpo técnico é formado por especialistas que entendem a linguagem dos negócios. Não entregamos apenas pareceres; entregamos soluções que protegem o patrimônio, otimizam a carga tributária e organizam a governança corporativa.
+                  Nosso corpo técnico é formado por especialistas que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
                 </p>
               </div>
-
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-                 {['Foco Preventivo', 'Sigilo Absoluto', 'Técnica Jurídica', 'Visão de Dono'].map((item) => (
+                 {['Atuação preventiva e estratégica', 'Sigilo absoluto e ética profissional', 'Excelência técnica e jurídica', 'Visão de dono e foco em resultados'].map((item) => (
                     <div key={item} className="flex items-center gap-3 group">
                         <CheckCircle2 className="text-gold w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
                         <span className="text-navy text-xs font-semibold uppercase tracking-wider">{item}</span>
@@ -141,7 +151,6 @@ const Home: React.FC = () => {
                  ))}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -155,12 +164,11 @@ const Home: React.FC = () => {
                 <div className="h-px w-12 bg-gold"></div>
               </div>
            </div>
-
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                  { icon: Target, title: "Nossa Missão", text: "Proporcionar clareza, segurança e sustentabilidade nas decisões empresariais através de uma assessoria técnica de alto nível e estritamente personalizada." },
-                  { icon: Shield, title: "Nossa Visão", text: "Ser a referência nacional em assessoria preventiva para médias e grandes empresas, reconhecida pela integridade e pela capacidade de resolver complexidades." },
-                  { icon: Award, title: "Nossos Valores", text: "Ética inegociável, excelência técnica, transparência nas relações, confidencialidade absoluta e compromisso real com o resultado do cliente." }
+                  { icon: Target, title: "Nossa Missão", text: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
+                  { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
+                  { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (
                 <div key={idx} className="bg-white p-8 md:p-10 border border-gray-100 hover:border-gold/30 transition-all duration-300 group hover:shadow-lg hover:shadow-gray-200/50">
                    <item.icon className="w-8 h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
@@ -174,7 +182,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS - Layout 3 - 3 - 2 (Total 8 itens) */}
+      {/* SEÇÃO SERVIÇOS */}
       <section id="servicos" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-16">
@@ -185,28 +193,21 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          {/* Flex Layout com lógica para padrão 3 - 3 - 2 */}
           <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
             {SERVICES.map((service, index) => {
-              // Lógica para 8 itens em Desktop (lg):
-              // Linha 1 (Indices 0, 1, 2) -> 33% width
-              // Linha 2 (Indices 3, 4, 5) -> 33% width
-              // Linha 3 (Indices 6, 7)    -> 50% width (Base centralizada)
-              
-              const isLastRow = index >= 6; // Últimos 2 itens
+              const isExpanded = expandedIds.has(service.id);
+              const isLastRow = index >= 6;
               const widthClass = isLastRow 
-                ? "lg:w-[calc(50%-1rem)]" // 2 items logic
-                : "lg:w-[calc(33.333%-1.34rem)]"; // 3 items logic
+                ? "lg:w-[calc(50%-1rem)]" 
+                : "lg:w-[calc(33.333%-1.34rem)]";
 
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gold/30 group/card min-h-[300px]`}
+                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-xl hover:border-gold/30 group/card min-h-[300px] h-fit`}
                 >
                   <div>
-                    {/* Alteração aqui: text-gold como padrão */}
                     <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
-                      {/* Ícones consistentes */}
                       <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
                         {service.icon}
                       </div>
@@ -217,21 +218,111 @@ const Home: React.FC = () => {
                     <p className="text-gray-500 leading-relaxed font-light text-sm">
                       {service.description}
                     </p>
+
+                    {/* Conteúdo Complementar */}
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
+                      <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
+                        {service.complementaryText}
+                      </p>
+                      <Link to="/contato" className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-navy text-white px-6 py-3 hover:bg-gold hover:text-navy transition-all">
+                        Solicitar Consultoria <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
                   </div>
+
                   <div className="pt-6 mt-6 border-t border-gray-50">
-                    <Link to="/contato" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors">
-                      Saiba Mais <ArrowUpRight className="w-3 h-3" />
-                    </Link>
+                    <button 
+                      onClick={() => toggleExpand(service.id)}
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
+                    >
+                      {isExpanded ? 'Ver Menos' : 'Saiba Mais'} 
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
+                    </button>
                   </div>
                 </div>
               );
             })}
           </div>
-
         </div>
       </section>
 
-      {/* Banner de Foco */}
+      {/* SEÇÃO PSICOLOGIA - NR-1 (NOVO BLOCO DESTAQUE) */}
+      <section id="psicologia" className="py-24 bg-gray-50 scroll-mt-24 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            
+            <div className="order-2 lg:order-1">
+              <div className="bg-white p-8 md:p-12 border border-gray-200 shadow-2xl relative rounded-sm overflow-hidden">
+                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold/5 rounded-full flex items-center justify-center -z-0">
+                  <Brain className="w-16 h-16 text-gold opacity-20" />
+                </div>
+                
+                <h3 className="text-2xl font-serif text-navy mb-8 italic relative z-10">Nossa atuação inclui:</h3>
+                <ul className="space-y-5 relative z-10">
+                  {[
+                    'Identificação e mapeamento de riscos psicossociais no ambiente de trabalho',
+                    'Apoio técnico na inclusão desses riscos no PGR',
+                    'Estruturação de medidas preventivas e corretivas',
+                    'Assessoria jurídica e organizacional para redução de passivos trabalhistas',
+                    'Psicologia Organizacional como ferramenta de prevenção e desempenho'
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-4 group">
+                      <div className="mt-1 w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
+                        <CheckCircle2 className="w-3 h-3 text-gold group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-gray-700 text-sm md:text-base font-light leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="mt-10 pt-8 border-t border-gray-100 relative z-10">
+                   <p className="text-navy text-xs font-bold uppercase tracking-ultra mb-2">Conformidade Legal</p>
+                   <p className="text-gray-500 text-sm font-light italic leading-relaxed">
+                     Promovemos ambientes de trabalho mais saudáveis, produtivos e juridicamente seguros.
+                   </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-6 h-px bg-gold"></span>
+                <span className="text-gold text-[10px] font-bold uppercase tracking-ultra">Diferencial Exclusivo</span>
+              </div>
+              
+              <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
+                Gestão de Riscos Psicossociais <br /> 
+                <span className="italic font-light text-navy/80">e Adequação à NR-1</span>
+              </h2>
+              
+              <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed text-justify lg:text-left">
+                <p>
+                  A partir de <strong className="text-navy font-semibold italic border-b border-gold/40">maio de 2025</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu Programa de Gerenciamento de Riscos (PGR).
+                </p>
+                <p>
+                  Isso significa que fatores relacionados à saúde mental, clima organizacional, sobrecarga de trabalho, assédio, profissional de saúde, pressão excessiva e organização das atividades devem ser <strong className="text-navy font-medium">identificados, avaliados e gerenciados de forma obrigatória</strong>.
+                </p>
+                <p className="text-navy font-medium pt-4">
+                  A Brito Oliveira Assessoria Empresarial atua de forma integrada na adequação legal, técnica e estratégica das empresas a essa nova exigência.
+                </p>
+              </div>
+
+              <div className="mt-10">
+                <Link 
+                  to="/contato" 
+                  className="inline-flex items-center gap-4 bg-navy text-white hover:bg-gold hover:text-navy px-8 py-4 text-[10px] font-bold uppercase tracking-ultra transition-all duration-300 shadow-lg group"
+                >
+                  Consultar Adequação NR-1
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Outras Seções */}
       <section className="py-24 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50"></div>
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10">
@@ -244,7 +335,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO DIFERENCIAIS */}
       <section id="diferenciais" className="py-24 bg-gray-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="flex flex-col md:flex-row gap-12 mb-16 border-b border-gray-200 pb-12">
@@ -260,17 +350,13 @@ const Home: React.FC = () => {
                 </p>
              </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {DIFFERENTIALS.map((diff, index) => (
               <div 
                 key={index} 
                 className="group relative bg-white p-8 md:p-10 border border-gray-100 hover:border-gold/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 rounded-sm overflow-hidden"
               >
-                {/* Detalhe Dourado Superior Animado */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-
-                {/* Ícone com destaque */}
                 <div className="mb-8 relative">
                    <div className="w-14 h-14 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-gold transition-all duration-500">
                      <div className="[&>svg]:w-7 [&>svg]:h-7 [&>svg]:stroke-[1.5]">
@@ -278,7 +364,6 @@ const Home: React.FC = () => {
                       </div>
                    </div>
                 </div>
-
                 <div>
                   <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-gold transition-colors duration-300">
                     {diff.title}
@@ -293,7 +378,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
       <section className="py-32 bg-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
           <h2 className="text-navy text-3xl md:text-5xl font-serif mb-10 font-light leading-tight">

@@ -39,20 +39,20 @@ const About: React.FC = () => {
             <div className="order-1 lg:order-2">
               <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Quem Somos</span>
               <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
-                Mais que consultoria, <br /> <span className="italic font-light text-navy/80">Inteligência Empresarial.</span>
+                Mais que consultoria. <br /> <span className="italic font-light text-navy/80">Inteligência Empresarial aplicada à realidade do seu negócio.</span>
               </h2>
               
               <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed text-justify lg:text-left">
                 <p>
-                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> estabeleceu-se no mercado como uma referência em segurança jurídica e eficiência operacional. Nascemos da necessidade de oferecer ao empresário brasileiro uma visão integrada, onde o jurídico não é um entrave, mas uma alavanca de crescimento.
+                  A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> consolidou-se no mercado como referência em segurança jurídica, eficiência operacional e gestão estratégica de riscos. Atuamos a partir de uma visão integrada, na qual o jurídico deixa de ser um entrave e passa a ser uma ferramenta real de crescimento, proteção patrimonial e sustentabilidade empresarial.
                 </p>
                 <p>
-                  Nosso corpo técnico é formado por especialistas que entendem a linguagem dos negócios. Não entregamos apenas pareceres; entregamos soluções que protegem o patrimônio, otimizam a carga tributária e organizam a governança corporativa.
+                  Nosso corpo técnico é formado por especialistas que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
                 </p>
               </div>
 
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
-                 {['Foco Preventivo', 'Sigilo Absoluto', 'Técnica Jurídica', 'Visão de Dono'].map(item => (
+                 {['Atuação preventiva e estratégica', 'Sigilo absoluto e ética profissional', 'Excelência técnica e jurídica', 'Visão de dono e foco em resultados'].map(item => (
                     <div key={item} className="flex items-center gap-3">
                         <CheckCircle2 className="text-gold w-4 h-4 stroke-[1.5]" />
                         <span className="text-navy text-xs font-semibold uppercase tracking-wider">{item}</span>
@@ -75,9 +75,9 @@ const About: React.FC = () => {
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { Icon: Target, title: "Nossa Missão", desc: "Proporcionar clareza, segurança e sustentabilidade nas decisões empresariais através de uma assessoria técnica de alto nível e estritamente personalizada." },
-                { Icon: Shield, title: "Nossa Visão", desc: "Ser a referência nacional em assessoria preventiva para médias e grandes empresas, reconhecida pela integridade e pela capacidade de resolver complexidades." },
-                { Icon: Award, title: "Nossos Valores", desc: "Ética inegociável, excelência técnica, transparência nas relações, confidencialidade absoluta e compromisso real com o resultado do cliente." }
+                { Icon: Target, title: "Nossa Missão", desc: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
+                { Icon: Shield, title: "Nossa Visão", desc: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excellence técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
+                { Icon: Award, title: "Nossos Valores", desc: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((pilar, index) => (
                 <div key={index} className="bg-white p-10 border border-gray-100 hover:border-gold/30 transition-all duration-300">
                     <div className="mb-6 text-navy">

@@ -5,6 +5,7 @@ export interface Service {
   id: string;
   title: string;
   description: string;
+  complementaryText?: string;
   icon: ReactNode;
 }
 
