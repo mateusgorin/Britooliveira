@@ -30,7 +30,7 @@ const Services: React.FC = () => {
       {/* Services Grid Clean (Layout 3-3-2) */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-wrap justify-center items-stretch gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center items-start gap-6 lg:gap-8">
             {SERVICES.map((service, index) => {
               const isExpanded = expandedIds.has(service.id);
               const isLastTwo = index >= 6;
@@ -41,22 +41,22 @@ const Services: React.FC = () => {
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex`}
+                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[300px] md:min-h-[320px]">
+                  <div className="w-full bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[300px] md:min-h-[350px]">
                     <div>
                       <div className="text-gold mb-6 group-hover:text-navy transition-colors">
                         <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
                             {service.icon}
                         </div>
                       </div>
-                      <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors">{service.title}</h3>
+                      <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors min-h-[3rem]">{service.title}</h3>
                       <p className="text-gray-500 leading-relaxed mb-4 font-light text-sm">
                         {service.description}
                       </p>
 
                       {/* Conteúdo Complementar */}
-                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
+                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
                         <div className="h-px w-full bg-gray-100 mb-6"></div>
                         <p className="text-navy/70 leading-relaxed font-normal text-sm italic mb-6">
                           {service.complementaryText}
@@ -97,7 +97,7 @@ const Services: React.FC = () => {
                 </h2>
                 <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed">
                    <p>
-                    A partir de <strong className="text-navy font-semibold italic">maio de 2026</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu PGR.
+                    A partir de <strong className="text-navy font-semibold italic">maio de 2026</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de risks psicossociais em seu PGR.
                    </p>
                    <p>
                     Fatores relacionados à saúde mental, clima organizacional, sobrecarga, assédio e pressão devem ser identificados, avaliados e gerenciados de forma <strong className="text-navy font-medium">obrigatória</strong>.

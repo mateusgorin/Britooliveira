@@ -15,7 +15,6 @@ import {
   Handshake,
   Brain
 } from 'lucide-react';
-// Added missing import for DIFFERENTIALS
 import { SERVICES, LOGO_URL, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
@@ -136,7 +135,7 @@ const Home: React.FC = () => {
                   A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> consolidou-se no mercado como referência em segurança jurídica, eficiência operacional e gestão estratégica de riscos. Atuamos a partir de uma visão integrada, na qual o jurídico deixa de ser um entrave e passa a ser uma ferramenta real de crescimento, proteção patrimonial e sustentabilidade empresarial.
                 </p>
                 <p>
-                  Nosso corpo técnico é formado por specialists que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
+                  Nosso corpo técnico é formado por especialistas que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
                 </p>
               </div>
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
@@ -190,7 +189,7 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center items-stretch gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center items-start gap-6 lg:gap-8">
             {SERVICES.map((service, index) => {
               const isExpanded = expandedIds.has(service.id);
               const isLastTwo = index >= 6;
@@ -201,23 +200,23 @@ const Home: React.FC = () => {
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex`}
+                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[300px] md:min-h-[320px] rounded-sm">
+                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[300px] md:min-h-[350px] rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
                         <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
                           {service.icon}
                         </div>
                       </div>
-                      <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium">
+                      <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium min-h-[3rem]">
                         {service.title}
                       </h3>
                       <p className="text-gray-500 leading-relaxed font-light text-sm">
                         {service.description}
                       </p>
 
-                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
+                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
                         <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
                           {service.complementaryText}
                         </p>
