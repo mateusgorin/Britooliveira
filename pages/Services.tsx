@@ -43,14 +43,14 @@ const Services: React.FC = () => {
                   key={service.id} 
                   className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white p-8 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[300px] md:min-h-[350px]">
+                  <div className="w-full bg-white p-7 md:p-10 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[320px]">
                     <div>
                       <div className="text-gold mb-6 group-hover:text-navy transition-colors">
                         <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
                             {service.icon}
                         </div>
                       </div>
-                      <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-navy/80 transition-colors min-h-[3rem]">{service.title}</h3>
+                      <h3 className="text-xl font-serif text-navy mb-4 italic leading-snug group-hover:text-navy/80 transition-colors">{service.title}</h3>
                       <p className="text-gray-500 leading-relaxed mb-4 font-light text-sm">
                         {service.description}
                       </p>
@@ -97,7 +97,7 @@ const Services: React.FC = () => {
                 </h2>
                 <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed">
                    <p>
-                    A partir de <strong className="text-navy font-semibold italic">maio de 2026</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de risks psicossociais em seu PGR.
+                    A partir de <strong className="text-navy font-semibold italic">maio de 2026</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu PGR.
                    </p>
                    <p>
                     Fatores relacionados à saúde mental, clima organizacional, sobrecarga, assédio e pressão devem ser identificados, avaliados e gerenciados de forma <strong className="text-navy font-medium">obrigatória</strong>.

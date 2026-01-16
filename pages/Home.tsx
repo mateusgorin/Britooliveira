@@ -178,7 +178,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS */}
+      {/* SEÇÃO SERVIÇOS (Padronizada com os Pilares) */}
       <section id="servicos" className="py-16 md:py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12 md:mb-16">
@@ -202,14 +202,14 @@ const Home: React.FC = () => {
                   key={service.id} 
                   className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
                 >
-                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[300px] md:min-h-[350px] rounded-sm">
+                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[320px] rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
                         <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
                           {service.icon}
                         </div>
                       </div>
-                      <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium min-h-[3rem]">
+                      <h3 className="text-xl font-serif text-navy mb-4 italic leading-snug">
                         {service.title}
                       </h3>
                       <p className="text-gray-500 leading-relaxed font-light text-sm">
@@ -217,6 +217,7 @@ const Home: React.FC = () => {
                       </p>
 
                       <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
+                        <div className="h-px w-full bg-gray-50 mb-6"></div>
                         <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
                           {service.complementaryText}
                         </p>
