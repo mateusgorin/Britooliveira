@@ -160,13 +160,13 @@ const Home: React.FC = () => {
                 <div className="h-px w-12 bg-gold mx-auto md:mx-0"></div>
               </div>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
               {[
                   { icon: Target, title: "Nossa Missão", text: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
                   { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
                   { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm min-h-[350px]">
+                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm min-h-[350px] flex flex-col">
                    <item.icon className="w-7 h-7 md:w-8 md:h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
                    <h3 className="text-xl font-serif text-navy mb-4 italic">{item.title}</h3>
                    <p className="text-gray-500 text-sm leading-relaxed font-light">
@@ -189,20 +189,16 @@ const Home: React.FC = () => {
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center items-start gap-6 lg:gap-8">
-            {SERVICES.map((service, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
+            {SERVICES.map((service) => {
               const isExpanded = expandedIds.has(service.id);
-              const isLastTwo = index >= 6;
-              const widthClass = isLastTwo 
-                ? "lg:w-[calc(50%-1.5rem)]" 
-                : "lg:w-[calc(33.333%-1.5rem)]";
 
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
+                  className="flex flex-col"
                 >
-                  <div className="w-full bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[350px] rounded-sm">
+                  <div className="bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[350px] rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
                         <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
@@ -227,7 +223,7 @@ const Home: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="pt-6 mt-6 border-t border-gray-50">
+                    <div className="pt-6 mt-6 border-t border-gray-50 shrink-0">
                       <button 
                         onClick={() => toggleExpand(service.id)}
                         className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
@@ -348,11 +344,11 @@ const Home: React.FC = () => {
                 </p>
              </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
             {DIFFERENTIALS.map((diff, index) => (
               <div 
                 key={index} 
-                className="group relative bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-sm overflow-hidden"
+                className="group relative bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-sm overflow-hidden min-h-[300px] flex flex-col"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 <div className="mb-6 md:mb-8 relative">

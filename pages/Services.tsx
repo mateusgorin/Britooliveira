@@ -27,23 +27,19 @@ const Services: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Grid Clean (Layout 3-3-2) */}
+      {/* Services Grid (Padronizado com a Home e Pilares) */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-wrap justify-center items-start gap-6 lg:gap-8">
-            {SERVICES.map((service, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+            {SERVICES.map((service) => {
               const isExpanded = expandedIds.has(service.id);
-              const isLastTwo = index >= 6;
-              const widthClass = isLastTwo 
-                ? "lg:w-[calc(50%-1.5rem)]" 
-                : "lg:w-[calc(33.333%-1.5rem)]";
 
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-1.5rem)] ${widthClass} flex flex-col`}
+                  className="flex flex-col"
                 >
-                  <div className="w-full bg-white p-7 md:p-10 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[350px]">
+                  <div className="bg-white p-7 md:p-10 border border-gray-100 hover:border-gold/30 hover:shadow-lg transition-all duration-500 group flex flex-col justify-between min-h-[350px] shadow-2xl rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover:text-navy transition-colors">
                         <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
@@ -67,7 +63,7 @@ const Services: React.FC = () => {
                       </div>
                     </div>
                     
-                    <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
+                    <div className="pt-6 border-t border-gray-50 flex items-center justify-between shrink-0">
                         <button 
                           onClick={() => toggleExpand(service.id)}
                           className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy hover:text-gold transition-colors"
