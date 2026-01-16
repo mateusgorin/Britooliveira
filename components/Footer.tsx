@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Instagram, ArrowUp } from 'lucide-react';
@@ -22,7 +21,7 @@ const Footer: React.FC = () => {
             </div>
             
             <p className="text-gray-400 text-base font-light leading-relaxed max-w-sm mb-10 border-l border-gold/30 pl-6">
-              "Transformando segurança jurídica em valor estratégico para o seu negócio."
+              "Estratégia e inteligência para impulsionar o seu negócio."
             </p>
 
             <div className="flex space-x-4">
