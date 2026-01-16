@@ -53,7 +53,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Descubra Centralizado e Compactação Ajustada */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
@@ -75,7 +75,6 @@ const Home: React.FC = () => {
               Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organization interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
             </p>
             
-            {/* Botões Principais */}
             <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 md:gap-5">
               <Link 
                 to="/contato" 
@@ -95,7 +94,6 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        {/* Link Descubra - Centralizado no Rodapé do Hero */}
         <div className="absolute bottom-10 left-0 w-full flex justify-center z-20 px-6">
           <Link 
             to="/#quem-somos" 
@@ -108,10 +106,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* Seção Quem Somos */}
-      <section id="quem-somos" className="py-24 bg-white scroll-mt-24">
+      <section id="quem-somos" className="py-16 md:py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <div className="relative order-2 lg:order-1 max-w-md mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+            <div className="relative order-2 lg:order-1 max-w-md mx-auto lg:mx-0">
               <div className="relative z-10 aspect-[4/5] overflow-hidden bg-gray-100">
                  <img 
                     src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
@@ -119,7 +117,7 @@ const Home: React.FC = () => {
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                  />
               </div>
-              <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
+              <div className="absolute top-4 left-4 md:top-6 md:left-6 w-full h-full border border-navy/10 -z-0"></div>
             </div>
 
             <div className="order-1 lg:order-2">
@@ -127,11 +125,11 @@ const Home: React.FC = () => {
                 <span className="w-6 h-px bg-gold"></span>
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra">Quem Somos</span>
               </div>
-              <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
+              <h2 className="text-navy text-2xl md:text-4xl font-serif mb-8 leading-tight">
                 Mais que consultoria. <br /> 
                 <span className="italic font-light text-navy/80">Inteligência Empresarial aplicada à realidade do seu negócio.</span>
               </h2>
-              <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed text-justify lg:text-left">
+              <div className="space-y-6 text-gray-600 font-light text-sm md:text-base leading-relaxed text-justify lg:text-left">
                 <p>
                   A <strong className="text-navy font-medium">Brito Oliveira Assessoria Empresarial</strong> consolidou-se no mercado como referência em segurança jurídica, eficiência operacional e gestão estratégica de riscos. Atuamos a partir de uma visão integrada, na qual o jurídico deixa de ser um entrave e passa a ser uma ferramenta real de crescimento, proteção patrimonial e sustentabilidade empresarial.
                 </p>
@@ -143,7 +141,7 @@ const Home: React.FC = () => {
                  {['Atuação preventiva e estratégica', 'Sigilo absoluto e ética profissional', 'Excelência técnica e jurídica', 'Visão de dono e foco em resultados'].map((item) => (
                     <div key={item} className="flex items-center gap-3 group">
                         <CheckCircle2 className="text-gold w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
-                        <span className="text-navy text-xs font-semibold uppercase tracking-wider">{item}</span>
+                        <span className="text-navy text-[10px] md:text-xs font-semibold uppercase tracking-wider">{item}</span>
                     </div>
                  ))}
               </div>
@@ -153,22 +151,22 @@ const Home: React.FC = () => {
       </section>
 
       {/* Seção Pilares */}
-      <section className="py-24 bg-gray-50 border-y border-gray-100">
+      <section className="py-16 md:py-24 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 md:mb-16 text-center md:text-left">
               <div className="max-w-xl">
                 <h2 className="text-3xl font-serif text-navy italic mb-4">Nossos Pilares</h2>
-                <div className="h-px w-12 bg-gold"></div>
+                <div className="h-px w-12 bg-gold mx-auto md:mx-0"></div>
               </div>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                   { icon: Target, title: "Nossa Missão", text: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
                   { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
                   { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-8 md:p-10 border border-gray-100 hover:border-gold/30 transition-all duration-300 group hover:shadow-lg hover:shadow-gray-200/50">
-                   <item.icon className="w-8 h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
+                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm">
+                   <item.icon className="w-7 h-7 md:w-8 md:h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
                    <h3 className="text-xl font-serif text-navy mb-4 italic">{item.title}</h3>
                    <p className="text-gray-500 text-sm leading-relaxed font-light">
                      {item.text}
@@ -180,11 +178,11 @@ const Home: React.FC = () => {
       </section>
 
       {/* SEÇÃO SERVIÇOS */}
-      <section id="servicos" className="py-24 bg-white scroll-mt-24">
+      <section id="servicos" className="py-16 md:py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Nossa Expertise</span>
-            <h2 className="text-3xl md:text-4xl font-serif text-navy mb-6">Frentes de Atuação</h2>
+            <h2 className="text-2xl md:text-4xl font-serif text-navy mb-6">Frentes de Atuação</h2>
             <p className="text-gray-500 max-w-xl mx-auto font-light text-sm md:text-base">
               Especialidades desenhadas para a segurança do seu legado empresarial, com foco estratégico e preventivo.
             </p>
@@ -201,22 +199,21 @@ const Home: React.FC = () => {
               return (
                 <div 
                   key={service.id} 
-                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-xl hover:border-gold/30 group/card min-h-[300px] h-fit`}
+                  className={`w-full md:w-[calc(50%-0.75rem)] ${widthClass} bg-white border border-gray-200 shadow-2xl p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[280px] md:min-h-[300px] h-fit rounded-sm`}
                 >
                   <div>
                     <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
-                      <div className="[&>svg]:w-8 [&>svg]:h-8 [&>svg]:stroke-[1.5]">
+                      <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
                         {service.icon}
                       </div>
                     </div>
-                    <h3 className="text-xl font-serif text-navy mb-4 leading-snug font-medium">
+                    <h3 className="text-lg md:text-xl font-serif text-navy mb-4 leading-snug font-medium">
                       {service.title}
                     </h3>
                     <p className="text-gray-500 leading-relaxed font-light text-sm">
                       {service.description}
                     </p>
 
-                    {/* Conteúdo Complementar */}
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
                       <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
                         {service.complementaryText}
@@ -230,7 +227,7 @@ const Home: React.FC = () => {
                   <div className="pt-6 mt-6 border-t border-gray-50">
                     <button 
                       onClick={() => toggleExpand(service.id)}
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
+                      className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
                     >
                       {isExpanded ? 'Ver Menos' : 'Saiba Mais'} 
                       <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
@@ -243,18 +240,18 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO PSICOLOGIA - NR-1 */}
-      <section id="psicologia" className="py-24 bg-gray-50 scroll-mt-24 border-t border-gray-100">
+      {/* SEÇÃO PSICOLOGIA */}
+      <section id="psicologia" className="py-16 md:py-24 bg-gray-50 scroll-mt-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             
             <div className="order-2 lg:order-1">
-              <div className="bg-white p-8 md:p-12 border border-gray-200 shadow-2xl relative rounded-sm overflow-hidden">
+              <div className="bg-white p-6 md:p-12 border border-gray-200 shadow-2xl relative rounded-sm overflow-hidden">
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold/5 rounded-full flex items-center justify-center -z-0">
                   <Brain className="w-16 h-16 text-gold opacity-20" />
                 </div>
                 
-                <h3 className="text-2xl font-serif text-navy mb-8 italic relative z-10">Nossa atuação inclui:</h3>
+                <h3 className="text-xl md:text-2xl font-serif text-navy mb-8 italic relative z-10">Nossa atuação inclui:</h3>
                 <ul className="space-y-5 relative z-10">
                   {[
                     'Identificação e mapeamento de riscos psicossociais no ambiente de trabalho',
@@ -264,8 +261,8 @@ const Home: React.FC = () => {
                     'Psicologia Organizacional como ferramenta de prevenção e desempenho'
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-4 group">
-                      <div className="mt-1 w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
-                        <CheckCircle2 className="w-3 h-3 text-gold group-hover:text-white transition-colors" />
+                      <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
+                        <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-gold group-hover:text-white transition-colors" />
                       </div>
                       <span className="text-gray-700 text-sm md:text-base font-light leading-snug">{item}</span>
                     </li>
@@ -273,7 +270,7 @@ const Home: React.FC = () => {
                 </ul>
                 
                 <div className="mt-10 pt-8 border-t border-gray-100 relative z-10">
-                   <p className="text-navy text-xs font-bold uppercase tracking-ultra mb-2">Conformidade Legal</p>
+                   <p className="text-navy text-[10px] md:text-xs font-bold uppercase tracking-ultra mb-2">Conformidade Legal</p>
                    <p className="text-gray-500 text-sm font-light italic leading-relaxed">
                      Promovemos ambientes de trabalho mais saudáveis, produtivos e juridicamente seguros.
                    </p>
@@ -287,12 +284,12 @@ const Home: React.FC = () => {
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra">Diferencial Exclusivo</span>
               </div>
               
-              <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
+              <h2 className="text-navy text-2xl md:text-4xl font-serif mb-8 leading-tight">
                 Gestão de Riscos Psicossociais <br /> 
                 <span className="italic font-light text-navy/80">e Adequação à NR-1</span>
               </h2>
               
-              <div className="space-y-6 text-gray-600 font-light text-base leading-relaxed text-justify lg:text-left">
+              <div className="space-y-6 text-gray-600 font-light text-sm md:text-base leading-relaxed text-justify lg:text-left">
                 <p>
                   A partir de <strong className="text-navy font-semibold italic border-b border-gold/40">maio de 2025</strong>, a NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais em seu Programa de Gerenciamento de Riscos (PGR).
                 </p>
@@ -307,23 +304,22 @@ const Home: React.FC = () => {
               <div className="mt-10">
                 <Link 
                   to="/contato" 
-                  className="inline-flex items-center gap-4 bg-navy text-white hover:bg-gold hover:text-navy px-8 py-4 text-[10px] font-bold uppercase tracking-ultra transition-all duration-300 shadow-lg group"
+                  className="inline-flex items-center gap-4 bg-navy text-white hover:bg-gold hover:text-navy px-8 py-4 text-[10px] font-bold uppercase tracking-ultra transition-all duration-300 shadow-lg group w-full sm:w-auto justify-center"
                 >
                   Consultar Adequação NR-1
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* Outras Seções */}
-      <section className="py-24 bg-navy relative overflow-hidden">
+      <section className="py-20 md:py-24 bg-navy relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50"></div>
         <div className="max-w-4xl mx-auto px-6 md:px-8 text-center relative z-10">
-           <h2 className="text-2xl md:text-3xl font-serif text-white/90 italic mb-8 font-light leading-relaxed">
+           <h2 className="text-xl md:text-3xl font-serif text-white/90 italic mb-8 font-light leading-relaxed">
             "O foco da nossa comunicação é prevenção, estratégia e segurança. Construímos estruturas sólidas para que sua empresa não dependa apenas da sorte."
            </h2>
            <div className="inline-block border-b border-gold/30 pb-2">
@@ -332,40 +328,41 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section id="diferenciais" className="py-24 bg-gray-50 scroll-mt-24">
+      {/* SEÇÃO DIFERENCIAIS */}
+      <section id="diferenciais" className="py-16 md:py-24 bg-gray-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="flex flex-col md:flex-row gap-12 mb-16 border-b border-gray-200 pb-12">
-             <div className="md:w-1/3">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 mb-12 md:mb-16 border-b border-gray-200 pb-12">
+             <div className="md:w-1/3 text-center md:text-left">
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Por que nós?</span>
                 <h2 className="text-3xl md:text-4xl font-serif text-navy leading-tight">
-                  Diferenciais <br /> <span className="italic font-light">Estratégicos.</span>
+                  Diferenciais <br className="hidden md:block" /> <span className="italic font-light">Estratégicos.</span>
                 </h2>
              </div>
-             <div className="md:w-2/3 flex items-center">
-                <p className="text-gray-500 font-light leading-relaxed text-lg">
+             <div className="md:w-2/3 flex items-center text-center md:text-left">
+                <p className="text-gray-500 font-light leading-relaxed text-base md:text-lg">
                   O que nos posiciona como a escolha de elite para empresas que buscam segurança jurídica e organização é a nossa metodologia proprietária, que integra prevenção de riscos, eficiência operacional e visão estratégica.
                 </p>
              </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {DIFFERENTIALS.map((diff, index) => (
               <div 
                 key={index} 
-                className="group relative bg-white p-8 md:p-10 border border-gray-100 hover:border-gold/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 rounded-sm overflow-hidden"
+                className="group relative bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-sm overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-                <div className="mb-8 relative">
-                   <div className="w-14 h-14 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-gold transition-all duration-500">
-                     <div className="[&>svg]:w-7 [&>svg]:h-7 [&>svg]:stroke-[1.5]">
+                <div className="mb-6 md:mb-8 relative">
+                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-navy/5 flex items-center justify-center text-navy group-hover:bg-navy group-hover:text-gold transition-all duration-500">
+                     <div className="[&>svg]:w-6 md:[&>svg]:w-7 [&>svg]:h-6 md:[&>svg]:h-7 [&>svg]:stroke-[1.5]">
                         {diffIcons[index % diffIcons.length]}
                       </div>
                    </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-serif text-navy mb-4 group-hover:text-gold transition-colors duration-300">
+                  <h3 className="text-lg md:text-xl font-serif text-navy mb-4 group-hover:text-gold transition-colors duration-300">
                     {diff.title}
                   </h3>
-                  <p className="text-gray-500 text-base leading-relaxed font-light">
+                  <p className="text-gray-500 text-sm md:text-base leading-relaxed font-light">
                     {diff.description}
                   </p>
                 </div>
@@ -375,14 +372,14 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section className="py-32 bg-white text-center relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-white text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
-          <h2 className="text-navy text-3xl md:text-5xl font-serif mb-10 font-light leading-tight">
+          <h2 className="text-navy text-2xl md:text-5xl font-serif mb-10 font-light leading-tight">
             "Não apenas resolvemos problemas; <br /> <span className="italic">trabalhamos para evitar que eles aconteçam."</span>
           </h2>
           <Link 
             to="/contato" 
-            className="inline-block bg-gold text-navy hover:bg-navy hover:text-white px-10 py-4 font-semibold uppercase text-[10px] tracking-ultra transition-all duration-300"
+            className="inline-block bg-gold text-navy hover:bg-navy hover:text-white px-8 md:px-10 py-4 font-semibold uppercase text-[10px] tracking-ultra transition-all duration-300 shadow-xl"
           >
             Agendar Reunião com Especialista
           </Link>

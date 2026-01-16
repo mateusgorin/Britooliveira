@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -27,9 +26,7 @@ const Navbar: React.FC = () => {
 
   const closeMenu = () => setIsOpen(false);
 
-  // Função para lidar com cliques em links, especialmente âncoras e Home
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    // Se for o link Home ('/') e já estivermos na home, rola para o topo
     if (path === '/') {
       if (location.pathname === '/') {
         e.preventDefault();
@@ -39,17 +36,13 @@ const Navbar: React.FC = () => {
       return;
     }
 
-    // Se for um link de âncora (tem #)
     if (path.includes('#')) {
       const [route, hash] = path.split('#');
-      
-      // Se já estamos na home (rota '/') e o link é para a home
       if (location.pathname === '/' && route === '/') {
-        e.preventDefault(); // Evita recarregamento
+        e.preventDefault();
         const element = document.getElementById(hash);
-        
         if (element) {
-          const offset = 100; // Compensação para a altura do Navbar
+          const offset = 100;
           const bodyRect = document.body.getBoundingClientRect().top;
           const elementRect = element.getBoundingClientRect().top;
           const elementPosition = elementRect - bodyRect;
@@ -61,10 +54,7 @@ const Navbar: React.FC = () => {
           });
         }
       }
-      // Se não estamos na home, o Link padrão do react-router vai navegar para '/'
-      // e o useEffect na Home.tsx vai lidar com o hash.
     }
-    
     closeMenu();
   };
 
@@ -79,7 +69,6 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 lg:gap-8">
-        {/* Logo Container */}
         <Link 
           to="/" 
           className="flex items-center group flex-shrink-0" 
@@ -92,13 +81,12 @@ const Navbar: React.FC = () => {
               className={`object-contain transition-all duration-500 ease-in-out ${
                 scrolled 
                   ? 'h-[40px] md:h-[55px]' 
-                  : 'h-[60px] md:h-[90px]'
+                  : 'h-[50px] sm:h-[60px] md:h-[90px]'
               }`} 
             />
           </div>
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-5 xl:gap-8 2xl:gap-12">
           {NAV_ITEMS.map((item) => (
             <Link
@@ -106,7 +94,6 @@ const Navbar: React.FC = () => {
               to={item.path}
               onClick={(e) => handleNavClick(e, item.path)}
               className={`text-[10px] xl:text-[11px] font-medium tracking-ultra uppercase transition-all duration-300 hover:text-gold relative group whitespace-nowrap ${
-                // Verifica se está ativo: corresponde ao path ou é a âncora 'quem-somos' na home
                 (location.pathname === item.path) || (item.path.includes('#') && location.pathname === '/' && location.hash === item.path.split('/')[1]) 
                   ? 'text-gold' 
                   : 'text-white'
@@ -124,7 +111,6 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        {/* Mobile Button */}
         <button 
           className="lg:hidden text-white p-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -134,7 +120,6 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <div 
         className={`fixed inset-0 bg-navy z-40 transition-all duration-500 lg:hidden flex flex-col items-center justify-center space-y-8 md:space-y-10 ${
           isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
