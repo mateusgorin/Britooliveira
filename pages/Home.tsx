@@ -72,7 +72,7 @@ const Home: React.FC = () => {
               Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
             <p className="text-gray-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-2xl font-light">
-              Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organização interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
+              Oferecemos suporte empresarial e jurídico integrado para organizações que buscam crescimento sustentável, organization interna e segurança absoluta nas decisões, alinhadas às exigências legais e às melhores práticas de governança.
             </p>
             
             {/* Botões Principais */}
@@ -120,10 +120,6 @@ const Home: React.FC = () => {
                  />
               </div>
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
-              <div className="absolute bottom-0 left-0 bg-white p-6 border-t border-r border-gray-100 max-w-xs z-20">
-                  <p className="text-navy font-serif italic text-xl mb-1">Excelência</p>
-                  <p className="text-gray-400 text-[9px] font-bold uppercase tracking-ultra">Desde a fundação</p>
-              </div>
             </div>
 
             <div className="order-1 lg:order-2">
