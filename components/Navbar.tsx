@@ -23,9 +23,11 @@ const Navbar: React.FC = () => {
       const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollBarWidth}px`;
+      document.body.classList.add('menu-open');
     } else {
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = '0px';
+      document.body.classList.remove('menu-open');
     }
   }, [isOpen]);
 
@@ -192,9 +194,11 @@ const Navbar: React.FC = () => {
               <Phone className="w-3.5 h-3.5 text-gold" />
               <span>+55 (61) 98147-6031</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-400 text-[10px] uppercase tracking-ultra">
-              <Mail className="w-3.5 h-3.5 text-gold" />
-              <span className="truncate">contato@britooliveiraassessoria.com.br</span>
+            <div className="flex items-start gap-3 text-gray-400">
+              <Mail className="w-3.5 h-3.5 text-gold mt-1 flex-shrink-0" />
+              <span className="break-all tracking-normal lowercase text-[10px] leading-relaxed">
+                contato@britooliveiraassessoria.com.br
+              </span>
             </div>
             
             <div className="flex gap-4 pt-4 justify-center">

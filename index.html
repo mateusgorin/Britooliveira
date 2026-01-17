@@ -47,6 +47,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* Oculta o botão de WhatsApp quando o menu está aberto */
+        body.menu-open #whatsapp-floating-button {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+            visibility: hidden;
+        }
     </style>
     <script>
         tailwind.config = {

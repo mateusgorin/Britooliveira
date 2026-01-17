@@ -6,6 +6,7 @@ import { WHATSAPP_NUMBER } from '../constants';
 const WhatsAppButton: React.FC = () => {
   return (
     <a
+      id="whatsapp-floating-button"
       href={`https://wa.me/${WHATSAPP_NUMBER}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -13,11 +14,6 @@ const WhatsAppButton: React.FC = () => {
       aria-label="Falar pelo WhatsApp"
     >
       <MessageCircle className="w-6 h-6" />
-      {/* 
-         Alteração: Adicionado prefixo 'lg:' nas classes group-hover.
-         Isso garante que o texto só apareça em telas grandes (Desktop),
-         evitando que fique travado aberto em celulares e tablets (touch).
-      */}
       <span className="max-w-0 overflow-hidden lg:group-hover:max-w-xs lg:group-hover:ml-2 transition-all duration-500 whitespace-nowrap text-[10px] font-bold uppercase tracking-ultra">
         Atendimento Executivo
       </span>
