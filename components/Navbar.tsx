@@ -14,15 +14,18 @@ const Navbar: React.FC = () => {
   // Controle de background da Navbar ao rolar
   useEffect(() => {
     const handleScrollBackground = () => {
-      setScrolled(window.scrollY > 50);
+      if (window.scrollY > 50) {
+        if (!scrolled) setScrolled(true);
+      } else {
+        if (scrolled) setScrolled(false);
+      }
     };
-    window.addEventListener('scroll', handleScrollBackground);
+    window.addEventListener('scroll', handleScrollBackground, { passive: true });
     return () => window.removeEventListener('scroll', handleScrollBackground);
-  }, []);
+  }, [scrolled]);
 
   // ScrollSpy de Alta Precisão
   useEffect(() => {
-    // Só roda na Home
     if (location.pathname !== '/') {
       setActiveSection('');
       return;
@@ -32,21 +35,17 @@ const Navbar: React.FC = () => {
       const sections = ['home', 'quem-somos', 'servicos', 'diferenciais'];
       const scrollPosition = window.scrollY;
       
-      // Se estiver bem no topo, força Home
       if (scrollPosition < 100) {
         setActiveSection('home');
         return;
       }
 
-      // Linha de gatilho (altura da navbar + margem de erro)
       const triggerPoint = scrollPosition + 150;
-
       let current = 'home';
       
       for (const id of sections) {
         const element = document.getElementById(id);
         if (element) {
-          // Se o topo da seção passou pelo gatilho, ela se torna a candidata a ativa
           if (triggerPoint >= element.offsetTop) {
             current = id;
           }
@@ -65,8 +64,7 @@ const Navbar: React.FC = () => {
       scrollListenerRef.current = requestAnimationFrame(handleScrollSpy);
     };
 
-    window.addEventListener('scroll', onScroll);
-    // Executa uma vez no load
+    window.addEventListener('scroll', onScroll, { passive: true });
     handleScrollSpy();
 
     return () => {
@@ -75,16 +73,13 @@ const Navbar: React.FC = () => {
     };
   }, [location.pathname, activeSection]);
 
-  // Bloqueio de scroll quando o menu mobile está aberto
+  // Bloqueio de scroll otimizado
   useEffect(() => {
     if (isOpen) {
-      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollBarWidth}px`;
       document.body.classList.add('menu-open');
     } else {
-      document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = '0px';
+      document.body.style.overflow = '';
       document.body.classList.remove('menu-open');
     }
   }, [isOpen]);
@@ -125,13 +120,11 @@ const Navbar: React.FC = () => {
 
   const isItemActive = (path: string) => {
     if (location.pathname !== '/' && path !== '/contato') return false;
-    
     if (path === '/' && activeSection === 'home') return true;
     if (path.includes('#')) {
       const hash = path.split('#')[1];
       return activeSection === hash;
     }
-
     if (path === '/contato' && location.pathname === '/contato') return true;
     return false;
   };
@@ -199,7 +192,7 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger Button */}
         <button 
-          className="lg:hidden text-white p-2 focus:outline-none transition-transform active:scale-90"
+          className="lg:hidden text-white p-2 focus:outline-none transition-transform active:scale-90 relative z-[60]"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
         >
@@ -215,24 +208,27 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Menu Mobile Overlay */}
+      {/* Menu Mobile Overlay - Slide Horizontal (Da Direita para a Esquerda) */}
       <div 
-        className={`fixed inset-0 bg-navy z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
-          isOpen ? 'translate-x-0 opacity-100 visible' : 'translate-x-full opacity-0 invisible'
+        className={`fixed inset-0 bg-navy z-40 lg:hidden flex flex-col will-change-transform transition-all duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${
+          isOpen 
+            ? 'translate-x-0 opacity-100 visible' 
+            : 'translate-x-full opacity-0 invisible'
         }`}
+        style={{ transform: isOpen ? 'translate3d(0, 0, 0)' : 'translate3d(100%, 0, 0)' }}
       >
         <div className="flex-grow flex flex-col items-center justify-center px-6 pt-20">
-          <div className="flex flex-col items-center space-y-8 md:space-y-10 w-full max-w-xs">
+          <div className="flex flex-col items-center space-y-6 md:space-y-8 w-full max-w-xs">
             {NAV_ITEMS.map((item, idx) => (
               <Link
                 key={item.path}
                 to={item.path}
                 style={{ 
-                  transitionDelay: isOpen ? `${150 + (idx * 100)}ms` : '0ms',
-                  transitionDuration: '600ms'
+                  transitionDelay: isOpen ? `${100 + (idx * 50)}ms` : '0ms',
+                  transitionDuration: '400ms'
                 }}
                 className={`text-sm md:text-base font-medium tracking-ultra uppercase transition-all transform active:scale-95 ${
-                  isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  isOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
                 } ${isItemActive(item.path) ? 'text-gold' : 'text-white'}`}
                 onClick={(e) => handleNavClick(e, item.path)}
               >
@@ -242,10 +238,10 @@ const Navbar: React.FC = () => {
             
             <Link
               to="/contato"
-              style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
-              className={`w-full bg-gold text-navy py-4 rounded-full text-[10px] font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-700 ${
-                isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              } active:scale-95 hover:bg-white hover:text-navy transition-colors duration-300 mt-4`}
+              style={{ transitionDelay: isOpen ? '350ms' : '0ms' }}
+              className={`w-full bg-gold text-navy py-4 rounded-full text-[10px] font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-150 ${
+                isOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+              } active:bg-white active:text-navy active:scale-95 hover:bg-white hover:text-navy mt-4`}
               onClick={closeMenu}
             >
               Falar com Especialista
@@ -253,31 +249,36 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Footer Info */}
+        {/* Mobile Footer Info - Com Telefone, E-mail e Redes Sociais */}
         <div 
-          style={{ transitionDelay: isOpen ? '750ms' : '0ms' }}
-          className={`p-10 bg-navy transition-all duration-700 ${
-            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          style={{ transitionDelay: isOpen ? '450ms' : '0ms' }}
+          className={`p-10 bg-navy/80 border-t border-white/5 transition-all duration-500 ${
+            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          <div className="max-w-xs mx-auto space-y-6">
-            <div className="flex items-center gap-4 text-gray-200">
-              <Phone className="w-5 h-5 text-gold flex-shrink-0" />
-              <span className="text-base font-medium tracking-wide">{PHONE_DISPLAY}</span>
-            </div>
-            <div className="flex items-start gap-4 text-gray-200">
-              <Mail className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
-              <span className="break-words text-base leading-relaxed font-light lowercase">
-                {CONTACT_EMAIL}
-              </span>
+          <div className="max-w-xs mx-auto space-y-6 text-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-[9px] text-gold font-bold uppercase tracking-widest opacity-60">Fale Conosco</span>
+                <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="text-sm font-medium tracking-wide text-white flex items-center gap-2">
+                  <Phone className="w-3 h-3 text-gold" /> {PHONE_DISPLAY}
+                </a>
+              </div>
+              
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-[9px] text-gold font-bold uppercase tracking-widest opacity-60">Suporte</span>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-xs font-light text-gray-300 flex items-center gap-2 break-all px-4">
+                  <Mail className="w-3 h-3 text-gold shrink-0" /> {CONTACT_EMAIL}
+                </a>
+              </div>
             </div>
             
-            <div className="flex gap-4 pt-4 justify-center">
-              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
-                <Linkedin className="w-5 h-5" />
+            <div className="flex gap-8 justify-center pt-2">
+              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-all">
+                <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
-                <Instagram className="w-5 h-5" />
+              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-all">
+                <Instagram className="w-4 h-4" />
               </a>
             </div>
           </div>
