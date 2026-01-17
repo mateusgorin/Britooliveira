@@ -1,12 +1,41 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, ArrowRight, Clock } from 'lucide-react';
-import { PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
+import { PHONE_DISPLAY, CONTACT_EMAIL, WHATSAPP_NUMBER } from '../constants';
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    nome: '',
+    empresa: '',
+    email: '',
+    telefone: '',
+    tema: 'Assessoria Estratégica Completa',
+    mensagem: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Sua solicitação foi recebida. Um de nossos consultores seniores entrará em contato em até 24h úteis.');
+    
+    // Formatação da mensagem para o WhatsApp
+    const message = `*Nova Solicitação de Análise - Brito Oliveira*%0A%0A` +
+      `*Nome:* ${formData.nome}%0A` +
+      `*Empresa:* ${formData.empresa}%0A` +
+      `*E-mail:* ${formData.email}%0A` +
+      `*Telefone:* ${formData.telefone}%0A` +
+      `*Tema:* ${formData.tema}%0A` +
+      `*Mensagem:* ${formData.mensagem || 'Não informada'}`;
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    
+    // Abre o WhatsApp em uma nova aba
+    window.open(whatsappUrl, '_blank');
+    
+    alert('Sua solicitação foi processada. Você será redirecionado para o WhatsApp para concluir o atendimento.');
   };
 
   return (
@@ -81,7 +110,10 @@ const Contact: React.FC = () => {
                          <label className="text-xs font-bold text-navy uppercase tracking-wider block">Seu Nome</label>
                          <input 
                            type="text" 
+                           name="nome"
                            required 
+                           value={formData.nome}
+                           onChange={handleChange}
                            className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="Nome Completo"
                          />
@@ -90,6 +122,9 @@ const Contact: React.FC = () => {
                          <label className="text-xs font-bold text-navy uppercase tracking-wider block">Empresa</label>
                          <input 
                            type="text" 
+                           name="empresa"
+                           value={formData.empresa}
+                           onChange={handleChange}
                            className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="Razão Social"
                          />
@@ -100,7 +135,10 @@ const Contact: React.FC = () => {
                          <label className="text-xs font-bold text-navy uppercase tracking-wider block">E-mail Corporativo</label>
                          <input 
                            type="email" 
+                           name="email"
                            required 
+                           value={formData.email}
+                           onChange={handleChange}
                            className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="email@empresa.com"
                          />
@@ -109,7 +147,10 @@ const Contact: React.FC = () => {
                          <label className="text-xs font-bold text-navy uppercase tracking-wider block">Telefone Direto</label>
                          <input 
                            type="tel" 
+                           name="telefone"
                            required 
+                           value={formData.telefone}
+                           onChange={handleChange}
                            className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy placeholder:text-gray-400 hover:bg-gray-100"
                            placeholder="(00) 00000-0000"
                          />
@@ -118,7 +159,12 @@ const Contact: React.FC = () => {
                    <div className="space-y-3 group">
                       <label className="text-xs font-bold text-navy uppercase tracking-wider block">Tema Principal</label>
                       <div className="relative">
-                        <select className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy appearance-none cursor-pointer hover:bg-gray-100">
+                        <select 
+                          name="tema"
+                          value={formData.tema}
+                          onChange={handleChange}
+                          className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy appearance-none cursor-pointer hover:bg-gray-100"
+                        >
                             <option>Assessoria Estratégica Completa</option>
                             <option>Blindagem Jurídica Preventiva</option>
                             <option>Compliance & Auditoria</option>
@@ -133,7 +179,10 @@ const Contact: React.FC = () => {
                    <div className="space-y-3 group">
                       <label className="text-xs font-bold text-navy uppercase tracking-wider block">Mensagem (Opcional)</label>
                       <textarea 
+                        name="mensagem"
                         rows={4} 
+                        value={formData.mensagem}
+                        onChange={handleChange}
                         className="w-full bg-gray-50 border-b-2 border-gray-200 focus:border-navy px-4 py-4 outline-none transition-all font-medium text-base text-navy resize-none placeholder:text-gray-400 hover:bg-gray-100"
                         placeholder="Descreva brevemente sua necessidade..."
                       ></textarea>
