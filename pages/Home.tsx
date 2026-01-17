@@ -162,7 +162,7 @@ const Home: React.FC = () => {
                   { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
                   { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-300 group hover:border-gold/30 rounded-sm min-h-[350px] flex flex-col">
+                <div key={idx} className="bg-white p-7 md:p-10 border border-gray-200 shadow-2xl transition-all duration-500 group hover:border-gold/30 hover:-translate-y-2 rounded-sm min-h-[350px] flex flex-col">
                    <item.icon className="w-7 h-7 md:w-8 md:h-8 text-navy mb-6 group-hover:text-gold transition-colors stroke-[1.5]" />
                    <h3 className="text-xl font-serif text-navy mb-4 italic">{item.title}</h3>
                    <p className="text-gray-500 text-sm leading-relaxed font-light">
@@ -194,7 +194,7 @@ const Home: React.FC = () => {
                   key={service.id} 
                   className="flex flex-col"
                 >
-                  <div className="bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 group/card min-h-[350px] rounded-sm">
+                  <div className="bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 hover:-translate-y-2 group/card min-h-[350px] rounded-sm">
                     <div>
                       <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
                         <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
@@ -242,12 +242,12 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             
             <div className="order-2 lg:order-1">
-              <div className="bg-white p-6 md:p-12 border border-gray-200 shadow-2xl relative rounded-sm overflow-hidden">
+              <div className="bg-white p-6 md:p-12 border border-gray-200 shadow-2xl relative rounded-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 group/psych">
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-gold/5 rounded-full flex items-center justify-center -z-0">
                   <Brain className="w-16 h-16 text-gold opacity-20" />
                 </div>
                 
-                <h3 className="text-xl md:text-2xl font-serif text-navy mb-8 italic relative z-10">Nossa atuação inclui:</h3>
+                <h3 className="text-xl md:text-2xl font-serif text-navy mb-8 italic relative z-10 group-hover/psych:text-gold transition-colors duration-500">Nossa atuação inclui:</h3>
                 <ul className="space-y-5 relative z-10">
                   {[
                     'Identificação e mapeamento de riscos psicossociais no ambiente de trabalho',
@@ -256,16 +256,16 @@ const Home: React.FC = () => {
                     'Assessoria jurídica e organizacional para redução de passivos trabalhistas',
                     'Psicologia Organizacional como ferramenta de prevenção e desempenho'
                   ].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-4 group">
-                      <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
-                        <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-gold group-hover:text-white transition-colors" />
+                    <li key={idx} className="flex items-start gap-4 group/item transition-all duration-300 hover:translate-x-2">
+                      <div className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-full bg-gold/10 flex items-center justify-center shrink-0 group-hover/item:bg-gold transition-colors">
+                        <CheckCircle2 className="w-2.5 h-2.5 md:w-3 md:h-3 text-gold group-hover/item:text-white transition-colors" />
                       </div>
-                      <span className="text-gray-700 text-sm md:text-base font-light leading-snug">{item}</span>
+                      <span className="text-gray-700 text-sm md:text-base font-light leading-snug group-hover/item:text-navy transition-colors">{item}</span>
                     </li>
                   ))}
                 </ul>
                 
-                <div className="mt-10 pt-8 border-t border-gray-100 relative z-10">
+                <div className="mt-10 pt-8 border-t border-gray-100 relative z-10 transition-all duration-300 hover:translate-x-1">
                    <p className="text-navy text-[10px] md:text-xs font-bold uppercase tracking-ultra mb-2">Conformidade Legal</p>
                    <p className="text-gray-500 text-sm font-light italic leading-relaxed">
                      Promovemos ambientes de trabalho mais saudáveis, produtivos e juridicamente seguros.

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Instagram, ArrowUp } from 'lucide-react';
-import { NAV_ITEMS, PHONE_DISPLAY } from '../constants';
+import { NAV_ITEMS, PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                 <div className="p-1.5 bg-white/5 rounded-full group-hover:bg-gold/20 transition-colors">
                     <Mail className="w-4 h-4 text-gold flex-shrink-0" />
                 </div>
-                <span className="group-hover:text-gray-200 transition-colors break-all">contato@britooliveiraassessoria.com.br</span>
+                <span className="group-hover:text-gray-200 transition-colors break-all">{CONTACT_EMAIL}</span>
               </li>
             </ul>
           </div>

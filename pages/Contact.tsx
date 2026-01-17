@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Mail, Phone, MapPin, ArrowRight, Clock } from 'lucide-react';
-import { PHONE_DISPLAY } from '../constants';
+import { PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
 
 const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
                      <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
                         <Mail className="w-5 h-5 text-gold" /> E-mail
                      </div>
-                     <p className="text-gray-800 font-medium text-lg pl-8 break-all">contato@britooliveiraassessoria.com.br</p>
+                     <p className="text-gray-800 font-medium text-lg pl-8 break-all">{CONTACT_EMAIL}</p>
                   </div>
 
                   <div className="group">

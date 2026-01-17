@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Linkedin, Instagram } from 'lucide-react';
-import { NAV_ITEMS, LOGO_URL, PHONE_DISPLAY } from '../constants';
+import { NAV_ITEMS, LOGO_URL, PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,6 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     if (isOpen) {
-      // Previne o "pulo" do layout ao esconder o scrollbar
       const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollBarWidth}px`;
@@ -137,7 +136,7 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Improved Mobile Menu Overlay - Smooth Slide & Fade */}
+      {/* Menu Mobile Overlay - Com backdrop-blur restaurado */}
       <div 
         className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
           isOpen ? 'translate-x-0 opacity-100 visible' : 'translate-x-full opacity-0 invisible'
@@ -164,17 +163,14 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             
-            <div 
-              style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
-              className={`w-12 h-px bg-gold/30 my-4 transform transition-all duration-1000 ${isOpen ? 'scale-x-100' : 'scale-x-0'}`}
-            ></div>
+            {/* Linha removida conforme solicitado */}
             
             <Link
               to="/contato"
-              style={{ transitionDelay: isOpen ? '700ms' : '0ms' }}
+              style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
               className={`w-full bg-gold text-navy py-4 rounded-full text-xs font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-700 ${
                 isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-              } active:scale-95`}
+              } active:scale-95 hover:bg-white hover:text-navy transition-colors duration-300 mt-4`}
               onClick={closeMenu}
             >
               Falar com Especialista
@@ -182,10 +178,10 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Footer Information - Standardized Legibility */}
+        {/* Mobile Footer Info - Mantendo o fundo navy uniforme */}
         <div 
-          style={{ transitionDelay: isOpen ? '850ms' : '0ms' }}
-          className={`p-10 border-t border-white/5 bg-navy-dark/50 transition-all duration-700 ${
+          style={{ transitionDelay: isOpen ? '750ms' : '0ms' }}
+          className={`p-10 border-t border-white/5 bg-navy transition-all duration-700 ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -197,7 +193,7 @@ const Navbar: React.FC = () => {
             <div className="flex items-start gap-4 text-gray-200">
               <Mail className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
               <span className="break-words text-base leading-relaxed font-light lowercase">
-                contato@britooliveiraassessoria.com.br
+                {CONTACT_EMAIL}
               </span>
             </div>
             
