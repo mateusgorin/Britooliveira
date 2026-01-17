@@ -111,7 +111,7 @@ const Home: React.FC = () => {
                  <img 
                     src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
                     alt="Executivo em Terno" 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                    className="w-full h-full object-cover transition-all duration-1000"
                  />
               </div>
               <div className="absolute top-4 left-4 md:top-6 md:left-6 w-full h-full border border-navy/10 -z-0"></div>
