@@ -55,7 +55,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
+      <section id="home" className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
@@ -174,7 +174,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEÇÃO SERVIÇOS (Padronizada com os Pilares) */}
+      {/* SEÇÃO SERVIÇOS */}
       <section id="servicos" className="py-16 md:py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="text-center mb-12 md:mb-16">
