@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Menu Mobile Overlay - Com backdrop-blur restaurado */}
+      {/* Menu Mobile Overlay */}
       <div 
         className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
           isOpen ? 'translate-x-0 opacity-100 visible' : 'translate-x-full opacity-0 invisible'
@@ -163,8 +163,6 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             
-            {/* Linha removida conforme solicitado */}
-            
             <Link
               to="/contato"
               style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
@@ -178,10 +176,10 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Footer Info - Mantendo o fundo navy uniforme */}
+        {/* Mobile Footer Info - Linha de borda superior removida */}
         <div 
           style={{ transitionDelay: isOpen ? '750ms' : '0ms' }}
-          className={`p-10 border-t border-white/5 bg-navy transition-all duration-700 ${
+          className={`p-10 bg-navy transition-all duration-700 ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >

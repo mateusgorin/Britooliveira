@@ -7,7 +7,9 @@ import {
   FileCheck, 
   Briefcase, 
   LineChart,
-  Brain
+  Brain,
+  HardHat,
+  Stethoscope
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
@@ -79,6 +81,20 @@ export const SERVICES: Service[] = [
     description: 'Implementação de suporte psicológico e prevenção ao burnout, garantindo conformidade com as novas exigências de saúde ocupacional.',
     complementaryText: 'Diagnóstico organizacional focado em saúde mental e implementação de protocolos de segurança do trabalho conforme as diretrizes da NR-1, promovendo um ambiente produtivo.',
     icon: <Brain className="w-8 h-8" />
+  },
+  {
+    id: '9',
+    title: 'Assessoria em Segurança do Trabalho',
+    description: 'Implementação e gestão de normas regulamentadoras para garantir a integridade física e a conformidade legal do ambiente laboral.',
+    complementaryText: 'Auditorias técnicas, elaboração de documentos mandatórios (PGR, PCMSO) e treinamentos especializados para a mitigação de riscos e proteção da saúde dos colaboradores.',
+    icon: <HardHat className="w-8 h-8" />
+  },
+  {
+    id: '10',
+    title: 'Legalização e Licença Sanitária Nível Nacional',
+    description: 'Gestão estratégica para obtenção de alvarás e certificações sanitárias perante órgãos reguladores em todo o território nacional.',
+    complementaryText: 'Suporte técnico integral perante a ANVISA e vigilâncias locais, assegurando que o negócio cumpra rigorosamente os protocolos de saúde e higiene em escala nacional.',
+    icon: <Stethoscope className="w-8 h-8" />
   }
 ];
 

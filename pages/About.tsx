@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Target, Shield, Award, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -29,7 +30,7 @@ const About: React.FC = () => {
                  <img 
                     src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2064&auto=format&fit=crop" 
                     alt="Reunião Estratégica" 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full object-cover transition-all duration-700"
                  />
               </div>
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
