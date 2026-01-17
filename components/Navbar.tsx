@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { Menu, X, Phone, Mail, Linkedin, Instagram } from 'lucide-react';
 import { NAV_ITEMS, LOGO_URL } from '../constants';
 
 const Navbar: React.FC = () => {
