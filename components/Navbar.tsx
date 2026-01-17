@@ -81,8 +81,8 @@ const Navbar: React.FC = () => {
               alt="Brito Oliveira Logo" 
               className={`object-contain transition-all duration-500 ease-in-out ${
                 scrolled 
-                  ? 'h-[40px] md:h-[55px]' 
-                  : 'h-[50px] sm:h-[60px] md:h-[90px]'
+                  ? 'h-[65px] md:h-[85px]' 
+                  : 'h-[100px] sm:h-[120px] md:h-[160px]'
               }`} 
             />
           </div>

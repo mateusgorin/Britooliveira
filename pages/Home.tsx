@@ -65,10 +65,6 @@ const Home: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 mb-4 md:mb-5">
-              <div className="h-px w-8 md:w-12 bg-gold/50"></div>
-              <span className="text-gold text-[8px] md:text-[9px] font-bold uppercase tracking-ultra">Brito Oliveira Assessoria Empresarial</span>
-            </div>
             <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif leading-tight md:leading-[1.1] mb-6 md:mb-7 italic">
               Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
