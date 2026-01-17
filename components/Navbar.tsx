@@ -182,30 +182,30 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Footer Information */}
+        {/* Mobile Menu Footer Information - Standardized Legibility */}
         <div 
           style={{ transitionDelay: isOpen ? '850ms' : '0ms' }}
           className={`p-10 border-t border-white/5 bg-navy-dark/50 transition-all duration-700 ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="max-w-xs mx-auto space-y-4">
-            <div className="flex items-center gap-3 text-gray-400 text-[10px] uppercase tracking-ultra">
-              <Phone className="w-3.5 h-3.5 text-gold" />
-              <span>+55 (61) 98147-6031</span>
+          <div className="max-w-xs mx-auto space-y-6">
+            <div className="flex items-center gap-4 text-gray-200">
+              <Phone className="w-5 h-5 text-gold flex-shrink-0" />
+              <span className="text-base font-medium tracking-wide">+55 (61) 98147-6031</span>
             </div>
-            <div className="flex items-start gap-3 text-gray-400">
-              <Mail className="w-3.5 h-3.5 text-gold mt-1 flex-shrink-0" />
-              <span className="break-all tracking-normal lowercase text-[10px] leading-relaxed">
+            <div className="flex items-start gap-4 text-gray-200">
+              <Mail className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
+              <span className="break-words text-base leading-relaxed font-light lowercase">
                 contato@britooliveiraassessoria.com.br
               </span>
             </div>
             
             <div className="flex gap-4 pt-4 justify-center">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
