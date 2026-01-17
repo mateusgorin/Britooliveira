@@ -1,6 +1,7 @@
+
 import React from 'react';
-import { Mail, Phone, MapPin, MessageCircle, ArrowRight, Clock } from 'lucide-react';
-import { WHATSAPP_NUMBER } from '../constants';
+import { Mail, Phone, MapPin, ArrowRight, Clock } from 'lucide-react';
+import { PHONE_DISPLAY } from '../constants';
 
 const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,8 +29,8 @@ const Contact: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           {/* Info Side */}
-          <div className="lg:col-span-4 order-2 lg:order-1 lg:border-r lg:border-gray-100 lg:pr-12 flex flex-col justify-between h-full">
-             <div>
+          <div className="lg:col-span-4 order-2 lg:order-1 lg:border-r lg:border-gray-100 lg:pr-12">
+             <div className="sticky top-32">
                <h2 className="text-3xl font-serif text-navy mb-8 italic">Dados de Contato</h2>
                <p className="text-gray-600 font-normal text-base mb-12 leading-relaxed">
                  Nossa equipe atua com sigilo absoluto. Escolha o canal de sua preferência para iniciar o diálogo.
@@ -47,7 +48,7 @@ const Contact: React.FC = () => {
                      <div className="flex items-center gap-3 text-navy text-xs font-bold uppercase tracking-ultra mb-3">
                         <Phone className="w-5 h-5 text-gold" /> Telefone
                      </div>
-                     <p className="text-gray-800 font-medium text-lg pl-8">+55 (61) 98147-6031</p>
+                     <p className="text-gray-800 font-medium text-lg pl-8">{PHONE_DISPLAY}</p>
                   </div>
 
                   <div className="group">
@@ -64,23 +65,6 @@ const Contact: React.FC = () => {
                      <p className="text-gray-800 font-medium text-lg pl-8">Segunda a Sexta, 09h às 18h</p>
                   </div>
                </div>
-             </div>
-
-             <div className="mt-16 pt-10 border-t border-gray-100">
-                <a 
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                  className="flex items-center gap-4 text-navy hover:text-gold transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors border border-green-100 shadow-sm">
-                     <MessageCircle className="w-6 h-6 text-green-700" />
-                  </div>
-                  <div>
-                    <span className="font-bold uppercase text-xs tracking-ultra block mb-1 text-navy">WhatsApp Oficial</span>
-                    <span className="text-sm text-gray-600 group-hover:text-gold transition-colors flex items-center gap-1 font-medium">
-                      Falar com Secretária <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </a>
              </div>
           </div>
 

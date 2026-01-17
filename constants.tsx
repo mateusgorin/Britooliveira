@@ -12,7 +12,8 @@ import {
 import { Service, Differential, NavItem } from './types';
 
 export const LOGO_URL = 'https://i.postimg.cc/s21ZkLLm/IMG-1927.png';
-export const WHATSAPP_NUMBER = '5561981476031'; 
+export const WHATSAPP_NUMBER = '5561983518959'; 
+export const PHONE_DISPLAY = '+55 (61) 98351-8959';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },

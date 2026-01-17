@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Linkedin, Instagram } from 'lucide-react';
-import { NAV_ITEMS, LOGO_URL } from '../constants';
+import { NAV_ITEMS, LOGO_URL, PHONE_DISPLAY } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -192,7 +192,7 @@ const Navbar: React.FC = () => {
           <div className="max-w-xs mx-auto space-y-6">
             <div className="flex items-center gap-4 text-gray-200">
               <Phone className="w-5 h-5 text-gold flex-shrink-0" />
-              <span className="text-base font-medium tracking-wide">+55 (61) 98147-6031</span>
+              <span className="text-base font-medium tracking-wide">{PHONE_DISPLAY}</span>
             </div>
             <div className="flex items-start gap-4 text-gray-200">
               <Mail className="w-5 h-5 text-gold mt-1 flex-shrink-0" />

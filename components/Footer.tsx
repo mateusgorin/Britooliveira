@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Instagram, ArrowUp } from 'lucide-react';
-import { NAV_ITEMS } from '../constants';
+import { NAV_ITEMS, PHONE_DISPLAY } from '../constants';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,7 +64,7 @@ const Footer: React.FC = () => {
                 <div className="p-1.5 bg-white/5 rounded-full group-hover:bg-gold/20 transition-colors">
                     <Phone className="w-4 h-4 text-gold flex-shrink-0" />
                 </div>
-                <span className="group-hover:text-gray-200 transition-colors">+55 (61) 98147-6031</span>
+                <span className="group-hover:text-gray-200 transition-colors">{PHONE_DISPLAY}</span>
               </li>
               <li className="flex items-center gap-4 group">
                 <div className="p-1.5 bg-white/5 rounded-full group-hover:bg-gold/20 transition-colors">
