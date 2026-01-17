@@ -15,7 +15,7 @@ import {
   Handshake,
   Brain
 } from 'lucide-react';
-import { SERVICES, LOGO_URL, DIFFERENTIALS } from '../constants';
+import { SERVICES, DIFFERENTIALS } from '../constants';
 
 const Home: React.FC = () => {
   const location = useLocation();
