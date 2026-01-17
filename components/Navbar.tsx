@@ -136,14 +136,14 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Menu Mobile Overlay */}
+      {/* Menu Mobile Overlay - Fundo sólido e Tipografia padronizada */}
       <div 
-        className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
+        className={`fixed inset-0 bg-navy z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
           isOpen ? 'translate-x-0 opacity-100 visible' : 'translate-x-full opacity-0 invisible'
         }`}
       >
         <div className="flex-grow flex flex-col items-center justify-center px-6 pt-20">
-          <div className="flex flex-col items-center space-y-6 md:space-y-8 w-full max-w-xs">
+          <div className="flex flex-col items-center space-y-8 md:space-y-10 w-full max-w-xs">
             {NAV_ITEMS.map((item, idx) => (
               <Link
                 key={item.path}
@@ -152,7 +152,7 @@ const Navbar: React.FC = () => {
                   transitionDelay: isOpen ? `${150 + (idx * 100)}ms` : '0ms',
                   transitionDuration: '600ms'
                 }}
-                className={`text-2xl md:text-3xl font-serif italic transition-all transform ${
+                className={`text-sm md:text-base font-medium tracking-ultra uppercase transition-all transform ${
                   isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 } ${
                   location.pathname === item.path ? 'text-gold' : 'text-white'
@@ -166,7 +166,7 @@ const Navbar: React.FC = () => {
             <Link
               to="/contato"
               style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
-              className={`w-full bg-gold text-navy py-4 rounded-full text-xs font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-700 ${
+              className={`w-full bg-gold text-navy py-4 rounded-full text-[10px] font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-700 ${
                 isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               } active:scale-95 hover:bg-white hover:text-navy transition-colors duration-300 mt-4`}
               onClick={closeMenu}
@@ -176,7 +176,7 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Footer Info - Linha de borda superior removida */}
+        {/* Mobile Footer Info */}
         <div 
           style={{ transitionDelay: isOpen ? '750ms' : '0ms' }}
           className={`p-10 bg-navy transition-all duration-700 ${
