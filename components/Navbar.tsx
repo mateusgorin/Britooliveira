@@ -19,9 +19,13 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     if (isOpen) {
+      // Previne o "pulo" do layout ao esconder o scrollbar
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
       document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
     }
   }, [isOpen]);
 
@@ -61,11 +65,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-50 transition-all duration-700 ease-in-out border-b ${
-        scrolled 
-          ? 'bg-navy/95 backdrop-blur-md py-2 shadow-2xl border-white/5' 
-          : isOpen 
-            ? 'bg-navy py-4 border-transparent' 
+      className={`fixed w-full z-50 transition-all duration-500 ease-out border-b ${
+        isOpen 
+          ? 'bg-navy py-4 border-white/5' 
+          : scrolled 
+            ? 'bg-navy/95 backdrop-blur-md py-0 shadow-2xl border-white/5' 
             : 'bg-transparent py-4 border-transparent'
       }`}
     >
@@ -115,24 +119,26 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger Button */}
         <button 
-          className="lg:hidden text-white p-2 focus:outline-none transition-transform active:scale-95"
+          className="lg:hidden text-white p-2 focus:outline-none transition-transform active:scale-90"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
         >
           {isOpen ? (
-            <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center">
-              <X className="w-6 h-6" />
+            <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center bg-white/5 transition-all">
+              <X className="w-6 h-6 text-gold" />
             </div>
           ) : (
-            <Menu className="w-8 h-8" />
+            <div className="p-1">
+              <Menu className="w-8 h-8" />
+            </div>
           )}
         </button>
       </div>
 
-      {/* Improved Mobile Menu Overlay */}
+      {/* Improved Mobile Menu Overlay - Smooth Slide & Fade */}
       <div 
-        className={`fixed inset-0 bg-navy/98 backdrop-blur-xl z-40 transition-all duration-500 lg:hidden flex flex-col ${
-          isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+        className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-40 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col ${
+          isOpen ? 'translate-x-0 opacity-100 visible' : 'translate-x-full opacity-0 invisible'
         }`}
       >
         <div className="flex-grow flex flex-col items-center justify-center px-6 pt-20">
@@ -141,23 +147,32 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                style={{ transitionDelay: `${idx * 50}ms` }}
-                className={`text-2xl md:text-3xl font-serif italic transition-all duration-500 transform ${
-                  isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+                style={{ 
+                  transitionDelay: isOpen ? `${150 + (idx * 100)}ms` : '0ms',
+                  transitionDuration: '600ms'
+                }}
+                className={`text-2xl md:text-3xl font-serif italic transition-all transform ${
+                  isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 } ${
                   location.pathname === item.path ? 'text-gold' : 'text-white'
-                }`}
+                } hover:text-gold active:scale-95`}
                 onClick={(e) => handleNavClick(e, item.path)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className={`w-12 h-px bg-gold/30 my-4 transform transition-all duration-700 delay-300 ${isOpen ? 'scale-x-100' : 'scale-x-0'}`}></div>
+            
+            <div 
+              style={{ transitionDelay: isOpen ? '600ms' : '0ms' }}
+              className={`w-12 h-px bg-gold/30 my-4 transform transition-all duration-1000 ${isOpen ? 'scale-x-100' : 'scale-x-0'}`}
+            ></div>
+            
             <Link
               to="/contato"
-              className={`w-full bg-gold text-navy py-4 rounded-full text-xs font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-500 delay-300 ${
-                isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-              }`}
+              style={{ transitionDelay: isOpen ? '700ms' : '0ms' }}
+              className={`w-full bg-gold text-navy py-4 rounded-full text-xs font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-700 ${
+                isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              } active:scale-95`}
               onClick={closeMenu}
             >
               Falar com Especialista
@@ -166,7 +181,12 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu Footer Information */}
-        <div className={`p-10 border-t border-white/5 bg-navy-dark/50 transition-all duration-700 delay-500 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div 
+          style={{ transitionDelay: isOpen ? '850ms' : '0ms' }}
+          className={`p-10 border-t border-white/5 bg-navy-dark/50 transition-all duration-700 ${
+            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div className="max-w-xs mx-auto space-y-4">
             <div className="flex items-center gap-3 text-gray-400 text-[10px] uppercase tracking-ultra">
               <Phone className="w-3.5 h-3.5 text-gold" />
@@ -176,17 +196,13 @@ const Navbar: React.FC = () => {
               <Mail className="w-3.5 h-3.5 text-gold" />
               <span className="truncate">contato@britooliveiraassessoria.com.br</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-400 text-[10px] uppercase tracking-ultra">
-              <MapPin className="w-3.5 h-3.5 text-gold" />
-              <span>Brasília/DF</span>
-            </div>
             
             <div className="flex gap-4 pt-4 justify-center">
-              <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors">
-                <Linkedin className="w-4 h-4" />
+              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors">
-                <Instagram className="w-4 h-4" />
+              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors active:scale-90">
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
