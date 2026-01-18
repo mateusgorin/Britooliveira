@@ -208,9 +208,9 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Menu Mobile Overlay - Transição Lateral Suave (Premium Slide) */}
+      {/* Menu Mobile Overlay - Slide Lateral Amanteigado (Ultra Smooth) */}
       <div 
-        className={`fixed inset-0 bg-navy z-40 lg:hidden flex flex-col will-change-transform transition-all duration-[600ms] cubic-bezier(0.32, 0.72, 0, 1) ${
+        className={`fixed inset-0 bg-navy z-40 lg:hidden flex flex-col will-change-transform transition-all duration-[700ms] cubic-bezier(0.19, 1, 0.22, 1) ${
           isOpen 
             ? 'translate-x-0 opacity-100 visible' 
             : 'translate-x-full opacity-0 invisible'
@@ -224,11 +224,11 @@ const Navbar: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 style={{ 
-                  transitionDelay: isOpen ? `${100 + (idx * 40)}ms` : '0ms',
+                  transitionDelay: isOpen ? `${80 + (idx * 30)}ms` : '0ms',
                   transitionDuration: '500ms'
                 }}
                 className={`text-sm md:text-base font-medium tracking-ultra uppercase transition-all transform active:scale-95 ${
-                  isOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+                  isOpen ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0'
                 } ${isItemActive(item.path) ? 'text-gold' : 'text-white'}`}
                 onClick={(e) => handleNavClick(e, item.path)}
               >
@@ -238,9 +238,9 @@ const Navbar: React.FC = () => {
             
             <Link
               to="/contato"
-              style={{ transitionDelay: isOpen ? '300ms' : '0ms' }}
-              className={`w-full bg-gold text-navy py-4 rounded-full text-[10px] font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-100 ${
-                isOpen ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+              style={{ transitionDelay: isOpen ? '250ms' : '0ms' }}
+              className={`w-full bg-gold text-navy py-4 rounded-full text-[10px] font-bold uppercase tracking-ultra shadow-xl text-center transform transition-all duration-75 ${
+                isOpen ? 'translate-x-0 opacity-100' : 'translate-x-16 opacity-0'
               } active:bg-white active:text-navy active:scale-95 hover:bg-white hover:text-navy mt-4`}
               onClick={closeMenu}
             >
@@ -251,34 +251,37 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Footer Info - Com Telefone, E-mail e Redes Sociais */}
         <div 
-          style={{ transitionDelay: isOpen ? '400ms' : '0ms' }}
-          className={`p-10 bg-navy/60 border-t border-white/5 transition-all duration-500 ${
-            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          style={{ 
+            transitionDelay: isOpen ? '350ms' : '0ms',
+            transitionDuration: '600ms'
+          }}
+          className={`p-10 bg-navy/80 border-t border-white/5 transition-all cubic-bezier(0.19, 1, 0.22, 1) ${
+            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <div className="max-w-xs mx-auto space-y-6 text-center">
+          <div className="max-w-xs mx-auto space-y-7 text-center">
             <div className="flex flex-col items-center gap-5">
               <div className="flex flex-col items-center gap-1.5 group">
-                <span className="text-[9px] text-gold font-bold uppercase tracking-ultra opacity-70">Linha Executiva</span>
-                <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="text-sm font-medium tracking-wide text-white flex items-center gap-2 hover:text-gold transition-colors">
+                <span className="text-[9px] text-gold font-bold uppercase tracking-ultra opacity-60">Linha Executiva</span>
+                <a href={`tel:${PHONE_DISPLAY.replace(/\D/g, '')}`} className="text-sm font-medium tracking-wide text-white flex items-center gap-2 active:text-gold transition-colors">
                   <Phone className="w-3.5 h-3.5 text-gold" /> {PHONE_DISPLAY}
                 </a>
               </div>
               
               <div className="flex flex-col items-center gap-1.5">
-                <span className="text-[9px] text-gold font-bold uppercase tracking-ultra opacity-70">E-mail Oficial</span>
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-xs font-light text-gray-300 flex items-center gap-2 break-all px-2 hover:text-white transition-colors">
+                <span className="text-[9px] text-gold font-bold uppercase tracking-ultra opacity-60">E-mail Oficial</span>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-xs font-light text-gray-300 flex items-center gap-2 break-all px-2 active:text-white transition-colors">
                   <Mail className="w-3.5 h-3.5 text-gold shrink-0" /> {CONTACT_EMAIL}
                 </a>
               </div>
             </div>
             
-            <div className="flex gap-6 justify-center pt-4">
-              <a href="#" className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-gold hover:border-gold transition-all active:scale-90">
-                <Linkedin className="w-4.5 h-4.5" />
+            <div className="flex gap-8 justify-center pt-2">
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:text-gold active:border-gold active:bg-gold/5 transition-all active:scale-90">
+                <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-gold hover:border-gold transition-all active:scale-90">
-                <Instagram className="w-4.5 h-4.5" />
+              <a href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:text-gold active:border-gold active:bg-gold/5 transition-all active:scale-90">
+                <Instagram className="w-5 h-5" />
               </a>
             </div>
           </div>
