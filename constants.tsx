@@ -9,7 +9,8 @@ import {
   LineChart,
   Brain,
   HardHat,
-  Stethoscope
+  Stethoscope,
+  Monitor
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
@@ -46,6 +47,13 @@ export const SERVICES: Service[] = [
     description: 'Estruturação de processos e fluxos internos para maximizar a eficiência e a clareza operacional do negócio.',
     complementaryText: 'Implementação de metodologias ágeis e reengenharia de processos para eliminar gargalos operacionais e otimizar a produtividade de toda a equipe.',
     icon: <TrendingUp className="w-8 h-8" />
+  },
+  {
+    id: '11',
+    title: 'Soluções Digitais e Presença Online',
+    description: 'Desenvolvimento de infraestrutura digital estratégica para posicionar sua empresa com autoridade e alta performance.',
+    complementaryText: 'Criação de sites institucionais premium, landing pages focadas em conversão e otimização para Google (SEO), garantindo visibilidade e credibilidade no ambiente digital.',
+    icon: <Monitor className="w-8 h-8" />
   },
   {
     id: '4',
