@@ -175,63 +175,79 @@ const Home: React.FC = () => {
       </section>
 
       {/* SEÇÃO SERVIÇOS */}
-      <section id="servicos" className="py-16 md:py-24 bg-white scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-12 md:mb-16">
-            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Nossa Expertise</span>
-            <h2 className="text-2xl md:text-4xl font-serif text-navy mb-6">Frentes de Atuação</h2>
-            <p className="text-gray-500 max-w-xl mx-auto font-light text-sm md:text-base">
-              Especialidades desenhadas para a segurança do seu legado empresarial, com foco estratégico e preventivo.
-            </p>
+      <section id="servicos" className="scroll-mt-24 overflow-hidden">
+        {/* Bloco de Título Branco */}
+        <div className="bg-white pt-20 pb-12 md:pt-24 md:pb-16 relative">
+          <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 text-center">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <div className="h-px w-8 bg-gold"></div>
+              <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-ultra">Nossa Expertise</span>
+              <div className="h-px w-8 bg-gold"></div>
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-navy mb-8 italic">
+              Frentes de <span className="text-gold not-italic">Atuação</span>
+            </h2>
+            
+            <div className="max-w-2xl mx-auto">
+              <p className="text-gray-500 font-light text-base md:text-lg leading-relaxed">
+                Especialidades desenhadas para a segurança do seu legado empresarial, com foco estratégico e preventivo.
+              </p>
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
-            {SERVICES.map((service) => {
-              const isExpanded = expandedIds.has(service.id);
+        </div>
+        
+        {/* Grid de Cards - Tamanho Padronizado */}
+        <div className="bg-white pb-24 relative z-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
+              {SERVICES.map((service) => {
+                const isExpanded = expandedIds.has(service.id);
 
-              return (
-                <div 
-                  key={service.id} 
-                  className="flex flex-col"
-                >
-                  <div className="bg-white border border-gray-200 shadow-2xl p-7 md:p-10 flex flex-col justify-between transition-all duration-500 hover:border-gold/30 hover:-translate-y-2 group/card min-h-[350px] rounded-sm">
-                    <div>
-                      <div className="text-gold mb-6 group-hover/card:text-navy transition-colors">
-                        <div className="[&>svg]:w-7 md:[&>svg]:w-8 [&>svg]:h-7 md:[&>svg]:h-8 [&>svg]:stroke-[1.5]">
-                          {service.icon}
+                return (
+                  <div key={service.id} className="flex flex-col">
+                    <div className="bg-white border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-6 md:p-8 flex flex-col justify-between transition-all duration-500 hover:border-gold/40 hover:-translate-y-3 group/card min-h-[300px] rounded-sm relative overflow-hidden">
+                      {/* Borda decorativa interna invisível que brilha no hover */}
+                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover/card:scale-x-100 transition-transform duration-700"></div>
+                      
+                      <div>
+                        <div className="text-gold mb-4 group-hover/card:text-navy transition-colors">
+                          <div className="[&>svg]:w-7 md:[&>svg]:w-9 [&>svg]:h-7 md:[&>svg]:h-9 [&>svg]:stroke-[1.25]">
+                            {service.icon}
+                          </div>
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-serif text-navy mb-4 italic leading-tight group-hover/card:text-gold transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-gray-500 leading-relaxed font-light text-sm md:text-base">
+                          {service.description}
+                        </p>
+
+                        <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
+                          <div className="h-px w-full bg-gray-50 mb-6"></div>
+                          <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50 italic">
+                            {service.complementaryText}
+                          </p>
+                          <Link to="/contato" className="mt-8 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-navy text-white px-8 py-4 hover:bg-gold hover:text-navy transition-all shadow-lg">
+                            Solicitar Consultoria <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
                         </div>
                       </div>
-                      <h3 className="text-xl font-serif text-navy mb-4 italic leading-snug">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-500 leading-relaxed font-light text-sm">
-                        {service.description}
-                      </p>
 
-                      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0'}`}>
-                        <div className="h-px w-full bg-gray-50 mb-6"></div>
-                        <p className="text-navy/70 leading-relaxed font-normal text-sm border-l-2 border-gold pl-4 py-2 bg-gray-50/50">
-                          {service.complementaryText}
-                        </p>
-                        <Link to="/contato" className="mt-6 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra bg-navy text-white px-6 py-3 hover:bg-gold hover:text-navy transition-all">
-                          Solicitar Consultoria <ArrowRight className="w-3 h-3" />
-                        </Link>
+                      <div className="pt-6 mt-6 border-t border-gray-50 shrink-0">
+                        <button 
+                          onClick={() => toggleExpand(service.id)}
+                          className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
+                        >
+                          {isExpanded ? 'Recolher Informações' : 'Explorar Detalhes'} 
+                          <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
+                        </button>
                       </div>
                     </div>
-
-                    <div className="pt-6 mt-6 border-t border-gray-50 shrink-0">
-                      <button 
-                        onClick={() => toggleExpand(service.id)}
-                        className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-ultra text-navy/60 hover:text-navy transition-colors group/btn"
-                      >
-                        {isExpanded ? 'Ver Menos' : 'Saiba Mais'} 
-                        <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${isExpanded ? 'rotate-180' : ''}`} />
-                      </button>
-                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
