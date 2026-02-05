@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import HealthCompliance from './pages/HealthCompliance';
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contato" element={<Contact />} />
+          <Route path="/conformidade-saude" element={<HealthCompliance />} />
         </Routes>
       </main>
       <Footer />

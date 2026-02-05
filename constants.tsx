@@ -23,6 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Sobre a Empresa', path: '/#quem-somos' },
   { label: 'Serviços', path: '/#servicos' },
+  { label: 'Conformidade Saúde', path: '/conformidade-saude' },
   { label: 'Diferenciais', path: '/#diferenciais' },
 ];
 
