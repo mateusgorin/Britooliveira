@@ -23,7 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Sobre a Empresa', path: '/#quem-somos' },
   { label: 'Serviços', path: '/#servicos' },
-  { label: 'Conformidade Saúde', path: '/conformidade-saude' },
+  { label: 'Compliance em Saúde', path: '/compliance-saude' },
   { label: 'Diferenciais', path: '/#diferenciais' },
 ];
 
@@ -88,7 +88,7 @@ export const SERVICES: Service[] = [
     id: '8',
     title: 'Gestão de Riscos Psicossociais e Adequação à NR-1',
     description: 'Implementação de suporte psicológico e prevenção ao burnout, garantindo conformidade com as novas exigências de saúde ocupacional.',
-    complementaryText: 'Diagnóstico organizacional focado em saúde mental e implementação de protocolos de segurança do trabalho conforme as diretrizes da NR-1, promovendo um ambiente produtivo.',
+    complementaryText: 'Diagnóstico organizacional focado em saúde mental e implementação de protocolos de segurança do trabalho conforme as diretrizes da NR-1, promovendo um ambiente productivo.',
     icon: <Brain className="w-8 h-8" />
   },
   {
