@@ -133,6 +133,9 @@ const Home: React.FC = () => {
                 <p>
                   Nosso corpo técnico é formado por especialistas que compreendem a linguagem dos negócios e a dinâmica organizacional. Não entregamos apenas pareceres: entregamos soluções práticas, que estruturam a governança corporativa, otimizam a carga tributária, reduzem passivos trabalhistas e fortalecem a tomada de decisão.
                 </p>
+                <p className="border-l-2 border-gold pl-4 italic text-navy/70">
+                  Nosso propósito vai além da consultoria tradicional. Entregamos inteligência empresarial integrada, assegurando conformidade legal, fortalecimento de marca e crescimento estruturado, com decisões embasadas e visão de longo prazo.
+                </p>
               </div>
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                  {['Atuação preventiva e estratégica', 'Sigilo absoluto e ética profissional', 'Excelência técnica e jurídica', 'Visão de dono e foco em resultados'].map((item) => (
@@ -156,9 +159,9 @@ const Home: React.FC = () => {
                 <div className="h-px w-12 bg-gold mx-auto md:mx-0"></div>
               </div>
            </div>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
               {[
-                  { icon: Target, title: "Nossa Missão", text: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
+                  { icon: Target, title: "Nossa Missão", text: "Entregar inteligência empresarial integrada, assegurando conformidade legal, fortalecimento de marca e crescimento estruturado, com decisões embasadas e visão de longo prazo." },
                   { icon: Shield, title: "Nossa Visão", text: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excelência técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
                   { icon: Award, title: "Nossos Valores", text: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
               ].map((item, idx) => (

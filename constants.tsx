@@ -10,7 +10,8 @@ import {
   Brain,
   HardHat,
   Stethoscope,
-  Monitor
+  Monitor,
+  Megaphone
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
@@ -55,6 +56,13 @@ export const SERVICES: Service[] = [
     description: 'Desenvolvimento de infraestrutura digital estratégica para posicionar sua empresa com autoridade e alta performance.',
     complementaryText: 'Criação de sites institucionais premium, landing pages focadas em conversão e otimização para Google (SEO), garantindo visibilidade e credibilidade no ambiente digital.',
     icon: <Monitor className="w-8 h-8" />
+  },
+  {
+    id: '12',
+    title: 'Marketing Estratégico',
+    description: 'Atuamos de forma estratégica no posicionamento institucional da empresa, fortalecendo a autoridade da marca e estruturando uma comunicação empresarial coerente, consistente e orientada a resultados.',
+    complementaryText: 'Nossas ações promovem o alinhamento entre imagem, cultura organizacional e crescimento sustentável do negócio. Integramos soluções como tráfego pago, CRM e outras ferramentas de marketing e gestão, sempre conectadas aos objetivos reais da empresa.',
+    icon: <Megaphone className="w-8 h-8" />
   },
   {
     id: '4',
