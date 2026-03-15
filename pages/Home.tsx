@@ -55,7 +55,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
+      <section id="home" className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:pt-40 md:pb-32 lg:py-32">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-110"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')` }}
