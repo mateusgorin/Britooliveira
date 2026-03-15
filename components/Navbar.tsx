@@ -249,7 +249,7 @@ const Navbar: React.FC = () => {
             </div>
             <div className="flex gap-8 justify-center pt-2">
               <a href="#" className="text-white/40 hover:text-gold transition-colors"><Linkedin className="w-5 h-5" /></a>
-              <a href="#" className="text-white/40 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
+              <a href="https://www.instagram.com/britoliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
             </div>
           </div>
         </div>
