@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
             : 'bg-transparent py-4 border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 -mt-[15px] -mb-[15px]">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 -mt-[10px] -mb-[10px]">
         <Link 
           to="/" 
           className="flex items-center flex-shrink-0" 

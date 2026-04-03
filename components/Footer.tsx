@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, ArrowUp } from 'lucide-react';
 import { NAV_ITEMS, PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
 
 const Footer: React.FC = () => {
@@ -66,27 +66,33 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="group-hover:text-gray-200 transition-colors break-all">{CONTACT_EMAIL}</span>
               </li>
+              <li className="flex items-center gap-4 group">
+                <div className="p-1.5 bg-white/5 rounded-full group-hover:bg-gold/20 transition-colors">
+                    <Instagram className="w-4 h-4 text-gold flex-shrink-0" />
+                </div>
+                <a href="https://www.instagram.com/britoliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="group-hover:text-gray-200 transition-colors">@britoliveiraempresarial</a>
+              </li>
             </ul>
           </div>
         </div>
         
         {/* Barra Inferior */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[16px]">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-center text-[8px] md:text-[9px] text-gray-600 font-bold uppercase tracking-ultra text-center md:text-left">
-            <p>© {new Date().getFullYear()} Brito Oliveira. CNPJ: 63.287.732/0001-24</p>
+            <p className="text-[10px]">© {new Date().getFullYear()} Brito Oliveira. CNPJ: 63.287.732/0001-24</p>
             <p className="hidden md:block text-white/10">|</p>
             <a 
               href="https://www.gorinsolucoes.com.br" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-gold transition-colors duration-300"
+              className="hover:text-gold transition-colors duration-300 text-[10px]"
             >
               Desenvolvido por Gorin soluções
             </a>
           </div>
           <button 
             onClick={scrollToTop}
-            className="group flex items-center gap-3 text-[9px] font-bold uppercase tracking-ultra text-gray-500 hover:text-gold transition-all"
+            className="group flex items-center gap-3 text-[10px] font-bold uppercase tracking-ultra text-gray-500 hover:text-gold transition-all mr-[75px]"
           >
             Voltar ao Topo
             <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center group-hover:border-gold group-hover:bg-gold group-hover:text-navy transition-all">
