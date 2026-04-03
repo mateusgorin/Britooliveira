@@ -18,7 +18,7 @@ import { Service, Differential, NavItem } from './types';
 export const LOGO_URL = 'https://i.postimg.cc/Wzqb6BKk/IMG-4373.png';
 export const WHATSAPP_NUMBER = '5561983518959'; 
 export const PHONE_DISPLAY = '+55 (61) 98351-8959';
-export const CONTACT_EMAIL = 'oliveirassessoriaempresarialdf@gmail.com';
+export const CONTACT_EMAIL = 'contato@britooliveira.com.br';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
