@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
           <img 
             src={LOGO_URL} 
             alt="Brito Oliveira Logo" 
-            className={`object-contain transition-[height] duration-300 ease-in-out will-change-[height] ${
+            className={`object-contain transition-[height] duration-300 ease-in-out will-change-[height] m-0 p-0 pt-[13px] ${
               scrolled ? 'h-[80px] md:h-[100px]' : 'h-[140px] md:h-[175px]'
             }`} 
           />
