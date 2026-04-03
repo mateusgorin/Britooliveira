@@ -65,7 +65,7 @@ const Home: React.FC = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
           <div className="max-w-4xl">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif leading-tight md:leading-[1.1] mb-6 md:mb-7 italic">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif leading-tight md:leading-[1.1] mb-6 md:mb-7 italic mt-[38px]">
               Assessoria Empresarial Estratégica com <span className="text-gradient-gold not-italic">Segurança, Credibilidade e Visão de Futuro.</span>
             </h1>
             <p className="text-gray-300 text-sm md:text-lg leading-relaxed mb-8 md:mb-10 max-w-2xl font-light">
