@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Instagram, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 import { NAV_ITEMS, PHONE_DISPLAY, CONTACT_EMAIL } from '../constants';
 
 const Footer: React.FC = () => {
@@ -26,12 +26,6 @@ const Footer: React.FC = () => {
             </p>
 
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 border border-white/10 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold hover:text-navy transition-all duration-300 group">
-                <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              </a>
-              <a href="https://www.instagram.com/britoliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 flex items-center justify-center rounded-full hover:bg-gold hover:border-gold hover:text-navy transition-all duration-300 group">
-                <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              </a>
             </div>
           </div>
 

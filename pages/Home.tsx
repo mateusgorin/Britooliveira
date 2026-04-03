@@ -140,7 +140,6 @@ const Home: React.FC = () => {
               <div className="mt-10 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                  {['Atuação preventiva e estratégica', 'Sigilo absoluto e ética profissional', 'Excelência técnica e jurídica', 'Visão de dono e foco em resultados'].map((item) => (
                     <div key={item} className="flex items-center gap-3 group">
-                        <CheckCircle2 className="text-gold w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
                         <span className="text-navy text-[10px] md:text-xs font-semibold uppercase tracking-wider">{item}</span>
                     </div>
                  ))}
