@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                 <div className="p-1.5 bg-white/5 rounded-full group-hover:bg-gold/20 transition-colors">
                     <Instagram className="w-4 h-4 text-gold flex-shrink-0" />
                 </div>
-                <a href="https://www.instagram.com/britoliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="group-hover:text-gray-200 transition-colors">@britoliveiraempresarial</a>
+                <a href="https://www.instagram.com/britooliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="group-hover:text-gray-200 transition-colors">@britooliveiraempresarial</a>
               </li>
             </ul>
           </div>
