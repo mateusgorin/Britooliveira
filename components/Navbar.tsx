@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-50 transition-transform duration-500 ease-in-out border-b ${
+      className={`fixed w-full z-[100] transition-transform duration-500 ease-in-out border-b ${
         visible ? 'translate-y-0' : '-translate-y-full'
       } ${
         isOpen 
@@ -160,9 +160,10 @@ const Navbar: React.FC = () => {
     >
       {/* Menu Mobile Overlay */}
       <div 
-        className={`fixed inset-0 bg-[#0A1128] z-[60] lg:hidden flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 left-0 w-full h-[100dvh] bg-[#0A1128] z-[90] lg:hidden flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{ opacity: 1 }}
       >
         <div className="flex-grow flex flex-col items-center justify-center px-6 pt-32">
           <div className="flex flex-col items-center space-y-8 w-full max-w-xs">
@@ -214,7 +215,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-[70] gap-4 h-[85px]">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-[110] gap-4 h-[85px]">
         <Link 
           to="/" 
           className="flex items-center flex-shrink-0" 
@@ -261,7 +262,7 @@ const Navbar: React.FC = () => {
 
         {/* Hamburger Button */}
         <button 
-          className="lg:hidden text-white p-2 focus:outline-none relative z-[80]"
+          className="lg:hidden text-white p-2 focus:outline-none relative z-[120]"
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
         >
