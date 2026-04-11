@@ -148,7 +148,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-[100] transition-transform duration-500 ease-in-out border-b ${
+      className={`fixed w-full z-[100] transition-all duration-500 ease-in-out border-b ${
         visible ? 'translate-y-0' : '-translate-y-full'
       } ${
         isOpen 
@@ -160,19 +160,18 @@ const Navbar: React.FC = () => {
     >
       {/* Menu Mobile Overlay */}
       <div 
-        className={`fixed top-0 left-0 w-full h-[100dvh] bg-[#0A1128] z-[90] lg:hidden flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 left-0 w-full h-[100dvh] bg-[#0A1128] z-[90] lg:hidden flex flex-col transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isOpen ? 'opacity-100 translate-x-0 pointer-events-auto' : 'opacity-0 translate-x-8 pointer-events-none'
         }`}
-        style={{ opacity: 1 }}
       >
         <div className="flex-grow flex flex-col items-center justify-center px-6 pt-32">
-          <div className="flex flex-col items-center space-y-8 w-full max-w-xs">
+          <div className="flex flex-col items-center space-y-3 w-full max-w-xs">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-base font-medium tracking-ultra uppercase transition-colors duration-200 ${
-                  isItemActive(item.path) ? 'text-gold' : 'text-white'
+                className={`w-full text-center py-3.5 rounded-xl text-base font-medium tracking-ultra uppercase transition-all duration-200 active:scale-95 active:bg-white/10 ${
+                  isItemActive(item.path) ? 'text-gold bg-white/5' : 'text-white'
                 }`}
                 onClick={(e) => handleNavClick(e, item.path)}
               >
@@ -180,13 +179,15 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             
-            <Link
-              to="/contato"
-              className="w-full bg-gold text-navy py-4 rounded-full text-[11px] font-bold uppercase tracking-ultra shadow-xl text-center active:scale-95 transition-transform mt-6"
-              onClick={closeMenu}
-            >
-              Falar com Especialista
-            </Link>
+            <div className="w-full pt-5">
+              <Link
+                to="/contato"
+                className="block w-full bg-gold text-navy py-4 rounded-full text-[11px] font-bold uppercase tracking-ultra shadow-xl text-center active:scale-95 active:bg-white transition-all"
+                onClick={closeMenu}
+              >
+                Falar com Especialista
+              </Link>
+            </div>
           </div>
         </div>
 
