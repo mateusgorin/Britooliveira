@@ -1,9 +1,20 @@
 
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, ArrowRight, Clock } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { PHONE_DISPLAY, CONTACT_EMAIL, WHATSAPP_NUMBER } from '../constants';
 
 const Contact: React.FC = () => {
+  const [enviado, setEnviado] = useState(false);
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8 }
+  };
+
   const [formData, setFormData] = useState({
     nome: '',
     empresa: '',
@@ -34,31 +45,42 @@ const Contact: React.FC = () => {
     
     // Abre o WhatsApp em uma nova aba
     window.open(whatsappUrl, '_blank');
-    
-    alert('Sua solicitação foi processada. Você será redirecionado para o WhatsApp para concluir o atendimento.');
+    setEnviado(true);
   };
 
   return (
     <div className="bg-white flex flex-col min-h-screen">
+      <Helmet>
+        <title>Fale com um Especialista | Brito Oliveira Assessoria Empresarial</title>
+        <meta name="description" content="Entre em contato com a Brito Oliveira e agende sua consultoria empresarial em Brasília. Atendimento especializado em gestão estratégica, jurídico preventivo e NR-1." />
+      </Helmet>
       {/* Header Compacto (Estilo corporativo) */}
       <section className="pt-40 md:pt-52 pb-20 bg-navy text-white text-center relative overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-30"></div>
         
-        <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
+        <motion.div 
+          className="max-w-4xl mx-auto px-6 md:px-8 relative z-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           <span className="text-gold text-xs font-bold uppercase tracking-ultra mb-6 block">Assessoria Especializada</span>
           <h1 className="text-3xl md:text-5xl font-serif italic mb-6">Inicie sua Consultoria</h1>
           <p className="text-gray-300 font-light text-lg max-w-lg mx-auto leading-relaxed">
             Estamos prontos para entender o seu cenário e desenhar a melhor estratégia jurídica e empresarial.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
           
           {/* Info Side */}
-          <div className="lg:col-span-4 order-2 lg:order-1 lg:border-r lg:border-gray-100 lg:pr-12">
+          <motion.div 
+            className="lg:col-span-4 order-2 lg:order-1 lg:border-r lg:border-gray-100 lg:pr-12"
+            {...fadeIn}
+          >
              <div className="sticky top-32">
                <h2 className="text-3xl font-serif text-navy mb-8 italic">Dados de Contato</h2>
                <p className="text-gray-600 font-normal text-base mb-12 leading-relaxed">
@@ -95,10 +117,14 @@ const Contact: React.FC = () => {
                   </div>
                </div>
              </div>
-          </div>
+          </motion.div>
 
           {/* Form Side */}
-          <div className="lg:col-span-8 order-1 lg:order-2">
+          <motion.div 
+            className="lg:col-span-8 order-1 lg:order-2"
+            {...fadeIn}
+            transition={{ ...fadeIn.transition, delay: 0.2 }}
+          >
              <div className="bg-white p-8 md:p-12 border border-gray-200 shadow-sm relative rounded-sm">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy opacity-30"></div>
                 <h3 className="text-2xl font-serif text-navy mb-2">Solicitação de Análise</h3>
@@ -188,16 +214,22 @@ const Contact: React.FC = () => {
                       ></textarea>
                    </div>
                    <div className="pt-6 flex justify-end">
-                       <button 
-                         type="submit" 
-                         className="bg-navy text-white px-10 py-5 font-bold uppercase text-xs tracking-ultra hover:bg-gold hover:text-navy transition-all duration-300 shadow-lg hover:shadow-xl w-full md:w-auto"
-                       >
-                         Solicitar Contato
-                       </button>
+                       {enviado ? (
+                         <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 text-sm font-medium text-center w-full">
+                           Solicitação enviada! Redirecionando para o WhatsApp...
+                         </div>
+                       ) : (
+                         <button 
+                           type="submit" 
+                           className="bg-navy text-white px-10 py-5 font-bold uppercase text-xs tracking-ultra hover:bg-gold hover:text-navy transition-all duration-300 shadow-lg hover:shadow-xl w-full md:w-auto"
+                         >
+                           Solicitar Contato
+                         </button>
+                       )}
                    </div>
                 </form>
              </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

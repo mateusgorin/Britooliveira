@@ -1,28 +1,57 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { DIFFERENTIALS } from '../constants';
 import { Crown, Zap, Globe, ShieldCheck, Award, Handshake } from 'lucide-react';
 
 const Differentials: React.FC = () => {
   const icons = [<Handshake />, <Zap />, <Globe />, <ShieldCheck />, <Award />, <Crown />];
 
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    },
+    viewport: { once: true, margin: "-100px" }
+  };
+
+  const staggerItem = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
+
   return (
     <div className="bg-white">
       {/* Header Padronizado */}
       <section className="pt-40 md:pt-52 pb-20 bg-navy text-white text-center">
-        <div className="max-w-4xl mx-auto px-6 md:px-8">
+        <motion.div 
+          className="max-w-4xl mx-auto px-6 md:px-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-6 block">Por que escolher a Brito Oliveira?</span>
           <h1 className="text-3xl md:text-5xl font-serif italic mb-6">Diferenciais <span className="text-gradient-gold not-italic">Estratégicos</span></h1>
           <p className="text-gray-400 font-light text-base max-w-lg mx-auto">Valores que transformam a gestão da sua empresa.</p>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {DIFFERENTIALS.map((diff, index) => (
-              <div 
+              <motion.div 
                 key={index} 
                 className="group relative bg-white p-10 md:p-12 border border-gray-100 hover:border-gold/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 rounded-sm"
+                variants={staggerItem}
               >
                 {/* Detalhe Superior Dourado */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
@@ -45,9 +74,9 @@ const Differentials: React.FC = () => {
                     {diff.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

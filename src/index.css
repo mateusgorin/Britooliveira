@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scrollbar-gutter: stable;
+}
+body {
+    font-family: 'Outfit', sans-serif;
+    scroll-behavior: smooth;
+}
+h1, h2, h3, h4, .serif {
+    font-family: 'Cormorant Garamond', serif;
+}
+.text-gradient-gold {
+    background: linear-gradient(to right, #D4AF37, #F2D06B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* Oculta o botão de WhatsApp quando o menu está aberto */
+body.menu-open #whatsapp-floating-button {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+    visibility: hidden;
+}

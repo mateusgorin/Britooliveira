@@ -1,14 +1,43 @@
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { Target, Shield, Award, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8 }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    },
+    viewport: { once: true, margin: "-100px" }
+  };
+
+  const staggerItem = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
+
   return (
     <div className="bg-white">
       {/* HEADER PADRONIZADO */}
       <section className="pt-40 md:pt-52 pb-20 bg-navy text-white text-center">
-        <div className="max-w-4xl mx-auto px-6 md:px-8">
+        <motion.div 
+          className="max-w-4xl mx-auto px-6 md:px-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
            <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-6 block">Nossa Instituição</span>
            <h1 className="text-3xl md:text-5xl font-serif italic mb-6">
              Sólida, técnica e <span className="text-gradient-gold not-italic">estratégica.</span>
@@ -16,7 +45,7 @@ const About: React.FC = () => {
            <p className="text-gray-400 font-light text-base max-w-xl mx-auto">
              Estruturando o presente para garantir o legado futuro do seu negócio.
            </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Seção Principal: História */}
@@ -25,7 +54,10 @@ const About: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             
             {/* Imagem */}
-            <div className="relative order-2 lg:order-1">
+            <motion.div 
+              className="relative order-2 lg:order-1"
+              {...fadeIn}
+            >
               <div className="relative z-10 aspect-square overflow-hidden bg-gray-100">
                  <img 
                     src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2064&auto=format&fit=crop" 
@@ -34,10 +66,14 @@ const About: React.FC = () => {
                  />
               </div>
               <div className="absolute top-6 left-6 w-full h-full border border-navy/10 -z-0"></div>
-            </div>
+            </motion.div>
 
             {/* Texto */}
-            <div className="order-1 lg:order-2">
+            <motion.div 
+              className="order-1 lg:order-2"
+              {...fadeIn}
+              transition={{ ...fadeIn.transition, delay: 0.2 }}
+            >
               <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Quem Somos</span>
               <h2 className="text-navy text-3xl md:text-4xl font-serif mb-8 leading-tight">
                 Mais que consultoria. <br /> <span className="italic font-light text-navy/80">Inteligência Empresarial aplicada à realidade do seu negócio.</span>
@@ -60,7 +96,7 @@ const About: React.FC = () => {
                     </div>
                  ))}
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -74,23 +110,33 @@ const About: React.FC = () => {
               <div className="h-px w-12 bg-gold mx-auto mt-4"></div>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { Icon: Target, title: "Nossa Missão", desc: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
-                { Icon: Shield, title: "Nossa Visão", desc: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excellence técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
-                { Icon: Award, title: "Nossos Valores", desc: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
-              ].map((pilar, index) => (
-                <div key={index} className="bg-white p-10 border border-gray-100 hover:border-gold/30 transition-all duration-300">
-                    <div className="mb-6 text-navy">
-                        <pilar.Icon className="w-8 h-8 stroke-[1.5]" />
-                    </div>
-                    <h3 className="text-xl font-serif text-navy mb-4 italic">{pilar.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed font-light">
-                        {pilar.desc}
-                    </p>
-                </div>
-              ))}
-           </div>
+           <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+             {[
+               { Icon: Target, title: "Nossa Missão", desc: "Proporcionar clareza, segurança jurídica e sustentabilidade nas decisões empresariais, por meio de uma assessoria técnica de alto nível, personalizada e alinhada às exigências legais, à governança corporativa e à saúde organizacional." },
+               { Icon: Shield, title: "Nossa Visão", desc: "Ser referência nacional em assessoria empresarial preventiva, reconhecida pela integridade, excellence técnica e capacidade de resolver complexidades jurídicas, organizacionais e humanas nas médias e grandes empresas." },
+               { Icon: Award, title: "Nossos Valores", desc: "Ética e integridade absoluta • Atuação preventiva e estratégica • Segurança jurídica e organizacional • Responsabilidade social e humana • Compromisso com resultados sustentáveis" }
+             ].map((pilar, index) => (
+               <motion.div 
+                 key={index} 
+                 className="bg-white p-10 border border-gray-100 hover:border-gold/30 transition-all duration-300"
+                 variants={staggerItem}
+               >
+                   <div className="mb-6 text-navy">
+                       <pilar.Icon className="w-8 h-8 stroke-[1.5]" />
+                   </div>
+                   <h3 className="text-xl font-serif text-navy mb-4 italic">{pilar.title}</h3>
+                   <p className="text-gray-500 text-sm leading-relaxed font-light">
+                       {pilar.desc}
+                   </p>
+               </motion.div>
+             ))}
+          </motion.div>
         </div>
       </section>
 

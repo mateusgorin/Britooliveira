@@ -7,20 +7,41 @@ import { NAV_ITEMS, LOGO_URL, PHONE_DISPLAY, CONTACT_EMAIL } from '../constants'
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const location = useLocation();
   const scrollListenerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScrollBackground = () => {
-      const isScrolled = window.scrollY > 50;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Background change logic
+      const isScrolled = currentScrollY > 50;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
+
+      // Visibility logic (hide on scroll down, show on scroll up)
+      if (isOpen) {
+        setVisible(true);
+      } else if (currentScrollY < 100) {
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setVisible(false);
+      } else {
+        // Scrolling up
+        setVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScrollBackground, { passive: true });
-    return () => window.removeEventListener('scroll', handleScrollBackground);
-  }, [scrolled]);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled, lastScrollY, isOpen]);
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -29,7 +50,7 @@ const Navbar: React.FC = () => {
     }
 
     const handleScrollSpy = () => {
-      const sections = ['home', 'quem-somos', 'servicos', 'diferenciais'];
+      const sections = ['home', 'quem-somos', 'servicos', 'compliance-saude', 'diferenciais'];
       const scrollPosition = window.scrollY;
       
       if (scrollPosition < 100) {
@@ -127,7 +148,9 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-50 transition-colors duration-300 ease-out border-b ${
+      className={`fixed w-full z-50 transition-all duration-500 ease-in-out border-b ${
+        visible ? 'translate-y-0' : '-translate-y-full'
+      } ${
         isOpen 
           ? 'bg-navy py-4 border-white/5' 
           : scrolled 
@@ -135,7 +158,7 @@ const Navbar: React.FC = () => {
             : 'bg-transparent py-4 border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 -mt-[10px] -mb-[10px]">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 flex justify-between items-center relative z-50 gap-4 h-[85px]">
         <Link 
           to="/" 
           className="flex items-center flex-shrink-0" 
@@ -144,9 +167,7 @@ const Navbar: React.FC = () => {
           <img 
             src={LOGO_URL} 
             alt="Brito Oliveira Logo" 
-            className={`object-contain transition-[height] duration-300 ease-in-out will-change-[height] m-0 p-0 pt-[13px] ${
-              scrolled ? 'h-[80px] md:h-[100px]' : 'h-[140px] md:h-[175px]'
-            }`} 
+            className="object-contain transition-[height] duration-300 ease-in-out will-change-[height] m-0 p-0 h-[75px]" 
           />
         </Link>
 
@@ -248,7 +269,7 @@ const Navbar: React.FC = () => {
               </div>
             </div>
             <div className="flex gap-8 justify-center pt-2">
-              <a href="#" className="text-white/40 hover:text-gold transition-colors"><Linkedin className="w-5 h-5" /></a>
+              <a href="https://www.linkedin.com/company/brito-oliveira-assessoria" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Linkedin className="w-5 h-5" /></a>
               <a href="https://www.instagram.com/britoliveiraempresarial?igsh=MTU1ajdrdW5neDYzdg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Instagram className="w-5 h-5" /></a>
             </div>
           </div>

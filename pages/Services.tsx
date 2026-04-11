@@ -1,11 +1,35 @@
 
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { SERVICES } from '../constants';
 import { ArrowUpRight, ChevronDown, ArrowRight, Brain, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Services: React.FC = () => {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8 }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    },
+    viewport: { once: true, margin: "-100px" }
+  };
+
+  const staggerItem = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
 
   const toggleExpand = (id: string) => {
     setExpandedIds(prev => {
@@ -20,11 +44,16 @@ const Services: React.FC = () => {
     <div className="bg-white">
       {/* Page Header Padronizado */}
       <section className="pt-40 md:pt-52 pb-20 bg-navy text-white text-center">
-        <div className="max-w-4xl mx-auto px-6 md:px-8">
+        <motion.div 
+          className="max-w-4xl mx-auto px-6 md:px-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
           <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-6 block">Áreas de Atuação</span>
           <h1 className="text-3xl md:text-5xl font-serif italic mb-6">Soluções <span className="text-gradient-gold not-italic">Institucionais</span></h1>
           <p className="text-gray-400 font-light text-base max-w-lg mx-auto">Especialidades desenhadas para a segurança do seu legado empresarial.</p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Seção de Expertise */}
@@ -53,12 +82,22 @@ const Services: React.FC = () => {
         {/* Grid Normal (sem overlap) - Tamanho Padronizado */}
         <div className="bg-white pb-24 relative z-20">
           <div className="max-w-7xl mx-auto px-6 md:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true, margin: "-100px" }}
+            >
               {SERVICES.map((service) => {
                 const isExpanded = expandedIds.has(service.id);
 
                 return (
-                  <div key={service.id} className="flex flex-col">
+                  <motion.div 
+                    key={service.id} 
+                    className="flex flex-col"
+                    variants={staggerItem}
+                  >
                     <div className="bg-white p-6 md:p-8 border border-gray-100 shadow-[0_25px_60px_rgba(0,0,0,0.1)] hover:border-gold/40 hover:-translate-y-3 transition-all duration-500 group flex flex-col justify-between min-h-[300px] rounded-sm relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-navy via-gold to-navy transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                       
@@ -98,10 +137,10 @@ const Services: React.FC = () => {
                           <ArrowUpRight className="w-4 h-4 text-gray-200 group-hover:text-gold transition-colors" />
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -110,7 +149,7 @@ const Services: React.FC = () => {
       <section className="py-24 bg-gray-50 border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-             <div>
+             <motion.div {...fadeIn}>
                 <span className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-4 block">Diferencial Estratégico</span>
                 <h2 className="text-3xl md:text-4xl font-serif text-navy mb-8 leading-tight">
                   Gestão de Riscos Psicossociais <br /> 
@@ -127,9 +166,13 @@ const Services: React.FC = () => {
                     Atuamos de forma integrada na adequação legal, técnica e estratégica.
                    </p>
                 </div>
-             </div>
+             </motion.div>
 
-             <div className="bg-white p-8 md:p-12 border border-gray-100 shadow-xl relative">
+             <motion.div 
+              className="bg-white p-8 md:p-12 border border-gray-100 shadow-xl relative"
+              {...fadeIn}
+              transition={{ ...fadeIn.transition, delay: 0.2 }}
+            >
                 <div className="absolute -top-6 -left-6 w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center">
                   <Brain className="w-10 h-10 text-gold" />
                 </div>
@@ -153,7 +196,7 @@ const Services: React.FC = () => {
                      Solicitar Adequação <ArrowRight className="w-3 h-3" />
                    </Link>
                 </div>
-             </div>
+             </motion.div>
           </div>
         </div>
       </section>

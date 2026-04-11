@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { 
   Calendar, 
   Bell, 
@@ -16,9 +17,34 @@ import {
   Building2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const HealthCompliance: React.FC = () => {
   const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const fadeIn = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-100px" },
+    transition: { duration: 0.8 }
+  };
+
+  const staggerContainer = {
+    initial: {},
+    whileInView: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    },
+    viewport: { once: true, margin: "-100px" }
+  };
+
+  const staggerItem = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  };
 
   const toggleExpand = (id: number) => {
     setExpandedIds(prev => {
@@ -66,6 +92,10 @@ const HealthCompliance: React.FC = () => {
 
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Compliance em Saúde e Adequação à NR-1 | Brito Oliveira</title>
+        <meta name="description" content="Adequação completa à NR-1 e gestão de riscos psicossociais para empresas em Brasília. Diagnóstico, PGR e assessoria jurídica integrada." />
+      </Helmet>
       {/* PAGE 1: HERO */}
       <section className="relative min-h-screen flex items-center bg-navy-dark overflow-hidden py-24 md:py-32">
         <div 
@@ -76,7 +106,12 @@ const HealthCompliance: React.FC = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
-          <div className="max-w-4xl">
+          <motion.div 
+            className="max-w-4xl"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-gold"></span>
               <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-ultra">Regulamentação em Saúde</span>
@@ -98,7 +133,7 @@ const HealthCompliance: React.FC = () => {
                 <ArrowRight className="ml-2.5 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -121,18 +156,28 @@ const HealthCompliance: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {services.map((item) => {
               const isExpanded = expandedIds.has(item.id);
               return (
-                <div key={item.id} className="group bg-white border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rounded-sm overflow-hidden flex flex-col h-full relative">
+                <motion.div 
+                  key={item.id} 
+                  className="group bg-white border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rounded-sm overflow-hidden flex flex-col h-full relative"
+                  variants={staggerItem}
+                >
                   <div className="absolute top-0 left-0 w-full h-1 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 z-20"></div>
                   
                   <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative">
                     <img 
                       src={item.img} 
                       alt={item.title} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110"
+                      className="w-full h-full object-cover transition-all duration-700 transform group-hover:scale-110"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800';
                       }}
@@ -166,10 +211,10 @@ const HealthCompliance: React.FC = () => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -177,7 +222,10 @@ const HealthCompliance: React.FC = () => {
       <section className="py-20 md:py-32 bg-navy-dark px-6 md:px-8 border-y border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-gold/10 to-transparent opacity-50"></div>
         
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 md:gap-24 relative z-10">
+        <motion.div 
+          className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 md:gap-24 relative z-10"
+          {...fadeIn}
+        >
           <div className="flex-1 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 order-2 lg:order-1 w-full">
             <div className="flex flex-col items-center gap-5 group">
               <div className="w-20 h-20 md:w-28 md:h-28 rounded-full border border-gold/30 flex items-center justify-center group-hover:bg-gold group-hover:text-navy transition-all duration-500 bg-navy/30">
@@ -219,7 +267,7 @@ const HealthCompliance: React.FC = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* PAGE 4: RESPONSABILIDADES */}
@@ -237,7 +285,10 @@ const HealthCompliance: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            <div className="space-y-8">
+            <motion.div 
+              className="space-y-8"
+              {...fadeIn}
+            >
               <h3 className="text-xl font-serif text-navy italic mb-8 flex items-center gap-4">
                 <span className="w-2 h-2 bg-gold rounded-full"></span>
                 Serviços Não Inclusos
@@ -262,9 +313,13 @@ const HealthCompliance: React.FC = () => {
                   Não assumimos responsabilidade técnica pelos serviços prestados no estabelecimento, limitando-nos ao suporte administrativo e de compliance documental.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col gap-8">
+            <motion.div 
+              className="flex flex-col gap-8"
+              {...fadeIn}
+              transition={{ ...fadeIn.transition, delay: 0.2 }}
+            >
                <div className="bg-navy p-8 md:p-12 shadow-2xl rounded-sm border border-white/5 relative overflow-hidden group h-full">
                   <div className="absolute top-0 left-0 w-1 h-full bg-gold"></div>
                   <h3 className="text-gold text-2xl font-serif italic mb-10 border-b border-gold/20 pb-4">Nossa Entrega</h3>
@@ -300,7 +355,7 @@ const HealthCompliance: React.FC = () => {
                     ))}
                   </ul>
                </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -309,7 +364,10 @@ const HealthCompliance: React.FC = () => {
       <section className="py-20 md:py-32 bg-navy-dark px-6 md:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-center mb-24">
-            <div className="lg:w-1/2">
+            <motion.div 
+              className="lg:w-1/2"
+              {...fadeIn}
+            >
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-8 h-px bg-gold"></span>
                 <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-ultra">Início do Processo</span>
@@ -324,46 +382,63 @@ const HealthCompliance: React.FC = () => {
                   "A organização documental é o pilar de uma aprovação rápida e sem exigências adicionais."
                 </p>
               </div>
-            </div>
-            <div className="lg:w-1/2 relative group w-full">
+            </motion.div>
+            <motion.div 
+              className="lg:w-1/2 relative group w-full"
+              {...fadeIn}
+              transition={{ ...fadeIn.transition, delay: 0.2 }}
+            >
               <div className="absolute -inset-4 border border-gold/10 -z-0 group-hover:inset-0 transition-all duration-700"></div>
               <div className="grid grid-cols-2 gap-4 relative z-10">
                 <img 
                   src="https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80&w=1000" 
                   alt="Análise de Documentos 1" 
-                  className="w-full h-48 md:h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 rounded-sm"
+                  className="w-full h-48 md:h-64 object-cover shadow-2xl transition-all duration-1000 rounded-sm"
                 />
                 <img 
                   src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1000" 
                   alt="Análise de Documentos 2" 
-                  className="w-full h-48 md:h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 rounded-sm mt-8"
+                  className="w-full h-48 md:h-64 object-cover shadow-2xl transition-all duration-1000 rounded-sm mt-8"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {[
               { num: "01", title: "Empresariais", text: "CNPJ atualizado, Contrato Social e última alteração, comprovante de endereço." },
               { num: "02", title: "Atividades", text: "Memorial descritivo de serviços e relação detalhada de ambientes físicos." },
               { num: "03", title: "Profissionais", text: "Cédula profissional e certificado de RT dos conselhos de classe." },
               { num: "04", title: "Histórico", text: "Cópia das licenças vencidas ou protocolos de processos em andamento." }
             ].map((item, idx) => (
-              <div key={idx} className="border border-white/5 bg-navy/40 p-8 md:p-10 hover:bg-navy transition-all duration-500 group relative rounded-sm h-full flex flex-col">
+              <motion.div 
+                key={idx} 
+                className="border border-white/5 bg-navy/40 p-8 md:p-10 hover:bg-navy transition-all duration-500 group relative rounded-sm h-full flex flex-col"
+                variants={staggerItem}
+              >
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
                 <span className="text-4xl font-serif italic text-gold/20 group-hover:text-gold transition-colors block mb-6">{item.num}</span>
                 <h4 className="text-xl font-serif italic mb-4 text-white group-hover:text-gold transition-colors leading-tight">{item.title}</h4>
                 <p className="text-gray-400 text-sm md:text-base font-light leading-relaxed">{item.text}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* PAGE 6: PRAZOS E FECHAMENTO */}
       <section className="py-20 md:py-32 bg-white px-6 md:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div className="order-2 lg:order-1">
+          <motion.div 
+            className="order-2 lg:order-1"
+            {...fadeIn}
+          >
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-gold"></span>
               <span className="text-gold text-[10px] md:text-xs font-bold uppercase tracking-ultra">Diligência e Prazos</span>
@@ -395,17 +470,71 @@ const HealthCompliance: React.FC = () => {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="order-1 lg:order-2 relative group w-full">
+          <motion.div 
+            className="order-1 lg:order-2 relative group w-full"
+            {...fadeIn}
+            transition={{ ...fadeIn.transition, delay: 0.2 }}
+          >
             <div className="absolute top-8 left-8 w-full h-full border-2 border-gold/10 -z-0"></div>
             <img 
               src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2000" 
               alt="Ambiente Hospitalar Profissional" 
-              className="w-full h-auto shadow-2xl relative z-10 grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-sm"
+              className="w-full h-auto shadow-2xl relative z-10 transition-all duration-1000 rounded-sm"
             />
-          </div>
+          </motion.div>
         </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section className="py-20 md:py-32 bg-gray-50 px-6 md:px-8 border-t border-gray-100">
+        <motion.div 
+          className="max-w-3xl mx-auto"
+          {...fadeIn}
+        >
+          <h2 className="font-serif text-navy text-2xl md:text-3xl mb-12 text-center italic">
+            Perguntas Frequentes sobre <span className="text-gold not-italic">NR-1 e Compliance</span>
+          </h2>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: "O que muda com a NR-1 a partir de maio de 2026?",
+                a: "A NR-1 passa a exigir que todas as empresas incluam a gestão de riscos psicossociais no Programa de Gerenciamento de Riscos (PGR). Isso inclui identificar e gerenciar fatores como sobrecarga, assédio, clima organizacional e saúde mental dos colaboradores."
+              },
+              {
+                q: "Quais empresas precisam se adequar à NR-1?",
+                a: "Todas as empresas com funcionários CLT, independentemente do porte ou setor, são obrigadas a cumprir as diretrizes da NR-1 atualizada."
+              },
+              {
+                q: "O que é compliance em saúde ocupacional?",
+                a: "É o conjunto de práticas que garantem que a empresa esteja em conformidade com as normas regulamentadoras de saúde e segurança do trabalho, prevenindo passivos trabalhistas e promovendo um ambiente seguro."
+              },
+              {
+                q: "Qual o prazo para adequação à NR-1?",
+                a: "O prazo final é maio de 2026. Empresas que não se adequarem estarão sujeitas a autuações e passivos trabalhistas."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-white border-b border-gray-200 overflow-hidden transition-all duration-300">
+                <button
+                  onClick={() => setActiveFaq(activeFaq === index ? null : index)}
+                  className="w-full py-6 flex items-center justify-between text-left group"
+                >
+                  <span className={`text-sm md:text-base font-medium transition-colors duration-300 ${activeFaq === index ? 'text-gold' : 'text-navy group-hover:text-gold'}`}>
+                    {faq.q}
+                  </span>
+                  <ChevronDown className={`w-5 h-5 text-gold transition-transform duration-500 ${activeFaq === index ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${activeFaq === index ? 'max-h-96 pb-8' : 'max-h-0'}`}>
+                  <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </section>
     </div>
   );

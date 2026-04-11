@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           {/* Coluna 1: Identidade e Missão */}
           <div className="lg:col-span-5 flex flex-col items-start">
             <div className="mb-6 md:mb-8">
-                <h3 className="text-gold text-[10px] font-bold uppercase tracking-ultra mb-2">Brito Oliveira</h3>
+                <h3 className="text-gold text-[15px] font-bold uppercase tracking-ultra mb-2">Brito Oliveira</h3>
                 <h2 className="text-2xl md:text-4xl font-serif italic text-white leading-tight">
                   Assessoria <br/> Empresarial
                 </h2>

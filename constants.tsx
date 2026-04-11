@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { Service, Differential, NavItem } from './types';
 
-export const LOGO_URL = 'https://i.postimg.cc/Wzqb6BKk/IMG-4373.png';
+export const LOGO_URL = 'https://res.cloudinary.com/dw5b0vlbz/image/upload/v1775933590/Picsart_26-04-11_15-53-00-799_v3u897.png';
 export const WHATSAPP_NUMBER = '5561983518959'; 
 export const PHONE_DISPLAY = '+55 (61) 98351-8959';
 export const CONTACT_EMAIL = 'contato@britooliveira.com.br';
@@ -24,7 +24,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Sobre a Empresa', path: '/#quem-somos' },
   { label: 'Serviços', path: '/#servicos' },
-  { label: 'Compliance em Saúde', path: '/compliance-saude' },
+  { label: 'Compliance em Saúde', path: '/#compliance-saude' },
   { label: 'Diferenciais', path: '/#diferenciais' },
 ];
 
