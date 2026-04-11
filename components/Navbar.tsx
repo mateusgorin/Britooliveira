@@ -191,7 +191,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Footer Info */}
-        <div className="p-12 bg-[#050914]">
+        <div className="p-12 bg-transparent">
           <div className="max-w-xs mx-auto space-y-8 text-center">
             <div className="flex flex-col items-center gap-6">
               <div className="flex flex-col items-center gap-1.5">
